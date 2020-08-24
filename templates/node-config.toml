@@ -1,0 +1,39 @@
+[node]
+chainspec_config_path = '../../../chainspec/chainspec.toml'
+block_max_deploy_count = 3
+
+[logging]
+format = 'json'
+abbreviate_modules = false
+
+[consensus]
+secret_key_path = '../keys/secret_key.pem'
+
+[validator_net]
+bind_interface = '127.0.0.1'
+bind_port = {VALIDATOR_NET_BIND_PORT}
+root_addr = '127.0.0.1:{VALIDATOR_NET_ROOT_ADDR_PORT}'
+max_outgoing_retries = 360
+outgoing_retry_delay_millis = 10000
+
+[http_server]
+bind_interface = '127.0.0.1'
+bind_port = {HTTP_SERVER_BIND_PORT}
+
+[storage]
+path = '../storage'
+max_block_store_size = 483183820800
+max_deploy_store_size = 322122547200
+max_chainspec_store_size = 1073741824
+
+[gossip]
+infection_target = 3
+saturation_limit_percent = 80
+finished_entry_duration_secs = 3600
+gossip_request_timeout_secs = 10
+get_remainder_timeout_secs = 60
+
+[contract_runtime]
+use_system_contracts = false
+enable_bonding = false
+max_global_state_size = 805306368000
