@@ -3,7 +3,6 @@ alias nctl-node-up='source $NTCL/sh/node/up.sh'
 alias nctl-node-down='source $NTCL/sh/node/down.sh'
 
 # Network.
-alias nctl-network-reset='source $NTCL/sh/network/reset.sh'
 alias nctl-network-setup='source $NTCL/sh/network/setup.sh'
 alias nctl-network-teardown='source $NTCL/sh/network/teardown.sh'
 
