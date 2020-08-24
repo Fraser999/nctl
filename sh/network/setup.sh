@@ -3,7 +3,7 @@
 # Sets artefacts required to run an N node network.
 
 # Import utils.
-source $NTCL/sh/utils/shared.sh
+source $NTCL/sh/utils/misc.sh
 
 #######################################
 # Main entry point

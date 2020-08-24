@@ -21,7 +21,7 @@ function main() {
 }
 
 # Import utils.
-source $NTCL/sh/utils/shared.sh
+source $NTCL/sh/utils/misc.sh
 
 # Invoke entry point.
 main $1

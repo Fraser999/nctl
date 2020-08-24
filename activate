@@ -13,7 +13,7 @@ export NTCL_INFRA=$NTCL/infra
 # HELPERS
 # ###############################################################
 
-source $NTCL/sh/utils.sh
+source $NTCL/sh/utils/misc.sh
 
 # ###############################################################
 # ALIASES
