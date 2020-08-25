@@ -32,7 +32,7 @@ function main() {
     # Set artefacts.
     _set_binaries $path
     _set_chainspec $path $idx
-    _set_daemon $path
+    _set_daemon $path $node_count $idx
     _set_faucet $path
     _set_nodes $path $node_count
     _set_users $path $user_count
@@ -104,6 +104,8 @@ function set_chainspec_account() {
 
 #######################################
 # Sets artefacts pertaining to network daemon.
+# Globals:
+#   NTCL - path to nctl home directory.
 # Arguments:
 #   Path to network directory.
 #######################################
@@ -114,7 +116,52 @@ function _set_daemon() {
     mkdir $1/daemon
     mkdir $1/daemon/config
     mkdir $1/daemon/logs
+    mkdir $1/daemon/socket
+
+    # Set supervisord.conf file.
+    cp $NTCL/templates/daemon-supervisord.conf $1/daemon/config/supervisord.conf
+
+    # Set supervisord.conf header.
+	cat >> $1/daemon/config/supervisord.conf <<- EOM
+[unix_http_server]
+file=$1/daemon/socket/supervisord.sock ;
+
+[supervisord]
+logfile=$1/daemon/logs/supervisord.log ;
+logfile_maxbytes=50MB ;
+logfile_backups=10 ;
+loglevel=info ;
+pidfile=$1/daemon/socket/supervisord.pid ;
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[supervisorctl]
+serverurl=unix:///$1/daemon/socket/supervisord.sock ;
+	EOM
+
+    # Set supervisord.conf app sections.
+    for node_id in $(seq 1 $2)
+    do
+
+	cat >> $1/daemon/config/supervisord.conf <<- EOM
+
+[program:node-$node_id]
+command=$1/bin/casperlabs-node validator --config $1/nodes/node-$node_id/config/node-config.toml ;
+numprocs=1
+numprocs_start=1
+process_name=casper-net-$3
+stderr_logfile=$1/nodes/node-$node_id/logs/stderr.log ;
+stderr_logfile_backups=5 ;
+stderr_logfile_maxbytes=50MB ;
+stdout_logfile=$1/nodes/node-$node_id/logs/stdout.log ;
+stdout_logfile_backups=5 ;
+stdout_logfile_maxbytes=50MB ;
+	EOM
+
+    done
 }
+
 
 #######################################
 # Sets artefacts pertaining to network faucet account.
@@ -182,7 +229,7 @@ function _set_node ()
     HTTP_SERVER_BIND_PORT=$((50000 + $node_id))
 
     # Set config.
-    path_config=$1/nodes/node-$2/config/config.toml
+    path_config=$1/nodes/node-$2/config/node-config.toml
     cp $NTCL/templates/node-config.toml $path_config
     sed -i "" "s/{VALIDATOR_NET_BIND_PORT}/$VALIDATOR_NET_BIND_PORT/g" $path_config
     sed -i "" "s/{VALIDATOR_NET_ROOT_ADDR_PORT}/$VALIDATOR_NET_ROOT_ADDR_PORT/g" $path_config
@@ -245,5 +292,15 @@ USER_COUNT=$4
 	EOM
 }
 
+# Destructure input args.
+while getopts i:n:u: flag
+do
+    case "${flag}" in
+        i) idx=${OPTARG};;
+        n) nodes=${OPTARG};;
+        u) users=${OPTARG};;
+    esac
+done
+
 # Invoke entry point.
-main $1 $2 $3
+main $idx $nodes $users

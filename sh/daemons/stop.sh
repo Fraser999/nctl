@@ -6,11 +6,19 @@ source $NTCL/sh/utils/misc.sh
 # Main entry point.
 function main()
 {
-	pushd $STESTS_HOME
-	pipenv run supervisorctl -c $NTCL/sh/daemons/supervisord.conf stop all &>/dev/null 
-	pipenv run supervisorctl -c $NTCL/sh/daemons/supervisord.conf shutdown &>/dev/null
-	popd -1
+	log "daemons :: stop supervisord "$1
+
+	supervisorctl -c $NTCL/nets/net-$1/daemon/config/supervisord.conf stop all &>/dev/null 
+	supervisorctl -c $NTCL/nets/net-$1/daemon/config/supervisord.conf shutdown &>/dev/null
 }
 
+# Destructure input args.
+while getopts n: flag
+do
+    case "${flag}" in
+        n) network=${OPTARG};;
+    esac
+done
+
 # Invoke entry point.
-main
+main $network

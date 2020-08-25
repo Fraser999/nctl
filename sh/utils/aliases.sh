@@ -1,14 +1,18 @@
+# Client.
+alias nctl-client-compile='sh $NTCL/sh/client/compile.sh'
+
 # Node.
-alias nctl-node-up='source $NTCL/sh/node/up.sh'
-alias nctl-node-down='source $NTCL/sh/node/down.sh'
+alias nctl-node-compile='sh $NTCL/sh/node/compile.sh'
+alias nctl-node-up='sh $NTCL/sh/node/up.sh'
+alias nctl-node-down='sh $NTCL/sh/node/down.sh'
 
 # Network.
-alias nctl-network-setup='source $NTCL/sh/network/setup.sh'
-alias nctl-network-teardown='source $NTCL/sh/network/teardown.sh'
+alias nctl-network-setup='sh $NTCL/sh/network/setup.sh'
+alias nctl-network-teardown='sh $NTCL/sh/network/teardown.sh'
 
 # Daemons.
-alias nctl-daemon='source $NTCL/sh/daemon/start.sh'
-alias nctl-daemon-reload='source $NTCL/sh/daemon/reload.sh'
-alias nctl-daemon-reset-logs='source $NTCL/sh/daemon/reset_logs.sh'
-alias nctl-daemon-status='source $NTCL/sh/daemon/status.sh'
-alias nctl-daemon-stop='source $NTCL/sh/daemon/stop.sh'
+alias nctl-daemon='sh $NTCL/sh/daemons/start.sh'
+alias nctl-daemon-reload='sh $NTCL/sh/daemons/reload.sh'
+alias nctl-daemon-reset-logs='sh $NTCL/sh/v/reset_logs.sh'
+alias nctl-daemon-status='sh $NTCL/sh/daemons/status.sh'
+alias nctl-daemon-stop='sh $NTCL/sh/daemons/stop.sh'

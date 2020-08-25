@@ -5,10 +5,6 @@
 # Set here.
 export NTCL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Set sub-dirs.
-export NTCL_OPS=$NTCL/ops
-export NTCL_INFRA=$NTCL/infra
-
 # ###############################################################
 # HELPERS
 # ###############################################################
