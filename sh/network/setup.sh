@@ -15,15 +15,8 @@ source $NTCL/sh/utils/misc.sh
 function main() {
     log "setting network artefacts:"
 
-    # Set args.
-    idx=$1
-    node_count=$2
-    user_count=$3
-
-    # Set paths.
-    path=$NTCL/nets/net-$idx
-
-    # Set directories.
+    # Set directory.
+    path=$NTCL/nets/net-$1
 	if [ -d $path ]; then
         rm -rf $path
 	fi
@@ -31,12 +24,12 @@ function main() {
 
     # Set artefacts.
     _set_binaries $path
-    _set_chainspec $path $idx
-    _set_daemon $path $node_count $idx
+    _set_chainspec $path $1
+    _set_daemon $path $2 $1
     _set_faucet $path
-    _set_nodes $path $node_count
-    _set_users $path $user_count
-    _set_vars $path $idx $node_count $user_count
+    _set_nodes $path $2
+    _set_users $path $3
+    _set_vars $path $1 $2 $3
 }
 
 #######################################
@@ -96,7 +89,7 @@ function _set_chainspec() {
 #   Initial account balance (in motes).
 #   Staking weight - validator's only.
 #######################################
-function set_chainspec_account() {
+function _set_chainspec_account() {
 	cat >> $1/chainspec/accounts.csv <<- EOM
 	`cat $2`,ed25519,$3,$4
 	EOM
@@ -108,6 +101,8 @@ function set_chainspec_account() {
 #   NTCL - path to nctl home directory.
 # Arguments:
 #   Path to network directory.
+#   Nodeset count.
+#   Network ordinal identifer.
 #######################################
 function _set_daemon() {
     log "... daemon"
@@ -146,11 +141,10 @@ serverurl=unix:///$1/daemon/socket/supervisord.sock ;
 
 	cat >> $1/daemon/config/supervisord.conf <<- EOM
 
-[program:node-$node_id]
+[program:casper-net-$3-node-$node_id]
 command=$1/bin/casperlabs-node validator --config $1/nodes/node-$node_id/config/node-config.toml ;
 numprocs=1
-numprocs_start=1
-process_name=casper-net-$3
+numprocs_start=0
 stderr_logfile=$1/nodes/node-$node_id/logs/stderr.log ;
 stderr_logfile_backups=5 ;
 stderr_logfile_maxbytes=50MB ;
@@ -161,7 +155,6 @@ stdout_logfile_maxbytes=50MB ;
 
     done
 }
-
 
 #######################################
 # Sets artefacts pertaining to network faucet account.
@@ -178,7 +171,7 @@ function _set_faucet() {
     $CASPER_CLIENT keygen -f $1/faucet > /dev/null 2>&1
 
     # Set chainspec account.
-    set_chainspec_account \
+    _set_chainspec_account \
         $1 \
         $1/faucet/public_key_hex \
         100000000000000000 \
@@ -236,7 +229,7 @@ function _set_node ()
     sed -i "" "s/{HTTP_SERVER_BIND_PORT}/$HTTP_SERVER_BIND_PORT/g" $path_config
 
     # Set chainspec account.
-    set_chainspec_account \
+    _set_chainspec_account \
         $1 \
         $1/nodes/node-$2/keys/public_key_hex \
         100000000000000000 \
@@ -292,15 +285,25 @@ USER_COUNT=$4
 	EOM
 }
 
+#######################################
+# CLI entry point
+# Arguments:
+#   Network ordinal identifer.
+#   Count of nodes to setup.
+#   Count of users to setup.
+#######################################
 # Destructure input args.
-while getopts i:n:u: flag
+for ARGUMENT in "$@"
 do
-    case "${flag}" in
-        i) idx=${OPTARG};;
-        n) nodes=${OPTARG};;
-        u) users=${OPTARG};;
-    esac
+    KEY=$(echo $ARGUMENT | cut -f1 -d=)
+    VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
+    case "$KEY" in
+        net) net=${VALUE} ;;
+        nodes) nodes=${VALUE} ;;
+        users) users=${VALUE} ;;
+        *)   
+    esac    
 done
 
 # Invoke entry point.
-main $idx $nodes $users
+main $net $nodes $users

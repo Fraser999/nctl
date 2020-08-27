@@ -39,13 +39,23 @@ function _teardown_daemons() {
     echo "TODO: auto stop active network daemons"
 }
 
+#######################################
+# CLI entry point
+# Arguments:
+#   Network ordinal identifer.
+#   Count of nodes to setup.
+#   Count of users to setup.
+#######################################
 # Destructure input args.
-while getopts i: flag
+for ARGUMENT in "$@"
 do
-    case "${flag}" in
-        i) idx=${OPTARG};;
-    esac
+    KEY=$(echo $ARGUMENT | cut -f1 -d=)
+    VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
+    case "$KEY" in
+        net) net=${VALUE} ;;
+        *)   
+    esac    
 done
 
 # Invoke entry point.
-main $idx
+main $net

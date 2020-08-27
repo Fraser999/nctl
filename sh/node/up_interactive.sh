@@ -1,15 +1,28 @@
 #!/bin/bash
 #
+# Interactively spins up a node within a network.
+
+# Import utils.
+source $NTCL/sh/utils/misc.sh
+
 #######################################
-# Spins up a node within a network.
+# Main entry point
 # Arguments:
 #   Network ordinal identifer.
 #   Node ordinal identifer.
 #######################################
+function main() {
+    export RUST_LOG=info
+    $CASPER_NODE validator --config $NTCL/nets/net-$1/nodes/node-$2/config/node-config.toml
+}
 
 #######################################
-# Destructure input args.
+# CLI entry point
+# Arguments:
+#   Network ordinal identifer.
+#   Node ordinal identifer.
 #######################################
+# Destructure input args.
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
@@ -21,12 +34,5 @@ do
     esac    
 done
 
-#######################################
-# Main
-#######################################
-
-# Reset logs.
-sh $NTCL/sh/node/reset_logs.sh net=$net node=$node
-
-# Start node.
-source $NTCL/sh/daemons/supervisord/node_start.sh $net $node
+# Invoke entry point.
+main $net $node
