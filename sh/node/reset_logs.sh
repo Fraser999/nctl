@@ -1,8 +1,16 @@
 #!/bin/bash
 #
 # Resets node logs.
+# Globals:
+#   NTCL - path to nctl home directory.
+# Arguments:
+#   Network ordinal identifer.
+#   Node ordinal identifer.
 
-# Destructure args.
+#######################################
+# Destructure input args.
+#######################################
+
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
@@ -14,5 +22,8 @@ do
     esac    
 done
 
-# Reset logs.
+#######################################
+# Main
+#######################################
+
 rm $NTCL/nets/net-$net/nodes/node-$node/logs/*.log

@@ -1,4 +1,4 @@
-function get_path_net_supervisord_config() {
+function get_path_net_supervisord_cfg() {
 	echo $NTCL/nets/net-$1/daemon/config/supervisord.conf
 }
 

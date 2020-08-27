@@ -3,12 +3,12 @@ alias nctl-compile-client='sh $NTCL/sh/compile/client.sh'
 alias nctl-compile-node='sh $NTCL/sh/compile/node.sh'
 
 # Node.
-alias nctl-node-down='sh $NTCL/sh/node/down.sh'
-alias nctl-node-reload='sh $NTCL/sh/daemons/reload.sh'
-alias nctl-node-reset-logs='sh $NTCL/sh/v/reset_logs.sh'
-alias nctl-node-status='sh $NTCL/sh/daemons/status.sh'
-alias nctl-node-up='sh $NTCL/sh/node/up.sh'
-alias nctl-node-up-interactive='sh $NTCL/sh/node/up_interactive.sh'
+alias nctl-node-down='sh $NTCL/sh/node/stop.sh'
+alias nctl-node-reload='sh $NTCL/sh/node/reload.sh'
+alias nctl-node-reset-logs='sh $NTCL/sh/node/reset_logs.sh'
+alias nctl-node-status='sh $NTCL/sh/node/status.sh'
+alias nctl-node-up='sh $NTCL/sh/node/start.sh'
+alias nctl-node-up-interactive='sh $NTCL/sh/node/start_interactive.sh'
 
 # Network.
 alias nctl-network-down='sh $NTCL/sh/node/down.sh'

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #######################################
-# Tears doen a node within a network.
+# Tears down a node within a network.
 # Globals:
 #   NTCL - path to nctl home directory.
 # Arguments:
@@ -10,10 +10,7 @@
 #######################################
 
 source $NTCL/sh/daemons/supervisord/utils.sh
-
 source $NTCL/sh/daemons/supervisord/daemon_start.sh $1 
-
-sleep 3.0
-supervisorctl -c "$(get_path_net_supervisord_config $1)" stop "$(get_node_process_name $1 $2)"  > /dev/null 2>&1
-
+supervisorctl -c "$(get_path_net_supervisord_cfg $1)" stop "$(get_node_process_name $1 $2)"  > /dev/null 2>&1
+sleep 2.0
 source $NTCL/sh/daemons/supervisord/node_status.sh $1 $2
