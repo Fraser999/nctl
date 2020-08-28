@@ -28,15 +28,10 @@ path_casper_node=PATH_TO_YOUR_CASPER_NODE_REPO
 git clone https://github.com/CasperLabs/nctl.git $path_nctl_install/nctl
 ```
 
-### Step A.4 - activate shell
+### Step A.4 - set local setup file
 
 ```
-# Extend bashrc file so that nctl commands are available.
-cat >> $path_bashrc <<- EOM
-
-# ----------------------------------------------------------------------
-# CASPER - NCTL
-# ----------------------------------------------------------------------
+cat >> $HOME/.casper-nctl <<- EOM
 
 # Path to local casper-node repo.
 export NCTL_CASPER_HOME=$path_casper_node
@@ -46,6 +41,21 @@ export NCTL_DAEMON_TYPE=supervisord
 
 # Activate nctl shell.
 source ${path_nctl_install}/nctl/activate
+
+EOM
+```
+
+### Step A.5 - extend bashrc file to make nctl commands available from terminal session.
+
+```
+cat >> $path_bashrc <<- EOM
+
+# ----------------------------------------------------------------------
+# CASPER - NCTL
+# ----------------------------------------------------------------------
+
+# Activate nctl shell.
+source $HOME/.casper-nctl
 
 EOM
 ```
@@ -71,11 +81,10 @@ path_casper_node=PATH_TO_YOUR_CASPER_NODE_REPO
 git clone https://github.com/CasperLabs/nctl.git $path_nctl_install/nctl
 ```
 
-## Step B.3 - activate shell
+## Step B.3 - set local setup file
 
 ```
-# Extend bashrc file so that nctl commands are available.
-cat >> $path_bashrc <<- EOM
+cat >> $HOME/.casper-nctl <<- EOM
 
 # ----------------------------------------------------------------------
 # CASPER - NCTL
@@ -91,3 +100,18 @@ export NCTL_DAEMON_TYPE=systemd
 source ${path_nctl_install}/nctl/activate
 
 EOM
+
+### Step B.4 - extend bashrc file to make nctl commands available from terminal session.
+
+```
+cat >> $path_bashrc <<- EOM
+
+# ----------------------------------------------------------------------
+# CASPER - NCTL
+# ----------------------------------------------------------------------
+
+# Activate nctl shell.
+source $HOME/.casper-nctl
+
+EOM
+```
