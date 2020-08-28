@@ -87,47 +87,10 @@ function _set_daemon() {
     mkdir $1/daemon/logs
     mkdir $1/daemon/socket
 
-    # Set supervisord.conf file.
-    touch  $1/daemon/config/supervisord.conf
-
-    # Set supervisord.conf header.
-	cat >> $1/daemon/config/supervisord.conf <<- EOM
-[unix_http_server]
-file=$1/daemon/socket/supervisord.sock ;
-
-[supervisord]
-logfile=$1/daemon/logs/supervisord.log ;
-logfile_maxbytes=50MB ;
-logfile_backups=10 ;
-loglevel=info ;
-pidfile=$1/daemon/socket/supervisord.pid ;
-
-[rpcinterface:supervisor]
-supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
-
-[supervisorctl]
-serverurl=unix:///$1/daemon/socket/supervisord.sock ;
-	EOM
-
-    # Set supervisord.conf app sections.
-    for node_id in $(seq 1 $2)
-    do
-
-	cat >> $1/daemon/config/supervisord.conf <<- EOM
-
-[program:casper-net-$3-node-$node_id]
-command=$1/bin/casperlabs-node validator --config $1/nodes/node-$node_id/config/node-config.toml ;
-numprocs=1
-numprocs_start=0
-stderr_logfile=$1/nodes/node-$node_id/logs/stderr.log ;
-stderr_logfile_backups=5 ;
-stderr_logfile_maxbytes=50MB ;
-stdout_logfile=$1/nodes/node-$node_id/logs/stdout.log ;
-stdout_logfile_backups=5 ;
-stdout_logfile_maxbytes=50MB ;
-	EOM
-
-    done
+    # Set daemon specific artefacts.
+    if [ $NTCL_DAEMON_TYPE = "supervisord" ]; then
+        sh $NTCL/sh/daemon/supervisord/daemon_setup.sh $1 $2 $3
+    fi
 }
 
 #######################################

@@ -30,7 +30,7 @@ sh $NTCL/sh/node/stop.sh net=$net node=all
 
 # Kill service daemon (if appropriate).
 if [ $NTCL_DAEMON_TYPE = "supervisord" ]; then
-    sh $NTCL/sh/daemons/supervisord/daemon_kill.sh $net
+    sh $NTCL/sh/daemon/supervisord/daemon_kill.sh $net
 fi
 
 # Delete artefacts.
