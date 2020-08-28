@@ -26,7 +26,7 @@ cd $path_nctl_install
 git clone https://github.com/CasperLabs/nctl.git
 ```
 
-## Step A.4 - activate shell
+### Step A.4 - activate shell
 
 ```
 # Extend bashrc file so that nctl commands are available.
@@ -36,13 +36,14 @@ cat >> $path_bashrc <<- EOM
 # CASPER - NCTL
 # ----------------------------------------------------------------------
 
-# Set daemon process to use.
+# Set type of nctl service controller to use.
 NCTL_DAEMON_TYPE=supervisord
 
 # Activate nctl shell.
 source ${path_nctl_install}/nctl/activate
 
 EOM
+```
 
 ## Option B: installation when using systemd as service controller.
 
