@@ -1,63 +1,82 @@
-nctl
-===============
+# nctl installation
 
-CLI application to setup & control multiple local Casper networks. 
+## Option A: installation when using **supervisord** as service controller (RECOMMENDED).
 
-What is nctl ?
---------------------------------------
-
-nctl stands for *n*[etwork|ode] *c*on*t*ro*l*.  It's goal is to simplify localised control of a test Casperr network.
-
-
-Why nctl ?
---------------------------------------
-
-Many developers & community users will wish to spin up relatively small test networks in a localised setting.  Adopting a standardised approach is thus helpful.
-
-
-Who uses nctl ?
---------------------------------------
-
-CLX network community.  This encompasses developers, validators, evaluators ... etc.
-
-Requirements
---------------------------------------
-
-    - supervisord
-    - bash
-
-Installation
---------------------------------------
-
-See [here](docs/installation.md) for further information.
+### Step A.1 - install pre-requisites.
 
 ```
-# Step 1: set your install directory + bashrc path.
-INSTALL_DIR=path-to-your-working-director
-BASHRC_PATH=path-to-your-bashrc-file
+pip3 install --upgrade pip3
+pip3 install --upgrade supervisord
+```
 
-# Step 2: install repo.
-cd INSTALL_DIR
+### Step A.2 - set required installaton paths.
+
+```
+# Set install directory.
+path_nctl_install=YOUR_WORKING_DIRECTORY
+
+# Set path to your ~/.bashrc | ~/.bash_profile file.
+path_bashrc=PATH_TO_YOUR_BASHRC_FILE
+```
+
+### Step A.3 - install source
+
+```
+cd $path_nctl_install
 git clone https://github.com/CasperLabs/nctl.git
+```
 
-# Step 3: make nctl commands available from terminal sessions.
-cat >> $BASHRC_PATH <<- EOM
+## Step A.4 - activate shell
+
+```
+# Extend bashrc file so that nctl commands are available.
+cat >> $path_bashrc <<- EOM
 
 # ----------------------------------------------------------------------
-# CASPERLABS - NCTL
+# CASPER - NCTL
 # ----------------------------------------------------------------------
 
-source ${INSTALL_DIR}/ntcl/activate
+# Set daemon process to use.
+NCTL_DAEMON_TYPE=supervisord
+
+# Activate nctl shell.
+source ${path_nctl_install}/nctl/activate
 
 EOM
+
+## Option B: installation when using systemd as service controller.
+
+### Step B.1 - set required installaton paths.
+
+```
+# Set install directory.
+path_nctl_install=YOUR_WORKING_DIRECTORY
+
+# Set path to your ~/.bashrc | ~/.bash_profile file.
+path_bashrc=PATH_TO_YOUR_BASHRC_FILE
 ```
 
-Commands
---------------------------------------
+### Step B.2 - install source
 
-Once installed a set of [commands](docs/commands.md) are available for use within a terminal session.
+```
+cd $path_nctl_install
+git clone https://github.com/CasperLabs/nctl.git
+```
 
-Usage
---------------------------------------
+## Step B.3 - activate shell
 
-See [usage](docs/usage.md) for further information.
+```
+# Extend bashrc file so that nctl commands are available.
+cat >> $path_bashrc <<- EOM
+
+# ----------------------------------------------------------------------
+# CASPER - NCTL
+# ----------------------------------------------------------------------
+
+# Set daemon process to use.
+NCTL_DAEMON_TYPE=systemd
+
+# Activate nctl shell.
+source ${path_nctl_install}/nctl/activate
+
+EOM
