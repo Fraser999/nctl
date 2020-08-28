@@ -22,8 +22,7 @@ path_bashrc=PATH_TO_YOUR_BASHRC_FILE
 ### Step A.3 - install source
 
 ```
-cd $path_nctl_install
-git clone https://github.com/CasperLabs/nctl.git
+git clone https://github.com/CasperLabs/nctl.git $path_nctl_install/nctl
 ```
 
 ### Step A.4 - activate shell
@@ -60,8 +59,7 @@ path_bashrc=PATH_TO_YOUR_BASHRC_FILE
 ### Step B.2 - install source
 
 ```
-cd $path_nctl_install
-git clone https://github.com/CasperLabs/nctl.git
+git clone https://github.com/CasperLabs/nctl.git $path_nctl_install/nctl
 ```
 
 ## Step B.3 - activate shell
