@@ -59,6 +59,7 @@ e.g. `nctl-node-reset-logs net=1 node=all`
 Starts node Y in network X.  If Y=all then all nodes in the network are restarted.
 
 e.g. `nctl-node-start net=1 node=3`  
+
 e.g. `nctl-node-start net=1 node=all`
 
 #### `nctl-node-status net={X} node={Y}`
@@ -66,6 +67,7 @@ e.g. `nctl-node-start net=1 node=all`
 Displays status of node Y in network X.  If Y=all then all status of all nodes in the network are displayed.
 
 e.g. `nctl-node-status net=1 node=3`  
+
 e.g. `nctl-node-status net=1 node=all`
 
 #### `nctl-node-stop net={X} node={Y}`
@@ -73,4 +75,5 @@ e.g. `nctl-node-status net=1 node=all`
 Stops node Y in network X.  If Y=all then all nodes in the network are stopped.
 
 e.g. `nctl-node-stop net=1 node=3`  
+
 e.g. `nctl-node-stop net=1 node=all`
