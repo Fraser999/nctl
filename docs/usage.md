@@ -64,7 +64,7 @@ nctl-interactive net=1 node=1
 
 ## Step 4: Start a network in daemon mode.
 
-- We can start in daemon mode either a single or all nodes within a network.  This is the preferred modus operandi.
+- We can start either a single or all nodes within a network in daemon mode.  This is the preferred modus operandi.
 
 ```
 # Start node 1 in daemon mode.
@@ -74,3 +74,46 @@ nctl-start net=1 node=1
 nctl-start net=1 node=all
 ```
 
+- We can observe the status of either a single or all daemonised nodes within a network as follows:
+
+```
+# View status of node 1.
+nctl-status net=1 node=1
+
+# View status of all nodes.
+nctl-status net=1 node=all
+```
+
+- We can restart either a single or all daemonised nodes within a network as follows:
+
+```
+# Restart node 1.
+nctl-restart net=1 node=1
+
+# Restart all nodes.
+nctl-restart net=1 node=all
+```
+
+- We can stop either a single or all daemonised nodes within a network as follows:
+
+```
+# Stop node 1.
+nctl-stop net=1 node=1
+
+# Stop all nodes.
+nctl-stop net=1 node=all
+```
+
+## Step 5: End testing session.
+
+Once a network testing session is complete we can teardown the network as follows:
+
+```
+nctl-assets-teardown net=1
+```
+
+Not only does this delete all previously created assets, it also stops any nodes still running in daemon mode.
+
+## Summary
+
+Using nctl one can spin up either a single or multiple test networks.  Each network is isolated in terms of it's assets - this includes port numbers.  You are encouraged to integrate nctl into your daily workflow so as to standardise the manner in which the network is tested in a localised setting.
