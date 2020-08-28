@@ -3,16 +3,16 @@
 # ###############################################################
 
 # Set here.
-export NTCL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export NCTL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # ###############################################################
 # HELPERS
 # ###############################################################
 
-source $NTCL/sh/utils/misc.sh
+source $NCTL/sh/utils/misc.sh
 
 # ###############################################################
 # ALIASES
 # ###############################################################
 
-source $NTCL/sh/utils/aliases.sh
+source $NCTL/sh/utils/aliases.sh

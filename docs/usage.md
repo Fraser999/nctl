@@ -13,13 +13,13 @@ nctl-compile-client
 
 ## Step 1: Create network assets.
 
-- Once network binaries are available we proceed to setup test network assets.  The following command instantiates the full set of assets required to run network 1.  The assets are copied to `$NCTL/nets/net-1`, where $NCTL is the nctl home directory.
+- Once network binaries are available we proceed to setup test network assets.  The following command instantiates the full set of assets required to run network 1.  The assets are copied to `$NCTL/assets/net-1`, where $NCTL is the nctl home directory.
 
 ```
 nctl-setup net=1 nodes=5 users=5
 ```
 
-- Examining the contents of `$NCTL/nets/net-1` you will observe the following (self-explanatory) sub-folders:
+- Examining the contents of `$NCTL/assets/net-1` you will observe the following (self-explanatory) sub-folders:
 
 ```
 /bin
@@ -30,7 +30,7 @@ nctl-setup net=1 nodes=5 users=5
 /users
 ```
 
-- Examining the contents of `$NCTL/nets/net-1/nodes/node-1`, i.e. node 1, you will observe the following (self-explanatory) sub-folders:
+- Examining the contents of `$NCTL/assets/net-1/nodes/node-1`, i.e. node 1, you will observe the following (self-explanatory) sub-folders:
 
 ```
 /certs
@@ -45,13 +45,13 @@ nctl-setup net=1 nodes=5 users=5
 - If we test modifications to a network's chainspec, we can:
 
 ```
-vi $NCTL/nets/net-1/chainspec/chainspec.toml
+vi $NCTL/assets/net-1/chainspec/chainspec.toml
 ```
 
 - If we test modifications to a node's config, e.g. node 3, we can:
 
 ```
-vi $NCTL/nets/net-1/nodes/node-3/config/node-config.toml
+vi $NCTL/assets/net-1/nodes/node-3/config/node-config.toml
 ```
 
 ## Step 3: Start a node in interactive mode.

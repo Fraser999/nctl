@@ -2,7 +2,7 @@
 #
 # Interactively spins up a node within a network.
 # Globals:
-#   NTCL - path to nctl home directory.
+#   NCTL - path to nctl home directory.
 # Arguments:
 #   Network ordinal identifer.
 #   Node ordinal identifer.
@@ -27,4 +27,4 @@ done
 #######################################
 
 export RUST_LOG=info
-$CASPER_NODE validator --config $NTCL/nets/net-$net/nodes/node-$node/config/node-config.toml
+$CASPER_NODE validator --config $NCTL/assets/net-$net/nodes/node-$node/config/node-config.toml

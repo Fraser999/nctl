@@ -3,7 +3,7 @@
 #######################################
 # Displays status of either a single or all nodes.
 # Globals:
-#   NTCL - path to nctl home directory.
+#   NCTL - path to nctl home directory.
 # Arguments:
 #   Network ordinal identifer.
 #   Node ordinal identifer.

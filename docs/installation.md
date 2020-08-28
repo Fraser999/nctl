@@ -39,10 +39,10 @@ cat >> $path_bashrc <<- EOM
 # ----------------------------------------------------------------------
 
 # Path to local casper-node repo.
-NCTL_CASPER_HOME=$path_casper_node
+export NCTL_CASPER_HOME=$path_casper_node
 
 # Set type of nctl service controller to use.
-NCTL_DAEMON_TYPE=supervisord
+export NCTL_DAEMON_TYPE=supervisord
 
 # Activate nctl shell.
 source ${path_nctl_install}/nctl/activate
@@ -82,10 +82,10 @@ cat >> $path_bashrc <<- EOM
 # ----------------------------------------------------------------------
 
 # Path to local casper-node repo.
-NCTL_CASPER_HOME=$path_casper_node
+export NCTL_CASPER_HOME=$path_casper_node
 
 # Set daemon process to use.
-NCTL_DAEMON_TYPE=systemd
+export NCTL_DAEMON_TYPE=systemd
 
 # Activate nctl shell.
 source ${path_nctl_install}/nctl/activate

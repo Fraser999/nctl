@@ -2,7 +2,7 @@
 #
 # Resets node logs.
 # Globals:
-#   NTCL - path to nctl home directory.
+#   NCTL - path to nctl home directory.
 # Arguments:
 #   Network ordinal identifer.
 #   Node ordinal identifer.
@@ -26,4 +26,4 @@ done
 # Main
 #######################################
 
-rm $NTCL/nets/net-$net/nodes/node-$node/logs/*.log
+rm $NCTL/assets/net-$net/nodes/node-$node/logs/*.log

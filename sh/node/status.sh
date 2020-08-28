@@ -2,7 +2,7 @@
 #
 # Displays node status.
 # Globals:
-#   NTCL - path to nctl home directory.
+#   NCTL - path to nctl home directory.
 # Arguments:
 #   Network ordinal identifer.
 #   Node ordinal identifer.
@@ -27,4 +27,4 @@ done
 #######################################
 
 # TODO: use env var to route to appropriate daemon controller.
-source $NTCL/sh/daemon/supervisord/node_status.sh $net $node
+source $NCTL/sh/daemon/supervisord/node_status.sh $net $node

@@ -20,12 +20,12 @@ function log ()
 			do
 				declare tabs+='\t'
 			done
-	    	echo $now" [INFO] [$$] NTCL :: "$tabs$1
+	    	echo $now" [INFO] [$$] NCTL :: "$tabs$1
 	    else
-	    	echo $now" [INFO] [$$] NTCL :: "$1
+	    	echo $now" [INFO] [$$] NCTL :: "$1
 	    fi
 	else
-	    echo $now" [INFO] [$$] NTCL :: "
+	    echo $now" [INFO] [$$] NCTL :: "
 	fi
 }
 

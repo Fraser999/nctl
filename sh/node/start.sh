@@ -2,7 +2,7 @@
 #
 # Spins up a node within a network.
 # Globals:
-#   NTCL - path to nctl home directory.
+#   NCTL - path to nctl home directory.
 # Arguments:
 #   Network ordinal identifer.
 #   Node ordinal identifer.
@@ -26,6 +26,6 @@ done
 # Main
 #######################################
 
-sh $NTCL/sh/node/reset_logs.sh net=$net node=$node
+sh $NCTL/sh/node/reset_logs.sh net=$net node=$node
 # TODO: use env var to route to appropriate daemon controller.
-source $NTCL/sh/daemon/supervisord/node_start.sh $net $node
+source $NCTL/sh/daemon/supervisord/node_start.sh $net $node

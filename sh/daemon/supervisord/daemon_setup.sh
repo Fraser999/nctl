@@ -3,7 +3,7 @@
 #######################################
 # Sets artefacts pertaining to network daemon.
 # Globals:
-#   NTCL - path to nctl home directory.
+#   NCTL - path to nctl home directory.
 # Arguments:
 #   Path to network directory.
 #   Nodeset count.
