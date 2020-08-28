@@ -43,6 +43,7 @@ e.g. `nctl-node-interactive net=1 node=3`
 Restarts node Y in network X.  If Y=all then all nodes in the network are restarted.
 
 e.g. `nctl-node-restart net=1 node=3`  
+
 e.g. `nctl-node-restart net=1 node=all`
 
 #### `nctl-node-reset-logs net={X} node={Y}`
@@ -50,6 +51,7 @@ e.g. `nctl-node-restart net=1 node=all`
 Resets logs of node Y in network X.  If Y=all then the logs of all nodes are reset.
 
 e.g. `nctl-node-reset-logs net=1 node=3`  
+
 e.g. `nctl-node-reset-logs net=1 node=all`
 
 #### `nctl-node-start net={X} node={Y}`
