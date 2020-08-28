@@ -1,4 +1,4 @@
-# nctl Commands
+# NCTL Commands
 
 ## Overview
 
