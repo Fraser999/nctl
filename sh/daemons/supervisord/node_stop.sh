@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #######################################
-# Tears down a node within a network.
+# Stops a network node.
 # Globals:
 #   NTCL - path to nctl home directory.
 # Arguments:

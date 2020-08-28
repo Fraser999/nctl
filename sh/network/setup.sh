@@ -1,36 +1,10 @@
 #!/bin/bash
 #
 # Sets artefacts required to run an N node network.
-
-# Import utils.
-source $NTCL/sh/utils/misc.sh
-
-#######################################
-# Main entry point
 # Arguments:
 #   Network ordinal identifer.
 #   Count of nodes to setup.
 #   Count of users to setup.
-#######################################
-function main() {
-    log "setting network artefacts:"
-
-    # Set directory.
-    path=$NTCL/nets/net-$1
-	if [ -d $path ]; then
-        rm -rf $path
-	fi
-    mkdir -p $path    
-
-    # Set artefacts.
-    _set_binaries $path
-    _set_chainspec $path $1
-    _set_daemon $path $2 $1
-    _set_faucet $path
-    _set_nodes $path $2
-    _set_users $path $3
-    _set_vars $path $1 $2 $3
-}
 
 #######################################
 # Sets artefacts pertaining to network binaries.
@@ -292,7 +266,10 @@ USER_COUNT=$4
 #   Count of nodes to setup.
 #   Count of users to setup.
 #######################################
+
+#######################################
 # Destructure input args.
+#######################################
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
@@ -305,5 +282,26 @@ do
     esac    
 done
 
-# Invoke entry point.
-main $net $nodes $users
+#######################################
+# Main
+#######################################
+
+# Import utils.
+source $NTCL/sh/utils/misc.sh
+
+# Set directory.
+net_path=$NTCL/nets/net-$net
+if [ -d $net_path ]; then
+    rm -rf $net_path
+fi
+mkdir -p $net_path
+
+# Set artefacts.
+log "setting network artefacts:"
+_set_binaries $net_path
+_set_chainspec $net_path $net
+_set_daemon $net_path $nodes $net
+_set_faucet $net_path
+_set_nodes $net_path $nodes
+_set_users $net_path $users
+_set_vars $net_path $net $nodes $users

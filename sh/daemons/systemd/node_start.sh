@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #######################################
-# Reloads a node within a network.
+# Spins up a node within a network.
 # Globals:
 #   NTCL - path to nctl home directory.
 # Arguments:
@@ -9,5 +9,4 @@
 #   Node ordinal identifer.
 #######################################
 
-source $NTCL/sh/daemons/supervisord/node_stop.sh $1 $2
-source $NTCL/sh/daemons/supervisord/node_start.sh $1 $2
+echo "TODO: systemd.node_start"

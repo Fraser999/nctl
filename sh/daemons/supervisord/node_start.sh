@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #######################################
-# Spins up a node within a network.
+# Starts a network node.
 # Globals:
 #   NTCL - path to nctl home directory.
 # Arguments:

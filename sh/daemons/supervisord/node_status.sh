@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #######################################
-# Displays status of either a single or all nodes.
+# Displays node(s) status.
 # Globals:
 #   NTCL - path to nctl home directory.
 # Arguments:

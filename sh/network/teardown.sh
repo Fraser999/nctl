@@ -1,52 +1,16 @@
 #!/bin/bash
 #
-# Destroys artefacts previously created to run an N node network.
-
-# Import utils.
-source $NTCL/sh/utils/misc.sh
-
-#######################################
-# Main entry point
+# Tears down an entire network.
+# Globals:
+#   NTCL - path to nctl home directory.
+#   NTCL_DAEMON_TYPE - type of daemon service manager.
 # Arguments:
 #   Network ordinal identifer.
-#######################################
-function main() {
-    log "tearing down network:"
 
-    _teardown_artefacts $1
-    _teardown_daemons $1
-}
-
-#######################################
-# Tears down artefacts pertaining to a network.
-# Arguments:
-#   Network ordinal identifer.
-#######################################
-function _teardown_artefacts() {
-    log "... artefacts"
-
-    rm -rf $NTCL/nets/net-$1
-}
-
-#######################################
-# Tears down artefacts pertaining to a network.
-# Arguments:
-#   Network ordinal identifer.
-#######################################
-function _teardown_daemons() {
-    log "... daemons"
-
-    echo "TODO: auto stop active network daemons"
-}
-
-#######################################
-# CLI entry point
-# Arguments:
-#   Network ordinal identifer.
-#   Count of nodes to setup.
-#   Count of users to setup.
 #######################################
 # Destructure input args.
+#######################################
+
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
@@ -57,5 +21,17 @@ do
     esac    
 done
 
-# Invoke entry point.
-main $net
+#######################################
+# Main
+#######################################
+
+# Stop all spinning nodes.
+sh $NTCL/sh/node/stop.sh net=$net node=all
+
+# Kill service daemon (if appropriate).
+if [ $NTCL_DAEMON_TYPE = "supervisord" ]; then
+    sh $NTCL/sh/daemons/supervisord/daemon_kill.sh $net
+fi
+
+# Delete artefacts.
+rm -rf $NTCL/nets/net-$net
