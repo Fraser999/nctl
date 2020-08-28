@@ -1,6 +1,6 @@
 # STESTS Usage
 
-Once installed, nctl commands can be used to setup & control nodes within local test network(s).  It is assumed that whilst most nctl users focus upon testing a single network, developers may wish to test multiple networks in parallel in order to observe behavioural differences induced as a result of altering either the network's configuration or it's binary set.  
+Once installed, nctl commands can be used to setup & control nodes within local test network(s).  Whilst most nctl users will tend to focus upon testing a single network, developers may wish to test multiple networks in parallel so as to observe behavioural differences induced as a result of altering either the network's configuration or it's binary set.  
 
 ## Step 0: Compile network binaries.
 
@@ -30,7 +30,29 @@ nctl-setup net=1 nodes=5 users=5
 /users
 ```
 
-- If we wish, for example, to test a modification to the node software, we can make the code modification, recompile the binary set, create a new set of network assets by incrementing the network identifier to 2.  At this point we will have 2 test networks ready to be run side by side.
+- Examining the contents of `$NCTL/nets/net-1/nodes/node-1`, i.e. node 1, you will observe the following (self-explanatory) sub-folders:
+
+```
+/certs
+/config
+/keys
+/logs
+/storage
+```
+
+- If we wish to test a modification to the node software, we can make the code modification, recompile the binary set, create a new set of network assets by incrementing the network identifier to 2.  At this point we will have 2 test networks ready to be run side by side.
+
+- If we test modifications to a network's chainspec, we can:
+
+```
+vi $NCTL/nets/net-1/chainspec/chainspec.toml
+```
+
+- If we test modifications to a node's config, e.g. node 3, we can:
+
+```
+vi $NCTL/nets/net-1/nodes/node-3/config/node-config.toml
+```
 
 ## Step 3: Start a node in interactive mode.
 
@@ -40,21 +62,15 @@ We can start a node interactively - this is useful to verify that the network as
 nctl-interactive net=1 node=1
 ```
 
-Sets up required network artefacts:
+## Step 4: Start a network in daemon mode.
 
-- network chainspec
-- network daemon controllers
-- network faucet
-- node binaries
-- node certs
-- node configuration
-- node keys
-- node log directory
-- node storage directory
-- user keys
-
-Artefacts are copied to the following locations:
+- We can start in daemon mode either a single or all nodes within a network.  This is the preferred modus operandi.
 
 ```
-$NCTL_HOME/nets/{id}
+# Start node 1 in daemon mode.
+nctl-start net=1 node=1
+
+# Start all nodes in daemon mode.
+nctl-start net=1 node=all
 ```
+
