@@ -1,12 +1,12 @@
 nctl
 ===============
 
-CLI application to control a local Casper network 
+CLI application to setup & control multiple local Casper networks. 
 
 What is nctl ?
 --------------------------------------
 
-nctl stands for network|node control.  It's goal is to simplfy localised control of a test Casperr network.
+nctl stands for *n*[etwork|ode] *c*on*t*ro*l*.  It's goal is to simplify localised control of a test Casperr network.
 
 
 Why nctl ?
@@ -23,39 +23,20 @@ CLX network community.  This encompasses developers, validators, evaluators ... 
 Requirements
 --------------------------------------
 
-    - supervisord
+    - supervisord | systemd
     - bash
 
 Installation
 --------------------------------------
 
-```
-# Step 1: set your install directory + bashrc path.
-INSTALL_DIR=path-to-your-working-director
-BASHRC_PATH=path-to-your-bashrc-file
-
-# Step 2: install repo.
-cd INSTALL_DIR
-git clone https://github.com/CasperLabs/nctl.git
-
-# Step 3: make nctl commands available from terminal sessions.
-cat >> $BASHRC_PATH <<- EOM
-
-# ----------------------------------------------------------------------
-# CASPERLABS - NCTL
-# ----------------------------------------------------------------------
-
-source ${INSTALL_DIR}/ntcl/activate
-
-EOM
-```
+See [here](docs/installation.md) for installation details.
 
 Commands
 --------------------------------------
 
-Once installed a set of [commands](docs/commands.md) are available for use within a terminal session.
+See [here](docs/commands.md) for command details.
 
 Usage
 --------------------------------------
 
-See [usage](docs/usage.md) for further information.
+See [here](docs/usage.md) for usage details.
