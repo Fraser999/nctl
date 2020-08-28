@@ -8,12 +8,10 @@ What is nctl ?
 
 nctl stands for **n**[etwork|ode] **c**on**t**ro**l**.  It's goal is to simplify localised control of a test Casperr network.
 
-
 Why nctl ?
 --------------------------------------
 
 Many developers & community users will wish to spin up relatively small test networks in a localised setting.  Adopting a standardised approach is thus helpful.
-
 
 Who uses nctl ?
 --------------------------------------
