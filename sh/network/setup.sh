@@ -114,7 +114,7 @@ function _set_daemon() {
     mkdir $1/daemon/socket
 
     # Set supervisord.conf file.
-    cp $NTCL/templates/daemon-supervisord.conf $1/daemon/config/supervisord.conf
+    touch  $1/daemon/config/supervisord.conf
 
     # Set supervisord.conf header.
 	cat >> $1/daemon/config/supervisord.conf <<- EOM
