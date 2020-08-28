@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+#######################################
 # Sets artefacts pertaining to network daemon.
 # Globals:
 #   NTCL - path to nctl home directory.
@@ -7,6 +8,7 @@
 #   Path to network directory.
 #   Nodeset count.
 #   Network ordinal identifer.
+#######################################
 
 # Set supervisord.conf file.
 touch  $1/daemon/config/supervisord.conf

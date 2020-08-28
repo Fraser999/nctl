@@ -17,6 +17,9 @@ path_nctl_install=YOUR_WORKING_DIRECTORY
 
 # Set path to your ~/.bashrc | ~/.bash_profile file.
 path_bashrc=PATH_TO_YOUR_BASHRC_FILE
+
+# Set path to directory continaing casper-node repo.
+path_casper_node=PATH_TO_YOUR_CASPER_NODE_REPO
 ```
 
 ### Step A.3 - install source
@@ -34,6 +37,9 @@ cat >> $path_bashrc <<- EOM
 # ----------------------------------------------------------------------
 # CASPER - NCTL
 # ----------------------------------------------------------------------
+
+# Path to local casper-node repo.
+NCTL_CASPER_HOME=$path_casper_node
 
 # Set type of nctl service controller to use.
 NCTL_DAEMON_TYPE=supervisord
@@ -54,6 +60,9 @@ path_nctl_install=YOUR_WORKING_DIRECTORY
 
 # Set path to your ~/.bashrc | ~/.bash_profile file.
 path_bashrc=PATH_TO_YOUR_BASHRC_FILE
+
+# Set path to directory continaing casper-node repo.
+path_casper_node=PATH_TO_YOUR_CASPER_NODE_REPO
 ```
 
 ### Step B.2 - install source
@@ -71,6 +80,9 @@ cat >> $path_bashrc <<- EOM
 # ----------------------------------------------------------------------
 # CASPER - NCTL
 # ----------------------------------------------------------------------
+
+# Path to local casper-node repo.
+NCTL_CASPER_HOME=$path_casper_node
 
 # Set daemon process to use.
 NCTL_DAEMON_TYPE=systemd

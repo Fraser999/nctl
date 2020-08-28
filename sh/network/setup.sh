@@ -9,7 +9,7 @@
 #######################################
 # Sets artefacts pertaining to network binaries.
 # Globals:
-#   CASPER_HOME - path to node software github repo.
+#   NCTL_CASPER_HOME - path to node software github repo.
 # Arguments:
 #   Path to network directory.
 #######################################
@@ -20,13 +20,13 @@ function _set_binaries() {
     mkdir $1/bin
 
     # Set executables.
-    cp $CASPER_HOME/target/release/casperlabs-client $1/bin
-    cp $CASPER_HOME/target/release/casperlabs-node $1/bin
+    cp $NCTL_CASPER_HOME/target/release/casperlabs-client $1/bin
+    cp $NCTL_CASPER_HOME/target/release/casperlabs-node $1/bin
 
     # Set wasm.
-    cp $CASPER_HOME/target/wasm32-unknown-unknown/release/mint_install.wasm $1/bin
-    cp $CASPER_HOME/target/wasm32-unknown-unknown/release/pos_install.wasm $1/bin
-    cp $CASPER_HOME/target/wasm32-unknown-unknown/release/standard_payment_install.wasm $1/bin
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/mint_install.wasm $1/bin
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/pos_install.wasm $1/bin
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/standard_payment_install.wasm $1/bin
 }
 
 #######################################

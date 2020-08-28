@@ -1,22 +1,13 @@
 #!/bin/bash
 #
-# Compiles node software.
-
-# Import utils.
-source $NTCL/sh/utils/misc.sh
-
 #######################################
-# Main entry point
+# Compiles client software.
 # Globals:
-#   CASPER_HOME - path to node software github repo.
-#######################################
-function main() {
-    log "compiling client ..."
+#   NCTL_CASPER_HOME - path to casper node repo.
+#   NTCL - path to nctl home directory.
+########################################
 
-    pushd $CASPER_HOME/client
-    cargo build
-    popd -1
-}
-
-# Invoke entry point.
-main
+source $NTCL/sh/utils/misc.sh
+pushd $NCTL_CASPER_HOME/client
+cargo build
+popd -1
