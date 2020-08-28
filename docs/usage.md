@@ -1,4 +1,4 @@
-# STESTS Usage
+# NCTL Usage
 
 Once installed, nctl commands can be used to setup & control nodes within local test network(s).  Whilst most nctl users will tend to focus upon testing a single network, developers may wish to test multiple networks in parallel so as to observe behavioural differences induced as a result of altering either the network's configuration or it's binary set.  
 

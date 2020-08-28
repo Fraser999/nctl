@@ -1,4 +1,4 @@
-# nctl installation
+# NCTL installation
 
 ## Option A: installation when using **supervisord** as service controller (RECOMMENDED).
 
