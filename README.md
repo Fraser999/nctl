@@ -6,7 +6,7 @@ CLI application to setup & control multiple local Casper networks.
 What is nctl ?
 --------------------------------------
 
-nctl stands for *n*[etwork|ode] *c*on*t*ro*l*.  It's goal is to simplify localised control of a test Casperr network.
+nctl stands for **n**[etwork|ode] **c**on**t**ro**l**.  It's goal is to simplify localised control of a test Casperr network.
 
 
 Why nctl ?
