@@ -18,13 +18,13 @@ Compiles casper client software using `cargo`.
 
 ## Managing network assets
 
-#### `nctl-network-setup net={X} nodes={Y} users={Z}`
+#### `nctl-assets-setup net={X} nodes={Y} users={Z}`
 
 Sets up assets required to run a local N-node network - this includes binaries, chainspec, config, faucet, keys, certs ... etc.  
 
-e.g. `nctl-network-setup net=1 nodes=5 users=5` creates assets required to run a 5 node network (network id = 1), additionally creates a set of test users.
+e.g. `nctl-assets-setup net=1 nodes=5 users=5` creates assets required to run a 5 node network (network id = 1), additionally creates a set of test users.
 
-#### `nctl-network-teardown net={X}`
+#### `nctl-assets-teardown net={X}`
 
 Stops network & destroys all related assets.  
 
