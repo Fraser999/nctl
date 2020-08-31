@@ -40,6 +40,8 @@ nctl-setup net=1 nodes=5 users=5
 /storage
 ```
 
+- Once assets have been created you are advised to review contents of toml files, i.e. `/chainspec/chainspec.toml` & the various `/nodes/node-X/config/node-config.toml` files.
+
 - If we wish to test a modification to the node software, we can make the code modification, recompile the binary set, create a new set of network assets by incrementing the network identifier to 2.  At this point we will have 2 test networks ready to be run side by side.
 
 - If we test modifications to a network's chainspec, we can:

@@ -1,12 +1,15 @@
 # ###############################################################
-# PATHS
+# VARS
 # ###############################################################
 
 # Set here.
 export NCTL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Set type of daemon to run.
+export NCTL_DAEMON_TYPE=supervisord
+
 # ###############################################################
-# HELPERS
+# UTILS
 # ###############################################################
 
 source $NCTL/sh/utils/misc.sh
@@ -15,4 +18,4 @@ source $NCTL/sh/utils/misc.sh
 # ALIASES
 # ###############################################################
 
-source $NCTL/sh/utils/aliases.sh
+source $NCTL/sh/utils/set_aliases.sh

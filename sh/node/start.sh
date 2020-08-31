@@ -27,5 +27,7 @@ done
 #######################################
 
 sh $NCTL/sh/node/reset_logs.sh net=$net node=$node
-# TODO: use env var to route to appropriate daemon controller.
-source $NCTL/sh/daemon/supervisord/node_start.sh $net $node
+
+if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
+    source $NCTL/sh/daemon/supervisord/node_start.sh $net $node
+fi

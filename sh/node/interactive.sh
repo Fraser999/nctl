@@ -27,4 +27,6 @@ done
 #######################################
 
 export RUST_LOG=info
-$CASPER_NODE validator --config $NCTL/assets/net-$net/nodes/node-$node/config/node-config.toml
+$NCTL/assets/net-$net/bin/casperlabs-node \
+    validator \
+    --config $NCTL/assets/net-$net/nodes/node-$node/config/node-config.toml
