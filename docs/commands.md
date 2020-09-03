@@ -62,13 +62,11 @@ e.g. `nctl-start net=1 node=3`
 
 e.g. `nctl-start net=1 node=all`
 
-### nctl-status net={X} node={Y}
+### nctl-status net={X}
 
-Displays status of node Y in network X.  If Y=all then all status of all nodes in the network are displayed.
+Displays status of all nodes in network X.
 
-e.g. `nctl-status net=1 node=3`  
-
-e.g. `nctl-status net=1 node=all`
+e.g. `nctl-status net=1`  
 
 ### nctl-stop net={X} node={Y}
 

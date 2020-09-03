@@ -3,17 +3,17 @@
 #######################################
 # Starts a network node.
 # Globals:
-#   NTCL - path to nctl home directory.
+#   NCTL - path to nctl home directory.
 # Arguments:
 #   Network ordinal identifer.
 #   Node ordinal identifer.
 #######################################
 
 # Import utils.
-source $NTCL/sh/daemon/supervisord/utils.sh
+source $NCTL/sh/daemon/supervisord/utils.sh
 
 # Ensure daemon is up.
-source $NTCL/sh/daemon/supervisord/daemon_start.sh $1 
+source $NCTL/sh/daemon/supervisord/daemon_start.sh $1 
 
 # Start nodeset.
 if [ $2 = "all" ]; then
@@ -24,4 +24,4 @@ fi
 
 # Display status.
 sleep 2.0
-source $NTCL/sh/daemon/supervisord/node_status.sh $1 $2
+source $NCTL/sh/daemon/supervisord/node_status.sh $1

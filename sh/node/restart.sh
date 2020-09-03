@@ -26,5 +26,5 @@ done
 # Main
 #######################################
 
-sh $NCTL/sh/node/stop.sh net=$net node=$node
-sh $NCTL/sh/node/start.sh net=$net node=$node
+source $NCTL/sh/node/stop.sh net=$net node=$node
+source $NCTL/sh/node/start.sh net=$net node=$node

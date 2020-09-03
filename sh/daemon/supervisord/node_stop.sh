@@ -24,4 +24,4 @@ fi
 
 # Display nodeset state.
 sleep 2.0
-source $NCTL/sh/daemon/supervisord/node_status.sh $1 $2
+source $NCTL/sh/daemon/supervisord/node_status.sh $1

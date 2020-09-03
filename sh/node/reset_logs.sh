@@ -26,4 +26,4 @@ done
 # Main
 #######################################
 
-rm $NCTL/assets/net-$net/nodes/node-$node/logs/*.log
+rm $NCTL/assets/net-$net/nodes/node-$node/logs/*.log > /dev/null 2>&1

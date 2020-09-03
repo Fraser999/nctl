@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Spins up a node within a network.
+# Stops up a node within a network.
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
@@ -10,6 +10,7 @@
 #######################################
 # Destructure input args.
 #######################################
+
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)

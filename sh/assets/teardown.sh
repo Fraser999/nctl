@@ -31,11 +31,11 @@ log "tearing down network #$net assets ... please wait"
 source $NCTL/sh/utils/misc.sh
 
 # Stop all spinning nodes.
-sh $NCTL/sh/node/stop.sh net=$net node=all
+source $NCTL/sh/node/stop.sh net=$net node=all
 
 # Kill service daemon (if appropriate).
 if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
-    sh $NCTL/sh/daemon/supervisord/daemon_kill.sh $net
+    source $NCTL/sh/daemon/supervisord/daemon_kill.sh $net
 fi
 
 # Delete artefacts.

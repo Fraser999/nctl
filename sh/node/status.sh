@@ -5,7 +5,6 @@
 #   NCTL - path to nctl home directory.
 # Arguments:
 #   Network ordinal identifer.
-#   Node ordinal identifer.
 
 #######################################
 # Destructure input args.
@@ -17,7 +16,6 @@ do
     VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
     case "$KEY" in
         net) net=${VALUE} ;;
-        node) node=${VALUE} ;;
         *)   
     esac    
 done
@@ -27,6 +25,5 @@ done
 #######################################
 
 if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
-    source $NCTL/sh/daemon/supervisord/node_status.sh $net $node
+    source $NCTL/sh/daemon/supervisord/node_status.sh $net
 fi
-
