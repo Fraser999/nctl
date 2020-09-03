@@ -3,8 +3,8 @@ chainspec_config_path = '../../../chainspec/chainspec.toml'
 block_max_deploy_count = 3
 
 [logging]
-format = 'json'
 abbreviate_modules = false
+format = 'json'
 
 [consensus]
 secret_key_path = '../keys/secret_key.pem'
