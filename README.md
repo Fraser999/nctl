@@ -21,7 +21,9 @@ CLX network community.  This encompasses developers, validators, evaluators ... 
 Requirements
 --------------------------------------
 
-    - supervisord | systemd
+    - python + pip
+    - make
+    - cargo
     - bash
 
 Installation
