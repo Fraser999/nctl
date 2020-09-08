@@ -222,13 +222,13 @@ function _set_vars() {
     touch $1/vars
 	cat >> $1/vars <<- EOM
 # Network ordinal identifier.
-IDX=$2
+export NCTL_NET_IDX=$2
 
 # Count of nodes to setup.
-NODE_COUNT=$3
+export NCTL_NET_NODE_COUNT=$3
 
 # Count of users to setup.
-USER_COUNT=$4
+export NCTL_NET_USER_COUNT=$4
 	EOM
 }
 
