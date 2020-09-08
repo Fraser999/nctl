@@ -20,8 +20,8 @@ function _set_bin() {
     mkdir $1/bin
 
     # Set executables.
-    cp $NCTL_CASPER_HOME/target/release/casperlabs-client $1/bin
-    cp $NCTL_CASPER_HOME/target/release/casperlabs-node $1/bin
+    cp $NCTL_CASPER_HOME/target/release/casper-client $1/bin
+    cp $NCTL_CASPER_HOME/target/release/casper-node $1/bin
 
     # Set wasm.
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/auction_install.wasm $1/bin
@@ -65,8 +65,10 @@ function _set_chainspec() {
 #   Staking weight - validator's only.
 #######################################
 function _set_chainspec_account() {
+    # TODO: update when key algo is removed from accounts.csv.
+    pbk=`cat $2`
 	cat >> $1/chainspec/accounts.csv <<- EOM
-	`cat $2`,ed25519,$3,$4
+	${pbk:2},ed25519,$3,$4
 	EOM
 }
 
@@ -106,7 +108,7 @@ function _set_faucet() {
     mkdir $1/faucet
 
     # Set keys.
-    $1/bin/casperlabs-client keygen -f $1/faucet > /dev/null 2>&1
+    $1/bin/casper-client keygen -f $1/faucet > /dev/null 2>&1
 
     # Set chainspec account.
     _set_chainspec_account \
@@ -151,10 +153,10 @@ function _set_node ()
     mkdir $1/nodes/node-$2/storage
 
     # Set keys.
-    $1/bin/casperlabs-client keygen -f $1/nodes/node-$2/keys > /dev/null 2>&1
+    $1/bin/casper-client keygen -f $1/nodes/node-$2/keys > /dev/null 2>&1
 
     # Set certs.
-    $1/bin/casperlabs-node generate-cert $1/nodes/node-$2/certs/tls
+    $1/bin/casper-node generate-cert $1/nodes/node-$2/certs/tls
 
     # Set config params.
     VALIDATOR_NET_BIND_PORT=0
@@ -199,7 +201,7 @@ function _set_users() {
 #   Path to user directory.
 #######################################
 function _set_user() {
-    $1/bin/casperlabs-client keygen -f $1/users/user-$2 > /dev/null 2>&1
+    $1/bin/casper-client keygen -f $1/users/user-$2 > /dev/null 2>&1
 }
 
 #######################################

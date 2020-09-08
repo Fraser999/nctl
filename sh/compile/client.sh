@@ -9,5 +9,5 @@
 
 source $NCTL/sh/utils/misc.sh
 pushd $NCTL_CASPER_HOME/client
-cargo build
+cargo build --release
 popd -1

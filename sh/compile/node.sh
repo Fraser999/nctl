@@ -9,5 +9,6 @@
 
 source $NCTL/sh/utils/misc.sh
 pushd $NCTL_CASPER_HOME
+export CARGO_FLAGS=--release
 make all
 popd -1

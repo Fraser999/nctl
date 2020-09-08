@@ -35,5 +35,4 @@ get_remainder_timeout_secs = 60
 
 [contract_runtime]
 use_system_contracts = false
-enable_bonding = false
 max_global_state_size = 805306368000
