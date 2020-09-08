@@ -16,7 +16,7 @@ nctl-compile-client
 - Once network binaries are available we proceed to setup test network assets.  The following command instantiates the full set of assets required to run network 1.  The assets are copied to `$NCTL/assets/net-1`, where $NCTL is the nctl home directory.
 
 ```
-nctl-setup net=1 nodes=5 users=5
+nctl-assets-setup net=1 nodes=5 users=5
 ```
 
 - Examining the contents of `$NCTL/assets/net-1` you will observe the following (self-explanatory) sub-folders:
@@ -43,13 +43,13 @@ nctl-setup net=1 nodes=5 users=5
 
 - If we wish to test a modification to the node software, we can make the code modification, recompile the binary set, create a new set of network assets by incrementing the network identifier to 2.  At this point we will have 2 test networks ready to be run side by side.
 
-- If we test modifications to a network's chainspec, we can:
+- If we wish to test modifications to a network's chainspec, we can:
 
 ```
 vi $NCTL/assets/net-1/chainspec/chainspec.toml
 ```
 
-- If we test modifications to a node's config, e.g. node 3, we can:
+- If we wish to test modifications to a node's config, e.g. node 3, we can:
 
 ```
 vi $NCTL/assets/net-1/nodes/node-3/config/node-config.toml

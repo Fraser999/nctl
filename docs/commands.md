@@ -18,6 +18,10 @@ Compiles casper client software using `cargo`.
 
 ## Managing network assets
 
+### nctl-assets-ls
+
+List previously created network assets.  
+
 ### nctl-assets-setup net={X} nodes={Y} users={Z}
 
 Sets up assets required to run a local N-node network - this includes binaries, chainspec, config, faucet, keys ... etc.  

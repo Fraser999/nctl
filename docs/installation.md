@@ -1,10 +1,16 @@
 # NCTL installation
 
+### Step 0 - pre-requisites.
+
+1. python + pip.   
+2. make + cargo.
+3. https://github.com/CasperLabs/casper-node
+
 ### Step 1 - install pre-requisites.
 
 ```
-pip3 install --upgrade pip3
-pip3 install --upgrade supervisord
+pip install --upgrade pip
+pip install --upgrade supervisord
 ```
 
 ### Step 2 - set required installaton paths.

@@ -45,12 +45,14 @@ function _set_chainspec() {
     # Set config params.
     GENESIS_NAME=casper-net-$2
     GENESIS_TIMESTAMP=$(python -c 'from time import time; print(int(round(time() * 1000)))')
+    HIGHWAY_GENESIS_ERA_START_TIMESTAMP=$(python -c 'from time import time; print(int(round(time() * 1000)) + 10000)')
 
     # Set config.
     path_config=$1/chainspec/chainspec.toml
     cp $NCTL/templates/chainspec.toml $path_config
     sed -i "" "s/{GENESIS_NAME}/$GENESIS_NAME/g" $path_config
     sed -i "" "s/{GENESIS_TIMESTAMP}/$GENESIS_TIMESTAMP/g" $path_config
+    sed -i "" "s/{HIGHWAY_GENESIS_ERA_START_TIMESTAMP}/$HIGHWAY_GENESIS_ERA_START_TIMESTAMP/g" $path_config
 
     # Set accounts.csv.
     touch $1/chainspec/accounts.csv

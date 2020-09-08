@@ -38,6 +38,8 @@ do
     cat >> $1/daemon/config/supervisord.conf <<- EOM
 
 [program:casper-net-$3-node-$node_id]
+autostart=false
+autorestart=false
 command=$1/bin/casper-node validator $1/nodes/node-$node_id/config/node-config.toml ;
 numprocs=1
 numprocs_start=0

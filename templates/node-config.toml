@@ -57,7 +57,7 @@ bind_port = {NETWORK_BIND_PORT}
 
 # The interval (in milliseconds) between each fresh round of gossiping the node's public address.
 # Defaults to 30_000.
-#gossip_interval = 30000
+gossip_interval = 1000
 
 # =============================================
 # Configuration options for the HTTP API server
