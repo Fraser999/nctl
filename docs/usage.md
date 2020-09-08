@@ -33,7 +33,6 @@ nctl-setup net=1 nodes=5 users=5
 - Examining the contents of `$NCTL/assets/net-1/nodes/node-1`, i.e. node 1, you will observe the following (self-explanatory) sub-folders:
 
 ```
-/certs
 /config
 /keys
 /logs

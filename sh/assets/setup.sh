@@ -146,7 +146,6 @@ function _set_node ()
 {
     # Set directory.
     mkdir $1/nodes/node-$2
-    mkdir $1/nodes/node-$2/certs
     mkdir $1/nodes/node-$2/config
     mkdir $1/nodes/node-$2/keys
     mkdir $1/nodes/node-$2/logs
@@ -155,19 +154,22 @@ function _set_node ()
     # Set keys.
     $1/bin/casper-client keygen -f $1/nodes/node-$2/keys > /dev/null 2>&1
 
-    # Set certs.
-    $1/bin/casper-node generate-cert $1/nodes/node-$2/certs/tls
-
     # Set config params.
-    VALIDATOR_NET_BIND_PORT=0
-    VALIDATOR_NET_ROOT_ADDR_PORT=34553
     HTTP_SERVER_BIND_PORT=$((50000 + ($3 * 100) + $node_id))
+    NETWORK_BIND_PORT=0
+    if [ $2 = "1" ]; then
+        NETWORK_BIND_PORT=34553
+        NETWORK_KNOWN_ADDRESS="# known_address = not-applicable am root node"
+    else
+        NETWORK_BIND_PORT=0
+        NETWORK_KNOWN_ADDRESS="known_address = '127.0.0.1:34553'"
+    fi
 
     # Set config.
     path_config=$1/nodes/node-$2/config/node-config.toml
     cp $NCTL/templates/node-config.toml $path_config
-    sed -i "" "s/{VALIDATOR_NET_BIND_PORT}/$VALIDATOR_NET_BIND_PORT/g" $path_config
-    sed -i "" "s/{VALIDATOR_NET_ROOT_ADDR_PORT}/$VALIDATOR_NET_ROOT_ADDR_PORT/g" $path_config
+    sed -i "" "s/{NETWORK_BIND_PORT}/$NETWORK_BIND_PORT/g" $path_config
+    sed -i "" "s/{NETWORK_KNOWN_ADDRESS}/$NETWORK_KNOWN_ADDRESS/g" $path_config
     sed -i "" "s/{HTTP_SERVER_BIND_PORT}/$HTTP_SERVER_BIND_PORT/g" $path_config
 
     # Set chainspec account.
