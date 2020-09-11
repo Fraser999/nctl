@@ -2,61 +2,55 @@
 
 ### Step 0 - pre-requisites.
 
-1. python + pip.   
-2. make + cargo.
-3. https://github.com/CasperLabs/casper-node
+1. python3 + pip3.   
+2. The casper-node software (https://github.com/CasperLabs/casper-node) installed into YOUR_WORKING_DIRECTORY & sucessfully compiled.
 
 ### Step 1 - install pre-requisites.
 
 ```
-pip install --upgrade pip
-pip install --upgrade supervisord
+pip3 install supervisor
 ```
 
-### Step 2 - set required installaton paths.
+Note: if pip3 is not available then try using pip.
+
+### Step 2 - install source.
 
 ```
-# Set install directory.
-path_nctl_install=YOUR_WORKING_DIRECTORY
-
-# Set path to your ~/.bashrc | ~/.bash_profile file.
-path_bashrc=PATH_TO_YOUR_BASHRC_FILE
-
-# Set path to directory continaing casper-node repo.
-path_casper_node=PATH_TO_YOUR_CASPER_NODE_REPO
+cd YOUR_WORKING_DIRECTORY
+git clone https://github.com/CasperLabs/nctl.git
 ```
 
-### Step 3 - install source
-
-```
-git clone https://github.com/CasperLabs/nctl.git $path_nctl_install/nctl
-```
-
-### Step 4 - set local setup file
+### Step 3 - set local setup file
 
 ```
 cat >> $HOME/.casper-nctl <<- EOM
 
 # Path to local casper-node repo.
-export NCTL_CASPER_HOME=$path_casper_node
+export NCTL_CASPER_HOME=$(pwd)/casper-node
 
 # Activate nctl shell.
-source ${path_nctl_install}/nctl/activate
+. $(pwd)/nctl/activate
 
 EOM
 ```
 
-### Step 5 - extend bashrc file to make nctl commands available from terminal session.
+### Step 4 - extend bashrc file to make nctl commands available from terminal session.
 
 ```
-cat >> $path_bashrc <<- EOM
+cat >> $HOME/.bashrc <<- EOM
 
 # ----------------------------------------------------------------------
 # CASPER - NCTL
 # ----------------------------------------------------------------------
 
 # Activate nctl shell.
-source $HOME/.casper-nctl
+. $HOME/.casper-nctl
 
 EOM
+```
+
+### Step 5 - 
+
+```
+. $HOME/.casper-nctl
 ```
