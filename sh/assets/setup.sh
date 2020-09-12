@@ -161,17 +161,17 @@ function _set_node ()
     NETWORK_BIND_PORT=0
     if [ $2 = "1" ]; then
         NETWORK_BIND_PORT=34553
-        NETWORK_KNOWN_ADDRESS="# known_address = not-applicable am root node"
+        NETWORK_KNOWN_ADDRESSES=""
     else
         NETWORK_BIND_PORT=0
-        NETWORK_KNOWN_ADDRESS="known_address = '127.0.0.1:34553'"
+        NETWORK_KNOWN_ADDRESSES="'127.0.0.1:34553'"
     fi
 
     # Set config.
     path_config=$1/nodes/node-$2/config/node-config.toml
     cp $NCTL/templates/node-config.toml $path_config
     sed -i "s/{NETWORK_BIND_PORT}/$NETWORK_BIND_PORT/g" $path_config > /dev/null 2>&1
-    sed -i "s/{NETWORK_KNOWN_ADDRESS}/$NETWORK_KNOWN_ADDRESS/g" $path_config > /dev/null 2>&1
+    sed -i "s/{NETWORK_KNOWN_ADDRESSES}/$NETWORK_KNOWN_ADDRESSES/g" $path_config > /dev/null 2>&1
     sed -i "s/{HTTP_SERVER_BIND_PORT}/$HTTP_SERVER_BIND_PORT/g" $path_config > /dev/null 2>&1
 
     # Set chainspec account.
