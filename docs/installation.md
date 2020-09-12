@@ -8,10 +8,8 @@
 ### Step 1 - install pre-requisites.
 
 ```
-pip3 install supervisor
+python3 -m pip install supervisor
 ```
-
-Note: if pip3 is not available then try using pip.
 
 ### Step 2 - install source.
 
