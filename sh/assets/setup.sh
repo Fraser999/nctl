@@ -44,15 +44,15 @@ function _set_chainspec() {
 
     # Set config params.
     GENESIS_NAME=casper-net-$2
-    GENESIS_TIMESTAMP=$(python -c 'from time import time; print(int(round(time() * 1000)))')
-    HIGHWAY_GENESIS_ERA_START_TIMESTAMP=$(python -c 'from time import time; print(int(round(time() * 1000)) + 10000)')
+    GENESIS_TIMESTAMP=$(python3 -c 'from time import time; print(int(round(time() * 1000)))')
+    HIGHWAY_GENESIS_ERA_START_TIMESTAMP=$(python3 -c 'from time import time; print(int(round(time() * 1000)) + 10000)')
 
     # Set config.
     path_config=$1/chainspec/chainspec.toml
     cp $NCTL/templates/chainspec.toml $path_config
-    sed -i "" "s/{GENESIS_NAME}/$GENESIS_NAME/g" $path_config
-    sed -i "" "s/{GENESIS_TIMESTAMP}/$GENESIS_TIMESTAMP/g" $path_config
-    sed -i "" "s/{HIGHWAY_GENESIS_ERA_START_TIMESTAMP}/$HIGHWAY_GENESIS_ERA_START_TIMESTAMP/g" $path_config
+    sed "s/{GENESIS_NAME}/$GENESIS_NAME/g" $path_config > /dev/null 2>&1
+    sed "s/{GENESIS_TIMESTAMP}/$GENESIS_TIMESTAMP/g" $path_config > /dev/null 2>&1
+    sed "s/{HIGHWAY_GENESIS_ERA_START_TIMESTAMP}/$HIGHWAY_GENESIS_ERA_START_TIMESTAMP/g" $path_config > /dev/null 2>&1
 
     # Set accounts.csv.
     touch $1/chainspec/accounts.csv
@@ -170,9 +170,9 @@ function _set_node ()
     # Set config.
     path_config=$1/nodes/node-$2/config/node-config.toml
     cp $NCTL/templates/node-config.toml $path_config
-    sed -i "" "s/{NETWORK_BIND_PORT}/$NETWORK_BIND_PORT/g" $path_config
-    sed -i "" "s/{NETWORK_KNOWN_ADDRESS}/$NETWORK_KNOWN_ADDRESS/g" $path_config
-    sed -i "" "s/{HTTP_SERVER_BIND_PORT}/$HTTP_SERVER_BIND_PORT/g" $path_config
+    sed "s/{NETWORK_BIND_PORT}/$NETWORK_BIND_PORT/g" $path_config > /dev/null 2>&1
+    sed "s/{NETWORK_KNOWN_ADDRESS}/$NETWORK_KNOWN_ADDRESS/g" $path_config > /dev/null 2>&1
+    sed "s/{HTTP_SERVER_BIND_PORT}/$HTTP_SERVER_BIND_PORT/g" $path_config > /dev/null 2>&1
 
     # Set chainspec account.
     _set_chainspec_account \

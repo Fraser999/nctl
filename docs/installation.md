@@ -49,7 +49,7 @@ cat >> $HOME/.bashrc <<- EOM
 EOM
 ```
 
-### Step 5 - 
+### Step 5 - activate nctl shell.
 
 ```
 . $HOME/.casper-nctl
