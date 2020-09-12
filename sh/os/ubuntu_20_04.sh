@@ -42,3 +42,10 @@ export PATH=\$HOME/.pyenv/bin:\$PATH
 eval "$(pyenv init -)"
 
 EOM
+
+# 6. Clone source & build.
+# -----------------------------------
+mkdir $HOME/Engineering && cd $HOME/Engineering
+git clone https://github.com/CasperLabs/casper-node.git
+cd casper-node
+make all
