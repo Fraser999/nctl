@@ -1,11 +1,12 @@
 #!/bin/bash
 #
-# Starts up a node within a network.
+# Displays node logs.
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
 #   Network ordinal identifer.
 #   Node ordinal identifer.
+#   Log type.
 
 #######################################
 # Destructure input args.
@@ -18,6 +19,7 @@ do
     case "$KEY" in
         net) net=${VALUE} ;;
         node) node=${VALUE} ;;
+        typeof) typeof=${VALUE} ;;
         *)   
     esac    
 done
@@ -26,7 +28,4 @@ done
 # Main
 #######################################
 
-source $NCTL/sh/node/log_reset.sh net=$net node=$node  
-if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
-    source $NCTL/sh/daemon/supervisord/node_start.sh $net $node
-fi
+vi $NCTL/assets/net-$net/nodes/node-$node/logs/$typeof.log

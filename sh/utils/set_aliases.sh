@@ -7,9 +7,12 @@ alias nctl-assets-teardown='source $NCTL/sh/assets/teardown.sh'
 alias nctl-compile-client='source $NCTL/sh/compile/client.sh'
 alias nctl-compile-node='source $NCTL/sh/compile/node.sh'
 
+# Logs.
+alias nctl-log-reset='source $NCTL/sh/node/log_reset.sh'
+alias nctl-log-view='source $NCTL/sh/node/log_view.sh'
+
 # Node.
 alias nctl-interactive='source $NCTL/sh/node/interactive.sh'
-alias nctl-reset-logs='source $NCTL/sh/node/reset_logs.sh'
 alias nctl-restart='source $NCTL/sh/node/restart.sh'
 alias nctl-start='source $NCTL/sh/node/start.sh'
 alias nctl-status='source $NCTL/sh/node/status.sh'

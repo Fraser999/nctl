@@ -42,6 +42,21 @@ Starts (in interactive mode) node Y in network X.
 
 e.g. `nctl-interactive net=1 node=3`
 
+### nctl-log-reset net={X} node={Y}
+
+Resets logs of node Y in network X.  If Y=all then the logs of all nodes are reset.
+
+e.g. `nctl-log-reset net=1 node=3`  
+
+e.g. `nctl-log-reset net=1 node=all`
+
+### nctl-log-view net={X} node={Y} typeof={Z}
+
+Displays log of node Y in network X.  Z=stdout|stderr.
+
+e.g. `nctl-log-view net=1 node=3 typeof=stderr`
+e.g. `nctl-log-view net=1 node=1 typeof=stdout`
+
 ### nctl-restart net={X} node={Y}
 
 Restarts node Y in network X.  If Y=all then all nodes in the network are restarted.
@@ -49,14 +64,6 @@ Restarts node Y in network X.  If Y=all then all nodes in the network are restar
 e.g. `nctl-restart net=1 node=3`  
 
 e.g. `nctl-restart net=1 node=all`
-
-### nctl-reset-logs net={X} node={Y}
-
-Resets logs of node Y in network X.  If Y=all then the logs of all nodes are reset.
-
-e.g. `nctl-reset-logs net=1 node=3`  
-
-e.g. `nctl-reset-logs net=1 node=all`
 
 ### nctl-start net={X} node={Y}
 
