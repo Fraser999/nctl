@@ -43,9 +43,7 @@ eval "$(pyenv init -)"
 
 EOM
 
-# 6. Clone source & build.
+# 6. Clone source.
 # -----------------------------------
 mkdir $HOME/Engineering && cd $HOME/Engineering
 git clone https://github.com/CasperLabs/casper-node.git
-cd casper-node
-make all
