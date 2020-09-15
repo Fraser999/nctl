@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 #######################################
 # Starts supervisord (if necessary).
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
-#   Network ordinal identifer.
+#   Network ordinal identifier.
 #######################################
 
 # Import utils.

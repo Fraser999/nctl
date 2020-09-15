@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 
 # 0. Update system.
@@ -8,7 +8,7 @@ sudo apt upgrade
 
 # 1. Install pre-requisites.
 # -----------------------------------
-sudo apt install apt-transport-https autoconf automake ca-certificates curl git libtool lsb-release make openssl.dev g++ pkg-config unzip dirmngr 
+sudo apt install apt-transport-https autoconf automake ca-certificates curl git libtool lsb-release make openssl.dev g++ pkg-config unzip dirmngr
 sudo snap install cmake --classic
 sudo snap install protobuf --classic
 

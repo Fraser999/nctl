@@ -1,9 +1,9 @@
-# NCTL installation
+# nctl installation
 
 ### Step 0 - pre-requisites.
 
-1. python3 + pip3.   
-2. The casper-node software (https://github.com/CasperLabs/casper-node) installed into YOUR_WORKING_DIRECTORY & sucessfully compiled.
+1. python3 + pip3.
+2. The casper-node software (https://github.com/CasperLabs/casper-node) cloned into YOUR_WORKING_DIRECTORY.
 
 ### Step 1 - install pre-requisites.
 
@@ -18,7 +18,7 @@ cd YOUR_WORKING_DIRECTORY
 git clone https://github.com/CasperLabs/nctl.git
 ```
 
-### Step 3 - set local setup file
+### Step 3 - set local setup file.
 
 ```
 cat >> $HOME/.casper-nctl <<- EOM

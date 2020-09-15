@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 #######################################
 # Compiles client software.
@@ -8,6 +8,6 @@
 ########################################
 
 source $NCTL/sh/utils/misc.sh
-pushd $NCTL_CASPER_HOME/client
-cargo build --release
+pushd $NCTL_CASPER_HOME
+cargo build --release --package casper-client
 popd -1

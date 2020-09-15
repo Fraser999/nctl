@@ -3,10 +3,10 @@
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
-#   Network ordinal identifer.
+#   Network ordinal identifier.
 #######################################
 function get_path_net_supervisord_cfg() {
-	echo $NCTL/assets/net-$1/daemon/config/supervisord.conf
+    echo $NCTL/assets/net-$1/daemon/config/supervisord.conf
 }
 
 #######################################
@@ -14,10 +14,10 @@ function get_path_net_supervisord_cfg() {
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
-#   Network ordinal identifer.
+#   Network ordinal identifier.
 #######################################
 function get_path_net_supervisord_sock() {
-	echo $NCTL/assets/net-$1/daemon/socket/supervisord.sock
+    echo $NCTL/assets/net-$1/daemon/socket/supervisord.sock
 }
 
 #######################################
@@ -25,9 +25,9 @@ function get_path_net_supervisord_sock() {
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
-#   Network ordinal identifer.
-#   Node ordinal identifer.
+#   Network ordinal identifier.
+#   Node ordinal identifier.
 #######################################
 function get_node_process_name() {
-	echo "casper-net-$1-node-$2"
+    echo "casper-net-$1-node-$2"
 }
