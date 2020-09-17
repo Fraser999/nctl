@@ -5,7 +5,7 @@
 #   NCTL - path to nctl home directory.
 #   NCTL_DAEMON_TYPE - type of daemon service manager.
 # Arguments:
-#   Network ordinal identifier.
+#   Network ordinal identifer.
 
 #######################################
 # Destructure input args.
@@ -14,11 +14,11 @@
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
-    VALUE=$(echo $ARGUMENT | cut -f2 -d=)
+    VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
     case "$KEY" in
         net) net=${VALUE} ;;
-        *)
-    esac
+        *)   
+    esac    
 done
 
 #######################################

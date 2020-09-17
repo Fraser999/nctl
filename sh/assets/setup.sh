@@ -2,7 +2,7 @@
 #
 # Sets assets required to run an N node network.
 # Arguments:
-#   Network ordinal identifier.
+#   Network ordinal identifer.
 #   Count of nodes to setup.
 #   Count of users to setup.
 
@@ -34,7 +34,7 @@ function _set_bin() {
 # Sets assets pertaining to network chainspec.
 # Arguments:
 #   Path to network directory.
-#   Network ordinal identifier.
+#   Network ordinal identifer.
 #######################################
 function _set_chainspec() {
     log "... chainspec"
@@ -81,7 +81,7 @@ function _set_chainspec_account() {
 # Arguments:
 #   Path to network directory.
 #   Nodeset count.
-#   Network ordinal identifier.
+#   Network ordinal identifer.
 #######################################
 function _set_daemon() {
     log "... daemon"
@@ -125,7 +125,7 @@ function _set_faucet() {
 # Arguments:
 #   Path to network directory.
 #   Count of nodes to setup.
-#   Network ordinal identifier.
+#   Network ordinal identifer.
 #######################################
 function _set_nodes() {
     log "... nodes"
@@ -141,10 +141,10 @@ function _set_nodes() {
 # Sets assets pertaining to a single node.
 # Arguments:
 #   Path to network directory.
-#   Node ordinal identifier.
-#   Network ordinal identifier.
+#   Node ordinal identifer.
+#   Network ordinal identifer.
 #######################################
-function _set_node ()
+function _set_node () 
 {
     # Set directory.
     mkdir $1/nodes/node-$2
@@ -195,7 +195,7 @@ function _set_users() {
     for user_idx in $(seq 1 $2)
     do
         _set_user $1 $user_idx
-    done
+    done    
 }
 
 #######################################
@@ -212,7 +212,7 @@ function _set_user() {
 # Sets assets pertaining to network variables.
 # Arguments:
 #   Path to network directory.
-#   Network ordinal identifier.
+#   Network ordinal identifer.
 #   Count of nodes to setup.
 #   Count of users to setup.
 #######################################
@@ -220,7 +220,7 @@ function _set_vars() {
     log "... variables"
 
     touch $1/vars
-    cat >> $1/vars <<- EOM
+	cat >> $1/vars <<- EOM
 # Network ordinal identifier.
 export NCTL_NET_IDX=$2
 
@@ -229,13 +229,13 @@ export NCTL_NET_NODE_COUNT=$3
 
 # Count of users to setup.
 export NCTL_NET_USER_COUNT=$4
-EOM
+	EOM
 }
 
 #######################################
 # CLI entry point
 # Arguments:
-#   Network ordinal identifier.
+#   Network ordinal identifer.
 #   Count of nodes to setup.
 #   Count of users to setup.
 #######################################
@@ -246,13 +246,13 @@ EOM
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
-    VALUE=$(echo $ARGUMENT | cut -f2 -d=)
+    VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
     case "$KEY" in
         net) net=${VALUE} ;;
         nodes) nodes=${VALUE} ;;
         users) users=${VALUE} ;;
-        *)
-    esac
+        *)   
+    esac    
 done
 
 #######################################
