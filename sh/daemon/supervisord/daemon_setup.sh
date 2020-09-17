@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 #######################################
 # Sets artefacts pertaining to network daemon.
@@ -7,7 +7,7 @@
 # Arguments:
 #   Path to network directory.
 #   Nodeset count.
-#   Network ordinal identifer.
+#   Network ordinal identifier.
 #######################################
 
 # Set supervisord.conf file.
@@ -49,5 +49,5 @@ stderr_logfile_maxbytes=50MB ;
 stdout_logfile=$1/nodes/node-$node_id/logs/stdout.log ;
 stdout_logfile_backups=5 ;
 stdout_logfile_maxbytes=50MB ;
-	EOM
+EOM
 done

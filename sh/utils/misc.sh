@@ -1,32 +1,32 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ###############################################################
 # UTILS: helper functions
 # ###############################################################
 
 # Wraps standard echo by adding application prefix.
-function log () 
+function log ()
 {
     # Set timestamp.
-	declare now=`date +%Y-%m-%dT%H:%M:%S:000000`
+    declare now=`date +%Y-%m-%dT%H:%M:%S:000000`
 
     # Support tabs.
-	declare tabs=''
+    declare tabs=''
 
     # Emit log message.
-	if [ "$1" ]; then
-		if [ "$2" ]; then
-			for ((i=0; i<$2; i++))
-			do
-				declare tabs+='\t'
-			done
-	    	echo $now" [INFO] [$$] NCTL :: "$tabs$1
-	    else
-	    	echo $now" [INFO] [$$] NCTL :: "$1
-	    fi
-	else
-	    echo $now" [INFO] [$$] NCTL :: "
-	fi
+    if [ "$1" ]; then
+        if [ "$2" ]; then
+            for ((i=0; i<$2; i++))
+            do
+                declare tabs+='\t'
+            done
+            echo $now" [INFO] [$$] NCTL :: "$tabs$1
+        else
+            echo $now" [INFO] [$$] NCTL :: "$1
+        fi
+    else
+        echo $now" [INFO] [$$] NCTL :: "
+    fi
 }
 
 # Wraps pushd command to suppress stdout.
@@ -43,9 +43,9 @@ function popd ()
 
 # Forces a directory delete / recreate.
 function resetd () {
-	dpath=$1
-	if [ -d $dpath ]; then
+    dpath=$1
+    if [ -d $dpath ]; then
         rm -rf $dpath
-	fi
+    fi
     mkdir -p $dpath
 }

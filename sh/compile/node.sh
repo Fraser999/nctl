@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 #######################################
 # Compiles node software.
@@ -9,6 +9,7 @@
 
 source $NCTL/sh/utils/misc.sh
 pushd $NCTL_CASPER_HOME
-export CARGO_FLAGS=--release
-make all
+make setup-rs
+make build-system-contracts
+cargo build --release --package casper-node
 popd -1

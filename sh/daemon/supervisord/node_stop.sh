@@ -1,19 +1,19 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 #######################################
 # Stops a network node.
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
-#   Network ordinal identifer.
-#   Node ordinal identifer.
+#   Network ordinal identifier.
+#   Node ordinal identifier.
 #######################################
 
 # Import utils.
 source $NCTL/sh/daemon/supervisord/utils.sh
 
 # Ensure daemon is up.
-source $NCTL/sh/daemon/supervisord/daemon_start.sh $1 
+source $NCTL/sh/daemon/supervisord/daemon_start.sh $1
 
 # Stop nodeset.
 if [ $2 = "all" ]; then
