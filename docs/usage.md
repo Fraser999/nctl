@@ -1,6 +1,6 @@
-# NCTL Usage
+# nctl Usage
 
-Once installed, nctl commands can be used to setup & control nodes within local test network(s).  Whilst most nctl users will tend to focus upon testing a single network, developers may wish to test multiple networks in parallel so as to observe behavioural differences induced as a result of altering either the network's configuration or it's binary set.  
+Once installed, nctl commands can be used to setup & control nodes within local test network(s).  Whilst most nctl users will tend to focus upon testing a single network, developers may wish to test multiple networks in parallel so as to observe behavioural differences induced as a result of altering either the network's configuration or its binary set.
 
 ## Step 0: Compile network binaries.
 
@@ -75,14 +75,10 @@ nctl-start net=1 node=1
 nctl-start net=1 node=all
 ```
 
-- We can observe the status of either a single or all daemonised nodes within a network as follows:
+- We can observe the status of all daemonised nodes within a network as follows:
 
 ```
-# View status of node 1.
-nctl-status net=1 node=1
-
-# View status of all nodes.
-nctl-status net=1 node=all
+nctl-status net=1
 ```
 
 - We can restart either a single or all daemonised nodes within a network as follows:
@@ -117,4 +113,4 @@ Not only does this delete all previously created assets, it also stops any nodes
 
 ## Summary
 
-Using nctl one can spin up either a single or multiple test networks.  Each network is isolated in terms of it's assets - this includes port numbers.  You are encouraged to integrate nctl into your daily workflow so as to standardise the manner in which the network is tested in a localised setting.
+Using nctl one can spin up either a single or multiple test networks.  Each network is isolated in terms of its assets - this includes port numbers.  You are encouraged to integrate nctl into your daily workflow so as to standardise the manner in which the network is tested in a localised setting.
