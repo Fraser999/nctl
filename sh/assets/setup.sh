@@ -264,9 +264,15 @@ source $NCTL/sh/utils/misc.sh
 
 # Set directory.
 net_path=$NCTL/assets/net-$net
+
+# Teardown existing.
 if [ -d $net_path ]; then
-    rm -rf $net_path
+    source $NCTL/sh/assets/teardown.sh net=$net
 fi
+
+log "network #$net: setting up assets ... please wait"
+
+# Make directory.
 mkdir -p $net_path
 
 # Set artefacts.
@@ -279,4 +285,4 @@ _set_nodes $net_path $nodes $net
 _set_users $net_path $users
 _set_vars $net_path $net $nodes $users
 
-log "network #$net assets have been setup."
+log "network #$net: assets set up"

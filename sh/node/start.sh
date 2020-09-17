@@ -27,6 +27,27 @@ done
 #######################################
 
 source $NCTL/sh/node/log_reset.sh net=$net node=$node  
-if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
-    source $NCTL/sh/daemon/supervisord/node_start.sh $net $node
+
+log "network #$net: starting node(s) ... please wait"
+
+if [ $node = "all" ]; then
+    source $NCTL/assets/net-$net/vars
+    for node_idx in $(seq 1 $NCTL_NET_NODE_COUNT)
+    do
+        log "network #$net: starting node $node_idx ..."
+        if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
+            source $NCTL/sh/daemon/supervisord/node_start.sh $net $node
+        fi
+        if [ $node_idx = 1 ]; then  # ensure bootstrap node is running.
+            sleep 1.0
+        fi
+    done
+else
+    if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
+        source $NCTL/sh/daemon/supervisord/node_start.sh $net $node
+    fi
 fi
+
+# Display status.
+sleep 1.0
+source $NCTL/sh/daemon/supervisord/node_status.sh $net

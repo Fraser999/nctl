@@ -25,7 +25,7 @@ done
 # Main
 #######################################
 
-log "tearing down network #$net assets ... please wait"
+log "network #$net: tearing down assets ... please wait"
 
 # Import utils.
 source $NCTL/sh/utils/misc.sh
@@ -41,4 +41,4 @@ fi
 # Delete artefacts.
 rm -rf $NCTL/assets/net-$net
 
-log "network #$net assets have been torn down."
+log "network #$net: assets torn down."
