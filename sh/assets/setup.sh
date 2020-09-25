@@ -23,11 +23,15 @@ function _set_bin() {
     cp $NCTL_CASPER_HOME/target/release/casper-client $1/bin
     cp $NCTL_CASPER_HOME/target/release/casper-node $1/bin
 
-    # Set wasm.
+    # Set wasm:
+    # ... system contracts;
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/auction_install.wasm $1/bin
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/mint_install.wasm $1/bin
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/pos_install.wasm $1/bin
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/standard_payment_install.wasm $1/bin
+    # ... user contracts.
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/transfer_to_account_u512.wasm $1/bin
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/transfer_to_account_u512_stored.wasm $1/bin
 }
 
 #######################################
@@ -44,8 +48,8 @@ function _set_chainspec() {
 
     # Set config params.
     GENESIS_NAME=casper-net-$2
-    GENESIS_TIMESTAMP=$(python3 -c 'from time import time; print(int(round(time() * 1000)))')
-    HIGHWAY_GENESIS_ERA_START_TIMESTAMP=$(python3 -c 'from time import time; print(int(round(time() * 1000)) + 10000)')
+    GENESIS_TIMESTAMP=$(python3 -c 'from time import time; print(int(round(time() * 1000)) + 20000)')
+    HIGHWAY_GENESIS_ERA_START_TIMESTAMP=$(python3 -c 'from time import time; print(int(round(time() * 1000)) + 20000)')
 
     # Set config.
     path_config=$1/chainspec/chainspec.toml
@@ -254,6 +258,11 @@ do
         *)   
     esac    
 done
+
+# Set defaults.
+net=${net:-1}
+nodes=${nodes:-5}
+users=${users:-1}
 
 #######################################
 # Main

@@ -9,6 +9,8 @@ chainspec_config_path = '../../../chainspec/chainspec.toml'
 # The maximum number of deploys permitted in a single block.
 block_max_deploy_count = 3
 
+# If set, use this hash as a trust anchor when joining an existing network.
+# trusted_hash =
 
 # =================================
 # Configuration options for logging
@@ -61,6 +63,12 @@ known_addresses = [{NETWORK_KNOWN_ADDRESSES}]
 # Defaults to 30_000.
 gossip_interval = 1000
 
+# Enable systemd support. If enabled, the node will notify systemd once it has synced and its
+# listening socket for incoming connections is open.
+#
+# It is usally better to leave this option off and enable it explicitly via command-line override
+# only in the unit files themselves via `-C=network.systemd_support=true`.
+systemd_support = false
 
 # =============================================
 # Configuration options for the HTTP API server

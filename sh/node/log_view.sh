@@ -24,6 +24,11 @@ do
     esac
 done
 
+# Set defaults.
+net=${net:-1}
+node=${node:-1}
+typeof=${typeof:-stdout}
+
 #######################################
 # Main
 #######################################
