@@ -1,4 +1,5 @@
 # Assets.
+alias nctl-assets-dump='source $NCTL/sh/assets/dump.sh'
 alias nctl-assets-ls='source $NCTL/sh/assets/list.sh'
 alias nctl-assets-setup='source $NCTL/sh/assets/setup.sh'
 alias nctl-assets-teardown='source $NCTL/sh/assets/teardown.sh'
