@@ -106,7 +106,17 @@ nctl-stop
 nctl-stop node=1
 ```
 
-## Step 5: End testing session.
+## Step 5: Dump logs & other files.
+
+If having observed a network behavioural anomaly we can dump relevant files such as logs and configurationas follows:
+
+```
+nctl-assets-dump
+```
+
+- This writes dumped files -> $NCTL/dumps/net-1
+
+## Step 6: End testing session.
 
 Once a network testing session is complete we can teardown the network as follows:
 

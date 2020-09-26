@@ -50,6 +50,16 @@ e.g. `nctl-assets-teardown net=1`  (same as above)
 
 e.g. `nctl-assets-teardown net=2`
 
+### nctl-assets-dumps net={X:-1}
+
+Stops network & destroys all related assets.
+
+e.g. `nctl-assets-teardown`
+
+e.g. `nctl-assets-teardown net=1`  (same as above)
+
+e.g. `nctl-assets-teardown net=2`
+
 ## Controlling network nodes
 
 ### nctl-interactive net={X:-1} node={Y:-1}
