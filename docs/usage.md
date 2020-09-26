@@ -61,7 +61,11 @@ vi $NCTL/assets/net-1/nodes/node-3/config/node-config.toml
 We can start a node interactively - this is useful to verify that the network assets have been correctly established and that the network is ready for testing.
 
 ```
+# Start node 1 interactively.
 nctl-interactive
+
+# Start node 4 interactively.
+nctl-interactive node-4
 ```
 
 ## Step 4: Start a network in daemon mode.
