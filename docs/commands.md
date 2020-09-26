@@ -4,9 +4,15 @@
 
 Upon successful installation, a set of nctl commands are available for execution from within a terminal session.  All such commands are prefixed by `nctl-` and allow you to perform various tasks as detailed below.
 
-NOTE: all network & node ordinal identifiers are 1 based.
+NOTE 1: all network & node ordinal identifiers are 1 based.
+
+NOTE 2: all command parameterrs have default values to simplify the general case of testing a single local network.
 
 ## Compiling network binaries
+
+### nctl-compile
+
+Compiles casper node + client software using `make` + `cargo`.
 
 ### nctl-compile-node
 
@@ -22,68 +28,99 @@ Compiles casper client software using `cargo`.
 
 List previously created network assets.
 
-### nctl-assets-setup net={X} nodes={Y} users={Z}
+### nctl-assets-setup net={X:-1} nodes={Y:-5} users={Z:-5}
 
 Sets up assets required to run a local N-node network - this includes binaries, chainspec, config, faucet, keys ... etc.
 
-e.g. `nctl-assets-setup net=1 nodes=5 users=5` creates assets required to run a 5 node network (network id = 1), additionally creates a set of test users.
+e.g. `nctl-assets-setup`
 
-### nctl-assets-teardown net={X}
+e.g. `nctl-assets-setup net=1 nodes=5 users=5`  (same as above)
+
+e.g. `nctl-assets-setup net=2 nodes=10 users=10`
+
+NOTE: default
+
+### nctl-assets-teardown net={X:-1}
 
 Stops network & destroys all related assets.
 
-e.g. `nctl-assets-teardown net=1`
+e.g. `nctl-assets-teardown`
+
+e.g. `nctl-assets-teardown net=1`  (same as above)
+
+e.g. `nctl-assets-teardown net=2`
 
 ## Controlling network nodes
 
-### nctl-interactive net={X} node={Y}
+### nctl-interactive net={X:-1} node={Y:-1}
 
 Starts (in interactive mode) node Y in network X.
 
+e.g. `nctl-interactive`
+
+e.g. `nctl-interactive net=1 node=1`  (same as above)
+
 e.g. `nctl-interactive net=1 node=3`
 
-### nctl-log-reset net={X} node={Y}
+### nctl-log-reset net={X:-1} node={Y:-all}
 
 Resets logs of node Y in network X.  If Y=all then the logs of all nodes are reset.
 
+e.g. `nctl-log-reset`
+
+e.g. `nctl-log-reset net=1 node=all`  (same as above)
+
 e.g. `nctl-log-reset net=1 node=3`
 
-e.g. `nctl-log-reset net=1 node=all`
 
-### nctl-log-view net={X} node={Y} typeof={Z}
+### nctl-log-view net={X:-1} node={Y:-1} typeof={Z:-stdout}
 
 Displays log of node Y in network X.  Z=stdout|stderr.
 
+e.g. `nctl-log-view`
+
+e.g. `nctl-log-view net=1 node=1 typeof=stdout`  (same as above)
+
 e.g. `nctl-log-view net=1 node=3 typeof=stderr`
 
-e.g. `nctl-log-view net=1 node=1 typeof=stdout`
 
-### nctl-restart net={X} node={Y}
+### nctl-restart net={X:-1} node={Y:-all}
 
 Restarts node Y in network X.  If Y=all then all nodes in the network are restarted.
 
+e.g. `nctl-restart`
+
+e.g. `nctl-restart net=1 node=all`  (same as above)
+
 e.g. `nctl-restart net=1 node=3`
 
-e.g. `nctl-restart net=1 node=all`
 
-### nctl-start net={X} node={Y}
+### nctl-start net={X:-1} node={Y:-all}
 
 Starts node Y in network X.  If Y=all then all nodes in the network are restarted.
 
+e.g. `nctl-start`
+
+e.g. `nctl-start net=1 node=all`  (same as above)
+
 e.g. `nctl-start net=1 node=3`
 
-e.g. `nctl-start net=1 node=all`
 
-### nctl-status net={X}
+### nctl-status net={X:-1}
 
 Displays status of all nodes in network X.
 
-e.g. `nctl-status net=1`
+e.g. `nctl-status`
 
-### nctl-stop net={X} node={Y}
+e.g. `nctl-status net=1`  (same as above)
+
+
+### nctl-stop net={X:-1} node={Y:-all}
 
 Stops node Y in network X.  If Y=all then all nodes in the network are stopped.
 
-e.g. `nctl-stop net=1 node=3`
+e.g. `nctl-stop`
 
-e.g. `nctl-stop net=1 node=all`
+e.g. `nctl-stop net=1 node=all`  (same as above)
+
+e.g. `nctl-stop net=1 node=3`

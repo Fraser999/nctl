@@ -4,11 +4,10 @@ Once installed, nctl commands can be used to setup & control nodes within local 
 
 ## Step 0: Compile network binaries.
 
-Prior to testing a network we need to ensure that the binary set is available:
+Prior to testing a network we need to ensure that the binary sets arre available:
 
 ```
-nctl-compile-node
-nctl-compile-client
+nctl-compile
 ```
 
 ## Step 1: Create network assets.
@@ -17,6 +16,12 @@ nctl-compile-client
 
 ```
 nctl-assets-setup net=1 nodes=5 users=5
+```
+
+Note - The command uses default parameter values and hence can also be executed as follows:
+
+```
+nctl-assets-setup
 ```
 
 - Examining the contents of `$NCTL/assets/net-1` you will observe the following (self-explanatory) sub-folders:
@@ -61,6 +66,12 @@ We can start a node interactively - this is useful to verify that the network as
 
 ```
 nctl-interactive net=1 node=1
+```
+
+Note - The above command uses default parameter values and hence can also be executed as follows:
+
+```
+nctl-interactive
 ```
 
 ## Step 4: Start a network in daemon mode.

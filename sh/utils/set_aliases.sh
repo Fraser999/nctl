@@ -18,3 +18,7 @@ alias nctl-restart='source $NCTL/sh/node/restart.sh'
 alias nctl-start='source $NCTL/sh/node/start.sh'
 alias nctl-status='source $NCTL/sh/node/status.sh'
 alias nctl-stop='source $NCTL/sh/node/stop.sh'
+
+# alias nctl-down='source $NCTL/sh/node/down.sh'
+# alias nctl-up='source $NCTL/sh/node/start.sh'
+# alias nctl-up-and-down='source $NCTL/sh/node/start.sh'
