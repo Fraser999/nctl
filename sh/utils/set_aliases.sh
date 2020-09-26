@@ -4,6 +4,7 @@ alias nctl-assets-setup='source $NCTL/sh/assets/setup.sh'
 alias nctl-assets-teardown='source $NCTL/sh/assets/teardown.sh'
 
 # Compilation.
+alias nctl-compile='source $NCTL/sh/compile/all.sh'
 alias nctl-compile-client='source $NCTL/sh/compile/client.sh'
 alias nctl-compile-node='source $NCTL/sh/compile/node.sh'
 

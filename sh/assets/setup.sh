@@ -252,6 +252,7 @@ do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
     VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
     case "$KEY" in
+        bootstraps) bootstraps=${VALUE} ;;
         net) net=${VALUE} ;;
         nodes) nodes=${VALUE} ;;
         users) users=${VALUE} ;;
@@ -260,6 +261,7 @@ do
 done
 
 # Set defaults.
+bootstraps=${bootstraps:-1}
 net=${net:-1}
 nodes=${nodes:-5}
 users=${users:-1}

@@ -172,4 +172,3 @@ get_remainder_timeout_secs = 60
 #
 # The size should be a multiple of the OS page size.
 #max_global_state_size = 805306368000
-
