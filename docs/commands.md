@@ -50,15 +50,13 @@ e.g. `nctl-assets-teardown net=1`  (same as above)
 
 e.g. `nctl-assets-teardown net=2`
 
-### nctl-assets-dumps net={X:-1}
+### nctl-assets-dump net={X:-1}
 
-Stops network & destroys all related assets.
+Dumps transient network assets such as logs + configuration.
 
-e.g. `nctl-assets-teardown`
+e.g. `nctl-assets-dump`
 
-e.g. `nctl-assets-teardown net=1`  (same as above)
-
-e.g. `nctl-assets-teardown net=2`
+e.g. `nctl-assets-dump net=1`  (same as above)
 
 ## Controlling network nodes
 
