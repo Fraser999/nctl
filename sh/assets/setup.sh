@@ -247,6 +247,13 @@ export NCTL_NET_USER_COUNT=$4
 #######################################
 # Destructure input args.
 #######################################
+
+# Unset to avoid parameter collisions.
+unset bootstraps
+unset net
+unset nodes
+unset users
+
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)

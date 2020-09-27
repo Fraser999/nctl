@@ -12,6 +12,11 @@
 # Destructure input args.
 #######################################
 
+# Unset to avoid parameter collisions.
+unset net
+unset node
+unset typeof
+
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
