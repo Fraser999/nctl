@@ -56,7 +56,7 @@ vi $NCTL/assets/net-1/chainspec/chainspec.toml
 vi $NCTL/assets/net-1/nodes/node-3/config/node-config.toml
 ```
 
-## Step 3: Start a node in interactive mode.
+## Step 2: Start a node in interactive mode.
 
 We can start a node interactively - this is useful to verify that the network assets have been correctly established and that the network is ready for testing.
 
@@ -68,7 +68,7 @@ nctl-interactive
 nctl-interactive node-4
 ```
 
-## Step 4: Start a network in daemon mode.
+## Step 3: Start a network in daemon mode.
 
 - We can start either all nodes or a single nodes within a network in daemon mode.  This is the preferred modus operandi.
 
@@ -106,7 +106,7 @@ nctl-stop
 nctl-stop node=1
 ```
 
-## Step 5: Dump logs & other files.
+## Step 4: Dump logs & other files.
 
 If having observed a network behavioural anomaly we can dump relevant files such as logs and configurationas follows:
 
@@ -116,7 +116,7 @@ nctl-assets-dump
 
 - This writes dumped files -> $NCTL/dumps/net-1
 
-## Step 6: End testing session.
+## Step 5: End testing session.
 
 Once a network testing session is complete we can teardown the network as follows:
 

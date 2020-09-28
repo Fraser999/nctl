@@ -271,7 +271,7 @@ done
 bootstraps=${bootstraps:-1}
 net=${net:-1}
 nodes=${nodes:-5}
-users=${users:-1}
+users=${users:-5}
 
 #######################################
 # Main

@@ -21,3 +21,7 @@ if [ $2 = "all" ]; then
 else
     supervisorctl -c "$(get_path_net_supervisord_cfg $1)" start "$(get_node_process_name $1 $2)"  > /dev/null 2>&1
 fi
+
+# Display nodeset state.
+sleep 2.0
+source $NCTL/sh/daemon/supervisord/node_status.sh $1
