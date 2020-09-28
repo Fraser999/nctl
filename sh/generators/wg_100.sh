@@ -77,10 +77,10 @@ log "... interval=$transfer_interval (s)"
 
 # Dispatch transfers to each node in round-robin fashion.
 if [ $node = "all" ]; then
-    source $NCTL/assets/net-$net/vars
     transferred=0
     while [ $transferred -lt $transfers ];
     do
+        source $NCTL/assets/net-$net/vars
         for node_idx in $(seq 1 $NCTL_NET_NODE_COUNT)
         do
             $path_net/bin/casper-client transfer \
