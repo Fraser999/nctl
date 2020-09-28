@@ -9,6 +9,9 @@ alias nctl-compile='source $NCTL/sh/compile/all.sh'
 alias nctl-compile-client='source $NCTL/sh/compile/client.sh'
 alias nctl-compile-node='source $NCTL/sh/compile/node.sh'
 
+# Workload Generators.
+alias nctl-wg-100='source $NCTL/sh/generators/wg_100.sh'
+
 # Logs.
 alias nctl-log-reset='source $NCTL/sh/node/log_reset.sh'
 alias nctl-log-view='source $NCTL/sh/node/log_view.sh'

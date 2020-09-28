@@ -49,3 +49,27 @@ function resetd () {
     fi
     mkdir -p $dpath
 }
+
+# ###############################################################
+# UTILS: getterr functions
+# ###############################################################
+
+#######################################
+# Returns node address.
+# Arguments:
+#   Network ordinal identifier.
+#   Node ordinal identifier.
+#######################################
+function get_node_address {
+    echo http://localhost:"$(get_node_port $1 $2)"
+}
+
+#######################################
+# Returns node port.
+# Arguments:
+#   Network ordinal identifier.
+#   Node ordinal identifier.
+#######################################
+function get_node_port {
+    echo $((50000 + ($1 * 100) + $2))
+}
