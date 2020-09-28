@@ -46,8 +46,6 @@ log "network #$net: starting node(s) ... please wait"
 # Set rust log level.
 export RUST_LOG=$loglevel
 
-echo $loglevel
-
 # Reset logs.
 source $NCTL/sh/node/log_reset.sh net=$net node=$node  
 
