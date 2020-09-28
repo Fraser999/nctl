@@ -60,7 +60,7 @@ e.g. `nctl-assets-dump net=1`  (same as above)
 
 ## Controlling network nodes
 
-### nctl-interactive net={X:-1} node={Y:-1}
+### nctl-interactive net={X:-1} node={Y:-1} loglevel={Z:-($NCTL_NODE_LOG_LEVEL | debug)}
 
 Starts (in interactive mode) node Y in network X.
 
@@ -69,6 +69,8 @@ e.g. `nctl-interactive`
 e.g. `nctl-interactive net=1 node=1`  (same as above)
 
 e.g. `nctl-interactive net=1 node=3`
+
+Note - log level output can be overrriden either by assigning the NCTL_NODE_LOG_LEVEL env. var. or the `loglevel` parameter.
 
 ### nctl-log-reset net={X:-1} node={Y:-all}
 
@@ -103,7 +105,7 @@ e.g. `nctl-restart net=1 node=all`  (same as above)
 e.g. `nctl-restart net=1 node=3`
 
 
-### nctl-start net={X:-1} node={Y:-all}
+### nctl-start net={X:-1} node={Y:-all} loglevel={Z:-($NCTL_NODE_LOG_LEVEL | debug)}
 
 Starts node Y in network X.  If Y=all then all nodes in the network are restarted.
 
@@ -113,6 +115,7 @@ e.g. `nctl-start net=1 node=all`  (same as above)
 
 e.g. `nctl-start net=1 node=3`
 
+Note - log level output can be overrriden either by assigning the NCTL_NODE_LOG_LEVEL env. var. or the `loglevel` parameter.
 
 ### nctl-status net={X:-1}
 
