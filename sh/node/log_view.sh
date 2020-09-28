@@ -8,6 +8,9 @@
 #   Node ordinal identifier.
 #   Log type.
 
+# Import utils.
+source $NCTL/sh/utils/misc.sh
+
 #######################################
 # Destructure input args.
 #######################################

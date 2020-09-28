@@ -7,6 +7,9 @@
 # Arguments:
 #   Network ordinal identifer.
 
+# Import utils.
+source $NCTL/sh/utils/misc.sh
+
 #######################################
 # Destructure input args.
 #######################################
@@ -32,9 +35,6 @@ net=${net:-1}
 #######################################
 
 log "network #$net: tearing down assets ... please wait"
-
-# Import utils.
-source $NCTL/sh/utils/misc.sh
 
 # Stop all spinning nodes.
 source $NCTL/sh/node/stop.sh net=$net node=all

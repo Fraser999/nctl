@@ -244,6 +244,9 @@ export NCTL_NET_USER_COUNT=$4
 #   Count of users to setup.
 #######################################
 
+# Import utils.
+source $NCTL/sh/utils/misc.sh
+
 #######################################
 # Destructure input args.
 #######################################
@@ -276,9 +279,6 @@ users=${users:-5}
 #######################################
 # Main
 #######################################
-
-# Import utils.
-source $NCTL/sh/utils/misc.sh
 
 # Set directory.
 net_path=$NCTL/assets/net-$net

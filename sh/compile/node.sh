@@ -7,7 +7,9 @@
 #   NCTL - path to nctl home directory.
 ########################################
 
+# Import utils.
 source $NCTL/sh/utils/misc.sh
+
 pushd $NCTL_CASPER_HOME
 make setup-rs
 make build-system-contracts

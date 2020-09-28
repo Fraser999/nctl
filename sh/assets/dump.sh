@@ -7,6 +7,9 @@
 # Arguments:
 #   Network ordinal identifer.
 
+# Import utils.
+source $NCTL/sh/utils/misc.sh
+
 #######################################
 # Destructure input args.
 #######################################
@@ -32,9 +35,6 @@ net=${net:-1}
 #######################################
 
 log "network #$net: dumping transient assets ... please wait"
-
-# Import utils.
-source $NCTL/sh/utils/misc.sh
 
 # Set paths.
 path_assets=$NCTL/assets/net-$net
