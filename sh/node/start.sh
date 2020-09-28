@@ -58,4 +58,4 @@ fi
 
 # Display status.
 sleep 1.0
-source $NCTL/sh/daemon/supervisord/node_status.sh $net
+source $NCTL/sh/node/status.sh $net

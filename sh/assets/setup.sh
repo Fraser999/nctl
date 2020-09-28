@@ -98,7 +98,7 @@ function _set_daemon() {
 
     # Set daemon specific artefacts.
     if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
-        source $NCTL/sh/daemon/supervisord/daemon_setup.sh $1 $2 $3
+        source $NCTL/sh/assets/setup_supervisord.sh $1 $2 $3
     fi
 }
 

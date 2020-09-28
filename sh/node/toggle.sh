@@ -41,3 +41,7 @@ source $NCTL/assets/net-$net/vars
 if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
     source $NCTL/sh/daemon/supervisord/node_toggle.sh $net $node
 fi
+
+# Display status.
+sleep 1.0
+source $NCTL/sh/node/status.sh $net

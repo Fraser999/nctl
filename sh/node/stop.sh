@@ -37,3 +37,8 @@ node=${node:-all}
 if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
     source $NCTL/sh/daemon/supervisord/node_stop.sh $net $node
 fi
+
+# Display status.
+sleep 1.0
+source $NCTL/sh/node/status.sh $net
+
