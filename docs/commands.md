@@ -8,6 +8,8 @@ NOTE 1: all network & node ordinal identifiers are 1 based.
 
 NOTE 2: all command parameterrs have default values to simplify the general case of testing a single local network.
 
+NOTE 3: when executing either the `nctl-interactive` or `nctl-start` commands, node logging level output can be overrriden either by assigning the `NCTL_NODE_LOG_LEVEL` env. var. or by passing in the `loglevel` parameter .
+
 ## Compiling network binaries
 
 ### nctl-compile
@@ -70,7 +72,7 @@ e.g. `nctl-interactive net=1 node=1`  (same as above)
 
 e.g. `nctl-interactive net=1 node=3`
 
-Note - log level output can be overrriden either by assigning the NCTL_NODE_LOG_LEVEL env. var. or the `loglevel` parameter.
+Note - log level output can be overrriden either by assigning the `NCTL_NODE_LOG_LEVEL` env. var. or the `loglevel` parameter.
 
 ### nctl-log-reset net={X:-1} node={Y:-all}
 
@@ -115,7 +117,7 @@ e.g. `nctl-start net=1 node=all`  (same as above)
 
 e.g. `nctl-start net=1 node=3`
 
-Note - log level output can be overrriden either by assigning the NCTL_NODE_LOG_LEVEL env. var. or the `loglevel` parameter.
+Note - log level output can be overrriden either by assigning the `NCTL_NODE_LOG_LEVEL` env. var. or the `loglevel` parameter.
 
 ### nctl-status net={X:-1}
 
