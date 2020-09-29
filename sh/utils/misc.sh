@@ -100,7 +100,7 @@ function get_hash() {
 #   JSON string to be prettified.
 #######################################
 function get_json_s() {
-    echo "$1" | python -m json.tool
+    echo "$1" | python3 -m json.tool
 }
 
 #######################################
@@ -109,7 +109,7 @@ function get_json_s() {
 #   JSON file to be prettified.
 #######################################
 function get_json_f() {
-    python -m json.tool "$1"
+    python3 -m json.tool "$1"
 }
 
 #######################################
@@ -118,7 +118,7 @@ function get_json_f() {
 #   URL to JSON to be prettified.
 #######################################
 function get_json_w() {
-    curl "$1" | python -m json.tool
+    curl "$1" | python3 -m json.tool
 }
 
 #######################################
@@ -140,5 +140,5 @@ function exec_node_rpc() {
             "jsonrpc": "2.0",
             "method": "'$3'",
             "params":['$4']
-        }' | python -m json.tool    
+        }' | python3 -m json.tool    
 }

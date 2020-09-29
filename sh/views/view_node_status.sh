@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Interactively spins up a node within a network.
+# Renders node status to stdout.
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
@@ -15,7 +15,6 @@ source $NCTL/sh/utils/misc.sh
 #######################################
 
 # Unset to avoid parameter collisions.
-unset loglevel
 unset net
 unset node
 
@@ -24,7 +23,6 @@ do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
     VALUE=$(echo $ARGUMENT | cut -f2 -d=)
     case "$KEY" in
-        loglevel) loglevel=${VALUE} ;;
         net) net=${VALUE} ;;
         node) node=${VALUE} ;;
         *)
@@ -32,8 +30,6 @@ do
 done
 
 # Set defaults.
-loglevel=${loglevel:-$RUST_LOG}
-loglevel=${loglevel:-debug}
 net=${net:-1}
 node=${node:-1}
 
@@ -41,10 +37,4 @@ node=${node:-1}
 # Main
 #######################################
 
-# Set rust log level.
-export RUST_LOG=$loglevel
-
-# Start validator.
-$NCTL/assets/net-$net/bin/casper-node validator \
-    -C=storage.path=$NCTL/assets/net-$net/nodes/node-$node/storage \
-    $NCTL/assets/net-$net/nodes/node-$node/config/node-config.toml
+exec_node_rpc $net $node "info_get_status"

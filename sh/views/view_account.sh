@@ -1,6 +1,8 @@
+
+
 #!/usr/bin/env bash
 #
-# Interactively spins up a node within a network.
+# Renders node metrics to stdout.
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
@@ -15,8 +17,8 @@ source $NCTL/sh/utils/misc.sh
 #######################################
 
 # Unset to avoid parameter collisions.
-unset loglevel
-unset net
+unset gsh
+unset global_state_hash
 unset node
 
 for ARGUMENT in "$@"
@@ -24,7 +26,7 @@ do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
     VALUE=$(echo $ARGUMENT | cut -f2 -d=)
     case "$KEY" in
-        loglevel) loglevel=${VALUE} ;;
+        gsh) gsh=${VALUE} ;;
         net) net=${VALUE} ;;
         node) node=${VALUE} ;;
         *)
@@ -32,8 +34,7 @@ do
 done
 
 # Set defaults.
-loglevel=${loglevel:-$RUST_LOG}
-loglevel=${loglevel:-debug}
+global_state_hash=${gsh:-""}
 net=${net:-1}
 node=${node:-1}
 
@@ -41,10 +42,10 @@ node=${node:-1}
 # Main
 #######################################
 
-# Set rust log level.
-export RUST_LOG=$loglevel
+global_state_hash=2bad398b6acc726fd69cd251645bdd5c57cf47b5487ab52e554b159b705d6186
+node_address=http://localhost:50101
+account_hash=7959a737b66a3350289757a6dd9ec2217ee79a087a866add45a471bbc16b2e98
 
-# Start validator.
-$NCTL/assets/net-$net/bin/casper-node validator \
-    -C=storage.path=$NCTL/assets/net-$net/nodes/node-$node/storage \
-    $NCTL/assets/net-$net/nodes/node-$node/config/node-config.toml
+$CASPER_CLIENT query-state -g $global_state_hash -n $node_address -k account-hash-$account_hash | python3 -m json.tool
+
+exec_node_rpc $net $node "info_get_metrics"

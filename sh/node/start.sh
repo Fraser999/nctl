@@ -32,7 +32,7 @@ do
 done
 
 # Set defaults.
-loglevel=${loglevel:-$NCTL_NODE_LOG_LEVEL}
+loglevel=${loglevel:-$RUST_LOG}
 loglevel=${loglevel:-debug}
 net=${net:-1}
 node=${node:-all}
