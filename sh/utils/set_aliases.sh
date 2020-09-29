@@ -26,3 +26,8 @@ alias nctl-status='source $NCTL/sh/node/status.sh'
 alias nctl-stop='source $NCTL/sh/node/stop.sh'
 alias nctl-toggle='source $NCTL/sh/node/toggle.sh'
 # alias nctl-up='source $NCTL/sh/node/start.sh'
+
+# State views.
+# alias nctl-view-account='source $NCTL/sh/views/view_account.sh'
+alias nctl-view-metrics='source $NCTL/sh/views/view_metrics.sh'
+alias nctl-view-status='source $NCTL/sh/views/view_status.sh'

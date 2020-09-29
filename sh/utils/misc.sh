@@ -65,6 +65,16 @@ function get_node_address {
 }
 
 #######################################
+# Returns node api address.
+# Arguments:
+#   Network ordinal identifier.
+#   Node ordinal identifier.
+#######################################
+function get_node_api {
+    echo $(get_node_address $1 $2)/rpc
+}
+
+#######################################
 # Returns node port.
 # Arguments:
 #   Network ordinal identifier.
@@ -82,4 +92,53 @@ function get_node_port {
 function get_hash() {
     instruction='import hashlib; h=hashlib.blake2b(digest_size=32); h.update(b"'$1'"); print(h.digest().hex());'
     python3 <<< $instruction
+}
+
+#######################################
+# Returns prettified JSON from a string.
+# Arguments:
+#   JSON string to be prettified.
+#######################################
+function get_json_s() {
+    echo "$1" | python -m json.tool
+}
+
+#######################################
+# Returns prettified JSON from a file.
+# Arguments:
+#   JSON file to be prettified.
+#######################################
+function get_json_f() {
+    python -m json.tool "$1"
+}
+
+#######################################
+# Returns prettified JSON from internet.
+# Arguments:
+#   URL to JSON to be prettified.
+#######################################
+function get_json_w() {
+    curl "$1" | python -m json.tool
+}
+
+#######################################
+# Executes a node RPC call.
+# Arguments:
+#   Node address.
+#   RPC method.
+#   RPC method parameters.
+#######################################
+function exec_node_rpc() {
+    node_api=$(get_node_address $1 $2)/rpc
+    curl \
+        -s \
+        --location \
+        --request POST $node_api \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "id": 1,
+            "jsonrpc": "2.0",
+            "method": "'$3'",
+            "params":['$4']
+        }' | python -m json.tool    
 }
