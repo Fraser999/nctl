@@ -136,6 +136,26 @@ e.g. `nctl-stop net=1 node=all`  (same as above)
 
 e.g. `nctl-stop net=1 node=3`
 
+### nctl-view-metrics net={X:-1} node={Y:-1}
+
+Renders metrics of node Y in network X to stdout.
+
+e.g. `nctl-view-metrics`
+
+e.g. `nctl-view-metrics net=1 node=1`  (same as above)
+
+e.g. `nctl-view-metrics net=1 node=3`
+
+### nctl-view-status net={X:-1} node={Y:-1}
+
+Renders status of node Y in network X to stdout.
+
+e.g. `nctl-view-status`
+
+e.g. `nctl-view-status net=1 node=1`  (same as above)
+
+e.g. `nctl-view-status net=1 node=3`
+
 ### nctl-wg-100 net={X:-1} node={Y:-1} payment={P:-200000} gas={G:-10} transfers={T:-100} interval={I:-0.01} user={U:-1}
 
 Dispatches to node Y in network X, T wasmless transfers from network faucet to user #U.  If node=all then transfers are dispatched to nodes in a round-robin fashion.
