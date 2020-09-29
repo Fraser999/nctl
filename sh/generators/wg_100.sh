@@ -51,7 +51,7 @@ gas_payment=${gas_payment:-200000}
 gas_price=${gas_price:-10}
 net=${net:-1}
 node=${node:-1}
-transfers=${transfers:-10}
+transfers=${transfers:-100}
 transfer_interval=${transfer_interval:-0.01}
 user=${user:-1}
 
@@ -77,7 +77,6 @@ log "... transfer interval=$transfer_interval (s)"
 log "... counter-party 1 public key=$cp1_pk"
 log "... counter-party 2 public key=$cp2_pk"
 log "... counter-party 2 account hash=$cp2_account_hash"
-
 
 # Dispatch transfers to each node in round-robin fashion.
 if [ $node = "all" ]; then
