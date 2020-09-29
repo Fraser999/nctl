@@ -21,7 +21,7 @@ CSPR network community.  This encompasses developers, validators, evaluators ...
 Requirements
 --------------------------------------
 
-    - python + pip
+    - python3 + pip
     - make
     - cargo
     - bash
