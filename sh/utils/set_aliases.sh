@@ -29,5 +29,6 @@ alias nctl-toggle='source $NCTL/sh/node/toggle.sh'
 
 # State views.
 # alias nctl-view-account='source $NCTL/sh/views/view_account.sh'
-alias nctl-view-metrics='source $NCTL/sh/views/view_metrics.sh'
-alias nctl-view-status='source $NCTL/sh/views/view_status.sh'
+alias nctl-view-node-metrics='source $NCTL/sh/views/view_node_metrics.sh'
+alias nctl-view-node-peers='source $NCTL/sh/views/view_node_peers.sh'
+alias nctl-view-node-status='source $NCTL/sh/views/view_node_status.sh'
