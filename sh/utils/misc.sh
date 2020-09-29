@@ -51,7 +51,7 @@ function resetd () {
 }
 
 # ###############################################################
-# UTILS: getterr functions
+# UTILS: geter functions
 # ###############################################################
 
 #######################################
@@ -72,4 +72,14 @@ function get_node_address {
 #######################################
 function get_node_port {
     echo $((50000 + ($1 * 100) + $2))
+}
+
+#######################################
+# Returns blake2b hash.
+# Arguments:
+#   Data to be hashed.
+#######################################
+function get_hash() {
+    instruction='import hashlib; h=hashlib.blake2b(digest_size=32); h.update(b"'$1'"); print(h.digest().hex());'
+    python3 <<< $instruction
 }

@@ -138,10 +138,20 @@ e.g. `nctl-stop net=1 node=3`
 
 ### nctl-wg-100 net={X:-1} node={Y:-1} payment={P:-200000} gas={G:-10} transfers={T:-100} interval={I:-0.01} user={U:-1}
 
-Dispatches to node Y in network X, T transfers from network faucet to user #U.  If node=all then transfers are dispatched to nodes in a round-robin fashion.
+Dispatches to node Y in network X, T wasmless transfers from network faucet to user #U.  If node=all then transfers are dispatched to nodes in a round-robin fashion.
 
 e.g. `nctl-wg-100`
 
 e.g. `nctl-wg-100 net=1 node=1 payment=200000 gas=10 transfers 100 interval=0.01 user=1`  (same as above)
 
 e.g. `nctl-wg-100 transfers 10000 interval=0.001`
+
+### nctl-wg-110 net={X:-1} node={Y:-1} payment={P:-200000} gas={G:-10} transfers={T:-100} interval={I:-0.01} user={U:-1}
+
+Dispatches to node Y in network X, T wasm based transfers from network faucet to user #U.  If node=all then transfers are dispatched to nodes in a round-robin fashion.
+
+e.g. `nctl-wg-110`
+
+e.g. `nctl-wg-110 net=1 node=1 payment=200000 gas=10 transfers 100 interval=0.01 user=1`  (same as above)
+
+e.g. `nctl-wg-110 transfers 10000 interval=0.001`

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Dispatches wasmless transfers to a test net.
+# Dispatches wasm transfers to a test net.
 # Globals:
 #   NCTL - path to nctl home directory.
 # Arguments:
@@ -51,7 +51,7 @@ gas_payment=${gas_payment:-200000}
 gas_price=${gas_price:-10}
 net=${net:-1}
 node=${node:-1}
-transfers=${transfers:-10}
+transfers=${transfers:-100}
 transfer_interval=${transfer_interval:-0.01}
 user=${user:-1}
 
@@ -61,6 +61,7 @@ user=${user:-1}
 
 # Set paths.
 path_net=$NCTL/assets/net-$net
+path_contract=$path_net/bin/transfer_to_account_u512.wasm
 
 # Set counter-parties.
 cp1_sk=$path_net/faucet/secret_key.pem
@@ -68,7 +69,8 @@ cp1_pk=`cat $path_net/faucet/public_key_hex`
 cp2_pk=`cat $path_net/users/user-$user/public_key_hex`
 cp2_account_hash=$(get_hash $cp2_pk)
 
-log "dispatching $transfers wasmless transfers"
+# Inform.
+log "dispatching $transfers wasm transfers"
 log "... network=$net"
 log "... node=$node"
 log "... transfer amount=$amount"
@@ -78,7 +80,6 @@ log "... counter-party 1 public key=$cp1_pk"
 log "... counter-party 2 public key=$cp2_pk"
 log "... counter-party 2 account hash=$cp2_account_hash"
 
-
 # Dispatch transfers to each node in round-robin fashion.
 if [ $node = "all" ]; then
     transferred=0
@@ -87,20 +88,23 @@ if [ $node = "all" ]; then
         source $NCTL/assets/net-$net/vars
         for node_idx in $(seq 1 $NCTL_NET_NODE_COUNT)
         do
-            node_address=$(get_node_address $net $node_idx)
-            $path_net/bin/casper-client transfer \
+            $path_net/bin/casper-client put-deploy \
                 --chain-name casper-net-$net \
                 --gas-price $gas_price \
-                --node-address $node_address \
+                --node-address $(get_node_address $net $node_idx) \
                 --payment-amount $gas_payment \
                 --secret-key $cp1_sk \
+                --session-arg "amount:u512='$amount'" \
+                --session-arg "target:account_hash='account-hash-$cp2_account_hash'" \
+                --session-path $path_contract \
                 --ttl 3600000 \
-                --amount $amount \
-                --target-account $cp2_pk  > /dev/null 2>&1
+                > /dev/null 2>&1
+
             transferred=$((transferred + 1))
             if [[ $transferred -eq $transfers ]]; then
                 break
             fi            
+
             sleep $transfer_interval
         done
     done
@@ -110,15 +114,18 @@ else
     node_address=$(get_node_address $net $node)
     for transfer_id in $(seq 1 $transfers)
     do
-        $path_net/bin/casper-client transfer \
+        $path_net/bin/casper-client put-deploy \
             --chain-name casper-net-$net \
             --gas-price $gas_price \
-            --node-address $node_address \
+            --node-address $(get_node_address $net $node_idx) \
             --payment-amount $gas_payment \
             --secret-key $cp1_sk \
+            --session-arg "amount:u512='$amount'" \
+            --session-arg "target:account_hash='account-hash-$cp2_account_hash'" \
+            --session-path $path_contract \
             --ttl 3600000 \
-            --amount $amount \
-            --target-account $cp2_pk  > /dev/null 2>&1
+            > /dev/null 2>&1
+
         sleep $transfer_interval
     done
 fi
