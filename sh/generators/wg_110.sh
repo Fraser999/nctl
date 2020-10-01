@@ -64,10 +64,10 @@ path_net=$NCTL/assets/net-$net
 path_contract=$path_net/bin/transfer_to_account_u512.wasm
 
 # Set counter-parties.
-cp1_sk=$path_net/faucet/secret_key.pem
-cp1_pk=`cat $path_net/faucet/public_key_hex`
-cp2_pk=`cat $path_net/users/user-$user/public_key_hex`
-cp2_account_hash=$(get_hash $cp2_pk)
+cp1_secret_key=$path_net/faucet/secret_key.pem
+cp1_public_key=`cat $path_net/faucet/public_key_hex`
+cp2_public_key=`cat $path_net/users/user-$user/public_key_hex`
+cp2_account_hash=$(get_hash $cp2_public_key)
 
 # Inform.
 log "dispatching $transfers wasm transfers"
@@ -76,8 +76,8 @@ log "... node=$node"
 log "... transfer amount=$amount"
 log "... transfer contract=$path_contract"
 log "... transfer interval=$transfer_interval (s)"
-log "... counter-party 1 public key=$cp1_pk"
-log "... counter-party 2 public key=$cp2_pk"
+log "... counter-party 1 public key=$cp1_public_key"
+log "... counter-party 2 public key=$cp2_public_key"
 log "... counter-party 2 account hash=$cp2_account_hash"
 
 # Dispatch transfers to each node in round-robin fashion.
@@ -93,17 +93,17 @@ if [ $node = "all" ]; then
                 --gas-price $gas_price \
                 --node-address $(get_node_address $net $node_idx) \
                 --payment-amount $gas_payment \
-                --secret-key $cp1_sk \
+                --secret-key $cp1_secret_key \
                 --session-arg "amount:u512='$amount'" \
                 --session-arg "target:account_hash='account-hash-$cp2_account_hash'" \
                 --session-path $path_contract \
-                --ttl 3600000 \
+                --ttl "1day" \
                 > /dev/null 2>&1
 
             transferred=$((transferred + 1))
             if [[ $transferred -eq $transfers ]]; then
                 break
-            fi            
+            fi
 
             sleep $transfer_interval
         done
@@ -119,11 +119,11 @@ else
             --gas-price $gas_price \
             --node-address $(get_node_address $net $node_idx) \
             --payment-amount $gas_payment \
-            --secret-key $cp1_sk \
+            --secret-key $cp1_secret_key \
             --session-arg "amount:u512='$amount'" \
             --session-arg "target:account_hash='account-hash-$cp2_account_hash'" \
             --session-path $path_contract \
-            --ttl 3600000 \
+            --ttl "1day" \
             > /dev/null 2>&1
 
         sleep $transfer_interval

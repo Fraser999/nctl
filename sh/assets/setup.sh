@@ -48,8 +48,8 @@ function _set_chainspec() {
 
     # Set config params.
     GENESIS_NAME=casper-net-$2
-    GENESIS_TIMESTAMP=$(python3 -c 'from time import time; print(int(round(time() * 1000)) + 20000)')
-    HIGHWAY_GENESIS_ERA_START_TIMESTAMP=$(python3 -c 'from time import time; print(int(round(time() * 1000)) + 20000)')
+    GENESIS_TIMESTAMP=$(python3 -c 'from datetime import datetime, timedelta; print((datetime.utcnow() + timedelta(seconds=20)).isoformat("T") + "Z")')
+    HIGHWAY_GENESIS_ERA_START_TIMESTAMP=$(python3 -c 'from datetime import datetime, timedelta; print((datetime.utcnow() + timedelta(seconds=20)).isoformat("T") + "Z")')
 
     # Set config.
     path_config=$1/chainspec/chainspec.toml
@@ -148,7 +148,7 @@ function _set_nodes() {
 #   Node ordinal identifer.
 #   Network ordinal identifer.
 #######################################
-function _set_node () 
+function _set_node ()
 {
     # Set directory.
     mkdir $1/nodes/node-$2
@@ -199,7 +199,7 @@ function _set_users() {
     for user_idx in $(seq 1 $2)
     do
         _set_user $1 $user_idx
-    done    
+    done
 }
 
 #######################################
@@ -260,14 +260,14 @@ unset users
 for ARGUMENT in "$@"
 do
     KEY=$(echo $ARGUMENT | cut -f1 -d=)
-    VALUE=$(echo $ARGUMENT | cut -f2 -d=)   
+    VALUE=$(echo $ARGUMENT | cut -f2 -d=)
     case "$KEY" in
         bootstraps) bootstraps=${VALUE} ;;
         net) net=${VALUE} ;;
         nodes) nodes=${VALUE} ;;
         users) users=${VALUE} ;;
-        *)   
-    esac    
+        *)
+    esac
 done
 
 # Set defaults.
