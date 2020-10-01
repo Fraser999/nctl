@@ -1,3 +1,6 @@
 # network assets & dumps are transitory & thus do not need to be committed.
 /assets
 /dumps
+
+# Various node templates are held when testing multipole networks - these are suffixed.
+/tmeplates/node-config-*.toml

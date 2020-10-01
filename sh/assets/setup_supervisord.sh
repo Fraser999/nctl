@@ -40,7 +40,7 @@ do
 [program:casper-net-$3-node-$node_id]
 autostart=false
 autorestart=false
-command=$1/bin/casper-node validator -C=storage.path=$1/nodes/node-$node_id/storage $1/nodes/node-$node_id/config/node-config.toml ;
+command=$1/bin/casper-node validator $1/nodes/node-$node_id/config/node-config.toml ;
 numprocs=1
 numprocs_start=0
 stderr_logfile=$1/nodes/node-$node_id/logs/stderr.log ;

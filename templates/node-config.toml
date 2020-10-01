@@ -10,8 +10,7 @@ chainspec_config_path = '../../../chainspec/chainspec.toml'
 block_max_deploy_count = 3
 
 # If set, use this hash as a trust anchor when joining an existing network.
-#trusted_hash =
-
+# trusted_hash =
 
 # =================================
 # Configuration options for logging
@@ -25,9 +24,9 @@ abbreviate_modules = false
 format = 'json'
 
 
-# ===================================
+# ====================================
 # Configuration options for consensus
-# ===================================
+# ====================================
 [consensus]
 
 # Path (absolute, or relative to this config.toml) to validator's secret key file used to sign
@@ -61,32 +60,32 @@ bind_address = '0.0.0.0:{NETWORK_BIND_PORT}'
 known_addresses = [{NETWORK_KNOWN_ADDRESSES}]
 
 # The interval (in milliseconds) between each fresh round of gossiping the node's public address.
+# Defaults to 30_000.
 gossip_interval = 1000
 
 # Enable systemd support. If enabled, the node will notify systemd once it has synced and its
 # listening socket for incoming connections is open.
 #
-# It is usually better to leave this option off and enable it explicitly via command-line override
+# It is usally better to leave this option off and enable it explicitly via command-line override
 # only in the unit files themselves via `-C=network.systemd_support=true`.
-systemd_support = false
-
+# systemd_support = false
 
 # =============================================
 # Configuration options for the HTTP API server
 # =============================================
 [http_server]
 
-# Listening address for HTTP server.  If the port is set to 0, a random port will be used.
-#
-# If the specified port cannot be bound to, a random port will be tried instead.  If binding fails,
-# the HTTP server will not run, but the node will be otherwise unaffected.
-#
-# The actual bound address will be reported via a log line if logging is enabled.
-address = '0.0.0.0:{HTTP_SERVER_BIND_PORT}'
+# Interface to bind to.  Defaults to loopback address.
+bind_interface = '127.0.0.1'
 
-# The number of event-stream events to buffer.
-event_stream_buffer_length = 100
+# Port to bind to.  Use 0 for a random port.
+bind_port = {HTTP_SERVER_BIND_PORT}
 
+# # TEMP: per second limit beyond which deploys are refused
+# accepted_deploy_rate_limit=1000
+
+# # TEMP: per second limit beyond which deploys are refused when the node has been idle for a period of time and hence has spare cycles
+# accepted_deploy_burst_limit=2000
 
 # ===============================================
 # Configuration options for the storage component
@@ -178,3 +177,4 @@ get_remainder_timeout_secs = 60
 #
 # The size should be a multiple of the OS page size.
 #max_global_state_size = 805306368000
+

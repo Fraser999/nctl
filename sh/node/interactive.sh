@@ -44,7 +44,8 @@ node=${node:-1}
 # Set rust log level.
 export RUST_LOG=$loglevel
 
-# Start validator.
-$NCTL/assets/net-$net/bin/casper-node validator \
-    -C=storage.path=$NCTL/assets/net-$net/nodes/node-$node/storage \
-    $NCTL/assets/net-$net/nodes/node-$node/config/node-config.toml
+# Set path -> node config.
+path_config=$NCTL/assets/net-$net/nodes/node-$node/config/node-config.toml
+
+# Start node in validator mode.
+$NCTL/assets/net-$net/bin/casper-node validator $path_config
