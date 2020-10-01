@@ -63,10 +63,10 @@ user=${user:-1}
 path_net=$NCTL/assets/net-$net
 
 # Set counter-parties.
-cp1_sk=$path_net/faucet/secret_key.pem
-cp1_pk=`cat $path_net/faucet/public_key_hex`
-cp2_pk=`cat $path_net/users/user-$user/public_key_hex`
-cp2_account_hash=$(get_hash $cp2_pk)
+cp1_secret_key=$path_net/faucet/secret_key.pem
+cp1_public_key=`cat $path_net/faucet/public_key_hex`
+cp2_public_key=`cat $path_net/users/user-$user/public_key_hex`
+cp2_account_hash=$(get_hash $cp2_public_key)
 
 log "dispatching $transfers wasmless transfers"
 log "... network=$net"
@@ -74,8 +74,8 @@ log "... node=$node"
 log "... transfer amount=$amount"
 log "... transfer contract=$path_contract"
 log "... transfer interval=$transfer_interval (s)"
-log "... counter-party 1 public key=$cp1_pk"
-log "... counter-party 2 public key=$cp2_pk"
+log "... counter-party 1 public key=$cp1_public_key"
+log "... counter-party 2 public key=$cp2_public_key"
 log "... counter-party 2 account hash=$cp2_account_hash"
 
 # Dispatch transfers to each node in round-robin fashion.
@@ -92,14 +92,14 @@ if [ $node = "all" ]; then
                 --gas-price $gas_price \
                 --node-address $node_address \
                 --payment-amount $gas_payment \
-                --secret-key $cp1_sk \
-                --ttl 3600000 \
+                --secret-key $cp1_secret_key \
+                --ttl "1day" \
                 --amount $amount \
-                --target-account $cp2_pk  > /dev/null 2>&1
+                --target-account $cp2_public_key > /dev/null 2>&1
             transferred=$((transferred + 1))
             if [[ $transferred -eq $transfers ]]; then
                 break
-            fi            
+            fi
             sleep $transfer_interval
         done
     done
@@ -114,10 +114,10 @@ else
             --gas-price $gas_price \
             --node-address $node_address \
             --payment-amount $gas_payment \
-            --secret-key $cp1_sk \
-            --ttl 3600000 \
+            --secret-key $cp1_secret_key \
+            --ttl "1day" \
             --amount $amount \
-            --target-account $cp2_pk  > /dev/null 2>&1
+            --target-account $cp2_public_key > /dev/null 2>&1
         sleep $transfer_interval
     done
 fi
