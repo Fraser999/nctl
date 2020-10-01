@@ -3,4 +3,4 @@
 /dumps
 
 # Various node templates are held when testing multipole networks - these are suffixed.
-/tmeplates/node-config-*.toml
+/templates/node-config-*.toml

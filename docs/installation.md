@@ -48,7 +48,6 @@ EOM
 ```
 
 ### Step 5 - activate nctl shell.
-From the root directory of the nctl repository, execute:
 
 ```
 . $HOME/.casper-nctl

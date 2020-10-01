@@ -12,9 +12,11 @@ NOTE 3: when executing either the `nctl-interactive` or `nctl-start` commands, t
 
 ## Compiling network binaries
 
+The nctl library can be used to compile the node's binary set, i.e. node, client & smart contract binaries.  The nctl library does not immediately copy the compiled binary set into a test directory, that is down when setting up test assets (see `nctl-assets-setup` below). 
+
 ### nctl-compile
 
-Compiles casper node + client software using `make` + `cargo`.
+Compiles casper node + client software using `make` + `cargo`.  
 
 ### nctl-compile-node
 
