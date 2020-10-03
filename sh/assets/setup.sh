@@ -71,10 +71,9 @@ function _set_chainspec() {
 #   Staking weight - validator's only.
 #######################################
 function _set_chainspec_account() {
-    # TODO: update when key algo is removed from accounts.csv.
-    pbk=`cat $2`
+    public_key_hex=`cat $2`
 	cat >> $1/chainspec/accounts.csv <<- EOM
-	${pbk:2},ed25519,$3,$4
+	${public_key_hex},$3,$4
 	EOM
 }
 
