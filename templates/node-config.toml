@@ -63,44 +63,43 @@ gossip_interval = 1000
 # Enable systemd support. If enabled, the node will notify systemd once it has synced and its
 # listening socket for incoming connections is open.
 #
-# It is usally better to leave this option off and enable it explicitly via command-line override
+# It is usually better to leave this option off and enable it explicitly via command-line override
 # only in the unit files themselves via `-C=network.systemd_support=true`.
-# systemd_support = false
+systemd_support = false
 
 # =============================================
 # Configuration options for the HTTP API server
 # =============================================
 [http_server]
 
-# Interface to bind to.  Defaults to loopback address.
-bind_interface = '127.0.0.1'
+# # Interface to bind to.  Defaults to loopback address.
+# bind_interface = '127.0.0.1'
 
-# Port to bind to.  Use 0 for a random port.
-bind_port = {HTTP_SERVER_BIND_PORT}
+# # Port to bind to.  Use 0 for a random port.
+# bind_port = {HTTP_SERVER_BIND_PORT}
 
-# # TEMP: per second limit beyond which deploys are refused
-# accepted_deploy_rate_limit=1000
+# Listening address for HTTP server.  If the port is set to 0, a random port will be used.
+#
+# If the specified port cannot be bound to, a random port will be tried instead.  If binding fails,
+# the HTTP server will not run, but the node will be otherwise unaffected.
+#
+# The actual bound address will be reported via a log line if logging is enabled.
+address = '0.0.0.0:{HTTP_SERVER_BIND_PORT}'
 
-# # TEMP: per second limit beyond which deploys are refused when the node has been idle for a period of time and hence has spare cycles
-# accepted_deploy_burst_limit=2000
+# The number of event-stream events to buffer.
+event_stream_buffer_length = 100
 
 # ===============================================
 # Configuration options for the storage component
 # ===============================================
 [storage]
 
-# Optional path (absolute, or relative to this config.toml) to the folder where any files created
+# Path (absolute, or relative to this config.toml) to the folder where any files created
 # or read by the storage component will exist.
 #
 # If the folder doesn't exist, it and any required parents will be created.
 #
-# If unset, defaults to:
-# * Linux: `$XDG_DATA_HOME/casper-node` or `$HOME/.local/share/casper-node`, e.g.
-#   /home/alice/.local/share/casper-node
-# * macOS: `$HOME/Library/Application Support/io.CasperLabs.casper-node`, e.g.
-#   /Users/Alice/Library/Application Support/io.CasperLabs.casper-node
-# * Windows: `{FOLDERID_RoamingAppData}\CasperLabs\casper-node\data` e.g.
-#   C:\Users\Alice\AppData\Roaming\CasperLabs\casper-node\data
+# If unset, the path must be supplied as an argument via the CLI.
 path = '../storage'
 
 # Optional maximum size of the database to use for the block store.
