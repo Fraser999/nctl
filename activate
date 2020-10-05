@@ -6,7 +6,7 @@
 export NCTL="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Set type of daemon to run.
-export NCTL_DAEMON_TYPE=supervisord
+export NCTL_DAEMON_TYPE=${NCTL_DAEMON_TYPE:-supervisord}
 
 # ###############################################################
 # UTILS

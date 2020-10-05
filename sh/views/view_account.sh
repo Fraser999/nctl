@@ -46,6 +46,9 @@ global_state_hash=2bad398b6acc726fd69cd251645bdd5c57cf47b5487ab52e554b159b705d61
 node_address=http://localhost:50101
 account_hash=7959a737b66a3350289757a6dd9ec2217ee79a087a866add45a471bbc16b2e98
 
-$CASPER_CLIENT query-state -g $global_state_hash -n $node_address -k account-hash-$account_hash | python3 -m json.tool
+$CASPER_CLIENT query-state \
+    -g $global_state_hash \
+    -n $node_address \
+    -k account-hash-$account_hash | python3 -m json.tool
 
 exec_node_rpc $net $node "info_get_metrics"
