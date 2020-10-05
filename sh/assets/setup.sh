@@ -129,7 +129,7 @@ function _set_faucet() {
 #   Path to network directory.
 #   Network ordinal identifer.
 #   Count of nodes to setup.
-#   Count of boostraps to setup.
+#   Count of bootstraps to setup.
 #######################################
 function _set_nodes() {
     log "... nodes"
@@ -147,7 +147,7 @@ function _set_nodes() {
 #   Path to network directory.
 #   Network ordinal identifer.
 #   Node ordinal identifer.
-#   Count of boostraps to setup.
+#   Count of bootstraps to setup.
 #######################################
 function _set_node ()
 {
@@ -164,12 +164,12 @@ function _set_node ()
     # Set config params.
     HTTP_SERVER_BIND_PORT=$((50000 + ($2 * 100) + $node_id))
     NETWORK_BIND_PORT=0
-    if [ $3 -eq 1 ]; then
-        NETWORK_BIND_PORT=34553
+    if [ $3 -le $4 ]; then
+        NETWORK_BIND_PORT=$((34452 + ($2 * 100) + $node_id))
         NETWORK_KNOWN_ADDRESSES=""
     else
         NETWORK_BIND_PORT=0
-        NETWORK_KNOWN_ADDRESSES="'127.0.0.1:34553'"
+        NETWORK_KNOWN_ADDRESSES="$(get_bootstrap_known_addresses $2 $4)"
     fi
 
     # Set config.
@@ -185,6 +185,37 @@ function _set_node ()
         $1/nodes/node-$3/keys/public_key_hex \
         100000000000000000 \
         $((100000000000000 * $3))
+}
+
+#######################################
+# Get network known addresses - i.e. those of bootstrap nodes.
+# Arguments:
+#   Network ordinal identifer.
+#   Count of bootstraps to setup.
+#######################################
+function get_bootstrap_known_addresses() {
+    result=""
+
+    for bootstrap_idx in $(seq 1 $2)
+    do
+        address=$(get_bootstrap_known_address $1 $bootstrap_idx)
+        result=$result"'"$address"',"
+    done
+
+    echo $result
+}
+
+#######################################
+# Get a network known addresses - i.e. those of bootstrap nodes.
+# Arguments:
+#   Network ordinal identifer.
+#   Node ordinal identifer.
+#######################################
+function get_bootstrap_known_address() {
+    port=$((34452 + ($1 * 100) + $2))
+    address="127.0.0.1:"$port
+
+    echo $address
 }
 
 #######################################
@@ -219,7 +250,7 @@ function _set_user() {
 #   Path to network directory.
 #   Network ordinal identifer.
 #   Count of nodes to setup.
-#   Count of boostraps to setup.
+#   Count of bootstraps to setup.
 #   Count of users to setup.
 #######################################
 function _set_vars() {
@@ -246,7 +277,7 @@ export NCTL_NET_USER_COUNT=$5
 # Arguments:
 #   Network ordinal identifer.
 #   Count of nodes to setup.
-#   Count of boostraps to setup.
+#   Count of bootstraps to setup.
 #   Count of users to setup.
 #######################################
 function _main() {
@@ -322,7 +353,7 @@ users=${users:-5}
 
 # Execute when inputs are valid.
 if [ $bootstraps -ge $nodes ]; then
-    log_error "Invalid input: boostraps MUST BE < nodes"
+    log_error "Invalid input: bootstraps MUST BE < nodes"
 else
     _main $net $nodes $bootstraps $users
 fi

@@ -63,9 +63,13 @@ if [ $node = "all" ]; then
         else
             log "network #$net: starting node $node_idx"
         fi
+
+        # Use daemon specific script to start node.
         if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
             source $NCTL/sh/daemon/supervisord/node_start.sh $net $node_idx
         fi
+
+        # When boostraps have been started then await before proceeeding to start non-boostrap nodes.
         if [ $node_idx -eq $NCTL_NET_BOOTSTRAP_COUNT ]; then
             sleep 2.0
             log "network #$net: starting ... "
