@@ -41,8 +41,6 @@ node=${node:-all}
 # Main
 #######################################
 
-log "network #$net: starting node(s) ... please wait"
-
 # Set rust log level.
 export RUST_LOG=$loglevel
 
@@ -57,17 +55,25 @@ fi
 # Start node(s) by passing through to daemon specific handler.
 if [ $node = "all" ]; then
     source $NCTL/assets/net-$net/vars
+    log "network #$net: bootstrapping ... "
     for node_idx in $(seq 1 $NCTL_NET_NODE_COUNT)
     do
-        log "network #$net: starting node $node_idx ..."
+        if [ $node_idx -le $NCTL_NET_BOOTSTRAP_COUNT ]; then
+            log "network #$net: bootstrapping node $node_idx"
+        else
+            log "network #$net: starting node $node_idx"
+        fi
         if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
             source $NCTL/sh/daemon/supervisord/node_start.sh $net $node_idx
         fi
-        if [ $node_idx = 1 ]; then  # ensure bootstrap nodes are running.
-            sleep 1.0
+        if [ $node_idx -eq $NCTL_NET_BOOTSTRAP_COUNT ]; then
+            sleep 2.0
+            log "network #$net: starting ... "
         fi
     done
+    log "network #$net: bootstrapped & started"
 else
+    log "network #$net: starting node ... "
     if [ $NCTL_DAEMON_TYPE = "supervisord" ]; then
         source $NCTL/sh/daemon/supervisord/node_start.sh $net $node
     fi

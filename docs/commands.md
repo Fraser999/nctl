@@ -32,15 +32,15 @@ Compiles casper client software using `cargo`.
 
 List previously created network assets.
 
-### nctl-assets-setup net={X:-1} nodes={Y:-5} users={Z:-5}
+### nctl-assets-setup net={W:-1} nodes={X:-5} users={Y:-5} bootstraps={Z:-1}
 
 Sets up assets required to run a local N-node network - this includes binaries, chainspec, config, faucet, keys ... etc.
 
 e.g. `nctl-assets-setup`
 
-e.g. `nctl-assets-setup net=1 nodes=5 users=5`  (same as above)
+e.g. `nctl-assets-setup net=1 nodes=5 users=5 bootstraps=1`  (same as above)
 
-e.g. `nctl-assets-setup net=2 nodes=10 users=10`
+e.g. `nctl-assets-setup net=2 nodes=10 users=10 bootstraps=4`
 
 NOTE: default
 

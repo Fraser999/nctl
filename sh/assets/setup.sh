@@ -217,6 +217,7 @@ function _set_user() {
 #   Path to network directory.
 #   Network ordinal identifer.
 #   Count of nodes to setup.
+#   Count of boostraps to setup.
 #   Count of users to setup.
 #######################################
 function _set_vars() {
@@ -224,6 +225,9 @@ function _set_vars() {
 
     touch $1/vars
 	cat >> $1/vars <<- EOM
+# Count of nodes to setup.
+export NCTL_NET_BOOTSTRAP_COUNT=$4
+
 # Network ordinal identifier.
 export NCTL_NET_IDX=$2
 
@@ -231,8 +235,43 @@ export NCTL_NET_IDX=$2
 export NCTL_NET_NODE_COUNT=$3
 
 # Count of users to setup.
-export NCTL_NET_USER_COUNT=$4
+export NCTL_NET_USER_COUNT=$5
 	EOM
+}
+
+#######################################
+# Main
+# Arguments:
+#   Network ordinal identifer.
+#   Count of nodes to setup.
+#   Count of boostraps to setup.
+#   Count of users to setup.
+#######################################
+function _main() {
+    # Set directory.
+    net_path=$NCTL/assets/net-$1
+
+    # Teardown existing.
+    if [ -d $net_path ]; then
+        source $NCTL/sh/assets/teardown.sh net=$1
+    fi
+
+    log "network #$1: setting up assets ... please wait"
+
+    # Make directory.
+    mkdir -p $net_path
+
+    # Set artefacts.
+    log "setting network artefacts:"
+    _set_bin $net_path
+    _set_chainspec $net_path $1
+    _set_daemon $net_path $2 $1
+    _set_faucet $net_path
+    _set_nodes $net_path $2 $1
+    _set_users $net_path $4
+    _set_vars $net_path $1 $2 $3 $4
+
+    log "network #$1: assets set up"
 }
 
 #######################################
@@ -279,27 +318,9 @@ users=${users:-5}
 # Main
 #######################################
 
-# Set directory.
-net_path=$NCTL/assets/net-$net
-
-# Teardown existing.
-if [ -d $net_path ]; then
-    source $NCTL/sh/assets/teardown.sh net=$net
+# Validate.
+if [ $bootstraps -ge $nodes ]; then
+    log_error "Invalid input: boostraps MUST BE < nodes"
+else
+    _main $net $nodes $bootstraps $users
 fi
-
-log "network #$net: setting up assets ... please wait"
-
-# Make directory.
-mkdir -p $net_path
-
-# Set artefacts.
-log "setting network artefacts:"
-_set_bin $net_path
-_set_chainspec $net_path $net
-_set_daemon $net_path $nodes $net
-_set_faucet $net_path
-_set_nodes $net_path $nodes $net
-_set_users $net_path $users
-_set_vars $net_path $net $nodes $users
-
-log "network #$net: assets set up"
