@@ -83,8 +83,8 @@ function _set_chainspec_account() {
 #   NCTL - path to nctl home directory.
 # Arguments:
 #   Path to network directory.
-#   Nodeset count.
 #   Network ordinal identifer.
+#   Nodeset count.
 #######################################
 function _set_daemon() {
     log "... daemon"
@@ -127,16 +127,17 @@ function _set_faucet() {
 # Sets assets pertaining to all nodes within network.
 # Arguments:
 #   Path to network directory.
-#   Count of nodes to setup.
 #   Network ordinal identifer.
+#   Count of nodes to setup.
+#   Count of bootstraps to setup.
 #######################################
 function _set_nodes() {
     log "... nodes"
 
     mkdir $1/nodes
-    for node_id in $(seq 1 $2)
+    for node_id in $(seq 1 $3)
     do
-        _set_node $1 $node_id $3
+        _set_node $1 $2 $node_id $4
     done
 }
 
@@ -144,34 +145,35 @@ function _set_nodes() {
 # Sets assets pertaining to a single node.
 # Arguments:
 #   Path to network directory.
-#   Node ordinal identifer.
 #   Network ordinal identifer.
+#   Node ordinal identifer.
+#   Count of bootstraps to setup.
 #######################################
 function _set_node ()
 {
     # Set directory.
-    mkdir $1/nodes/node-$2
-    mkdir $1/nodes/node-$2/config
-    mkdir $1/nodes/node-$2/keys
-    mkdir $1/nodes/node-$2/logs
-    mkdir $1/nodes/node-$2/storage
+    mkdir $1/nodes/node-$3
+    mkdir $1/nodes/node-$3/config
+    mkdir $1/nodes/node-$3/keys
+    mkdir $1/nodes/node-$3/logs
+    mkdir $1/nodes/node-$3/storage
 
     # Set keys.
-    $1/bin/casper-client keygen -f $1/nodes/node-$2/keys > /dev/null 2>&1
+    $1/bin/casper-client keygen -f $1/nodes/node-$3/keys > /dev/null 2>&1
 
     # Set config params.
-    HTTP_SERVER_BIND_PORT=$((50000 + ($3 * 100) + $node_id))
+    HTTP_SERVER_BIND_PORT=$((50000 + ($2 * 100) + $node_id))
     NETWORK_BIND_PORT=0
-    if [ $2 = "1" ]; then
-        NETWORK_BIND_PORT=34553
+    if [ $3 -le $4 ]; then
+        NETWORK_BIND_PORT=$((34452 + ($2 * 100) + $node_id))
         NETWORK_KNOWN_ADDRESSES=""
     else
         NETWORK_BIND_PORT=0
-        NETWORK_KNOWN_ADDRESSES="'127.0.0.1:34553'"
+        NETWORK_KNOWN_ADDRESSES="$(get_bootstrap_known_addresses $2 $4)"
     fi
 
     # Set config.
-    path_config=$1/nodes/node-$2/config/node-config.toml
+    path_config=$1/nodes/node-$3/config/node-config.toml
     cp $NCTL/templates/node-config.toml $path_config
     sed -i "s/{NETWORK_BIND_PORT}/$NETWORK_BIND_PORT/g" $path_config > /dev/null 2>&1
     sed -i "s/{NETWORK_KNOWN_ADDRESSES}/$NETWORK_KNOWN_ADDRESSES/g" $path_config > /dev/null 2>&1
@@ -180,9 +182,40 @@ function _set_node ()
     # Set chainspec account.
     _set_chainspec_account \
         $1 \
-        $1/nodes/node-$2/keys/public_key_hex \
+        $1/nodes/node-$3/keys/public_key_hex \
         100000000000000000 \
-        $((100000000000000 * $2))
+        $((100000000000000 * $3))
+}
+
+#######################################
+# Get network known addresses - i.e. those of bootstrap nodes.
+# Arguments:
+#   Network ordinal identifer.
+#   Count of bootstraps to setup.
+#######################################
+function get_bootstrap_known_addresses() {
+    result=""
+
+    for bootstrap_idx in $(seq 1 $2)
+    do
+        address=$(get_bootstrap_known_address $1 $bootstrap_idx)
+        result=$result"'"$address"',"
+    done
+
+    echo $result
+}
+
+#######################################
+# Get a network known addresses - i.e. those of bootstrap nodes.
+# Arguments:
+#   Network ordinal identifer.
+#   Node ordinal identifer.
+#######################################
+function get_bootstrap_known_address() {
+    port=$((34452 + ($1 * 100) + $2))
+    address="127.0.0.1:"$port
+
+    echo $address
 }
 
 #######################################
@@ -217,6 +250,7 @@ function _set_user() {
 #   Path to network directory.
 #   Network ordinal identifer.
 #   Count of nodes to setup.
+#   Count of bootstraps to setup.
 #   Count of users to setup.
 #######################################
 function _set_vars() {
@@ -224,6 +258,9 @@ function _set_vars() {
 
     touch $1/vars
 	cat >> $1/vars <<- EOM
+# Count of nodes to setup.
+export NCTL_NET_BOOTSTRAP_COUNT=$4
+
 # Network ordinal identifier.
 export NCTL_NET_IDX=$2
 
@@ -231,8 +268,43 @@ export NCTL_NET_IDX=$2
 export NCTL_NET_NODE_COUNT=$3
 
 # Count of users to setup.
-export NCTL_NET_USER_COUNT=$4
+export NCTL_NET_USER_COUNT=$5
 	EOM
+}
+
+#######################################
+# Main
+# Arguments:
+#   Network ordinal identifer.
+#   Count of nodes to setup.
+#   Count of bootstraps to setup.
+#   Count of users to setup.
+#######################################
+function _main() {
+    # Set directory.
+    net_path=$NCTL/assets/net-$1
+
+    # Teardown existing.
+    if [ -d $net_path ]; then
+        source $NCTL/sh/assets/teardown.sh net=$1
+    fi
+
+    log "network #$1: setting up assets ... please wait"
+
+    # Make directory.
+    mkdir -p $net_path
+
+    # Set artefacts.
+    log "setting network artefacts:"
+    _set_bin $net_path
+    _set_chainspec $net_path $1
+    _set_daemon $net_path $1 $2
+    _set_faucet $net_path
+    _set_nodes $net_path $1 $2 $3
+    _set_users $net_path $4
+    _set_vars $net_path $1 $2 $3 $4
+
+    log "network #$1: assets set up"
 }
 
 #######################################
@@ -279,27 +351,9 @@ users=${users:-5}
 # Main
 #######################################
 
-# Set directory.
-net_path=$NCTL/assets/net-$net
-
-# Teardown existing.
-if [ -d $net_path ]; then
-    source $NCTL/sh/assets/teardown.sh net=$net
+# Execute when inputs are valid.
+if [ $bootstraps -ge $nodes ]; then
+    log_error "Invalid input: bootstraps MUST BE < nodes"
+else
+    _main $net $nodes $bootstraps $users
 fi
-
-log "network #$net: setting up assets ... please wait"
-
-# Make directory.
-mkdir -p $net_path
-
-# Set artefacts.
-log "setting network artefacts:"
-_set_bin $net_path
-_set_chainspec $net_path $net
-_set_daemon $net_path $nodes $net
-_set_faucet $net_path
-_set_nodes $net_path $nodes $net
-_set_users $net_path $users
-_set_vars $net_path $net $nodes $users
-
-log "network #$net: assets set up"

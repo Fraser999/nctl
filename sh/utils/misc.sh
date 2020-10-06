@@ -29,6 +29,31 @@ function log ()
     fi
 }
 
+# Wraps standard echo by adding application prefix.
+function log_error ()
+{
+    # Set timestamp.
+    declare now=`date +%Y-%m-%dT%H:%M:%S:000000`
+
+    # Support tabs.
+    declare tabs=''
+
+    # Emit log message.
+    if [ "$1" ]; then
+        if [ "$2" ]; then
+            for ((i=0; i<$2; i++))
+            do
+                declare tabs+='\t'
+            done
+            echo $now" [ERROR] [$$] NCTL :: "$tabs$1
+        else
+            echo $now" [ERROR] [$$] NCTL :: "$1
+        fi
+    else
+        echo $now" [ERROR] [$$] NCTL :: "
+    fi
+}
+
 # Wraps pushd command to suppress stdout.
 function pushd ()
 {

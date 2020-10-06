@@ -6,8 +6,8 @@
 #   NCTL - path to nctl home directory.
 # Arguments:
 #   Path to network directory.
+#   Network ordinal identifer.
 #   Nodeset count.
-#   Network ordinal identifier.
 #######################################
 
 # Set supervisord.conf file.
@@ -33,11 +33,11 @@ serverurl=unix:///$1/daemon/socket/supervisord.sock ;
 EOM
 
     # Set supervisord.conf app sections.
-for node_id in $(seq 1 $2)
+for node_id in $(seq 1 $3)
 do
     cat >> $1/daemon/config/supervisord.conf <<- EOM
 
-[program:casper-net-$3-node-$node_id]
+[program:casper-net-$2-node-$node_id]
 autostart=false
 autorestart=false
 command=$1/bin/casper-node validator $1/nodes/node-$node_id/config/node-config.toml ;
