@@ -12,20 +12,22 @@ alias nctl-compile-node='source $NCTL/sh/compile/node.sh'
 # Workload Generators.
 alias nctl-wg-100='source $NCTL/sh/generators/wg_100.sh'
 alias nctl-wg-110='source $NCTL/sh/generators/wg_110.sh'
+alias nctl-wg-200='source $NCTL/sh/generators/wg_200.sh'
+alias nctl-wg-201='source $NCTL/sh/generators/wg_201.sh'
 
 # Logs.
 alias nctl-log-reset='source $NCTL/sh/node/log_reset.sh'
 alias nctl-log-view='source $NCTL/sh/node/log_view.sh'
 
 # Node.
-# alias nctl-down='source $NCTL/sh/node/down.sh'
+alias nctl-down='source $NCTL/sh/node/stop.sh'
 alias nctl-interactive='source $NCTL/sh/node/interactive.sh'
 alias nctl-restart='source $NCTL/sh/node/restart.sh'
 alias nctl-start='source $NCTL/sh/node/start.sh'
 alias nctl-status='source $NCTL/sh/node/status.sh'
 alias nctl-stop='source $NCTL/sh/node/stop.sh'
 alias nctl-toggle='source $NCTL/sh/node/toggle.sh'
-# alias nctl-up='source $NCTL/sh/node/start.sh'
+alias nctl-up='source $NCTL/sh/node/start.sh'
 
 # State views.
 # alias nctl-view-account='source $NCTL/sh/views/view_account.sh'
