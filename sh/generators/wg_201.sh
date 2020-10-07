@@ -18,8 +18,8 @@ source $NCTL/sh/utils/misc.sh
 
 # Unset to avoid parameter collisions.
 unset amount
-unset gas_payment
-unset gas_price
+unset gas
+unset payment
 unset net
 unset node
 unset user

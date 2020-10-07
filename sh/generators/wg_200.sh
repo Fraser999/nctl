@@ -17,8 +17,12 @@ source $NCTL/sh/utils/misc.sh
 # Destructure input args.
 #######################################
 
+# TODO: accept purse uref
+
 # Unset to avoid parameter collisions.
 unset amount
+unset gas_payment
+unset gas_price
 unset delegation_rate
 unset net
 unset node
@@ -60,7 +64,6 @@ node_address=$(get_node_address $net $node)
 path_net=$NCTL/assets/net-$net
 path_client=$path_net/bin/casper-client
 path_contract=$path_net/bin/$contract_name
-
 
 # Inform.
 log "dispatching deploy -> "$contract_name

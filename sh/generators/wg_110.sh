@@ -19,13 +19,12 @@ source $NCTL/sh/utils/misc.sh
 
 # Unset to avoid parameter collisions.
 unset amount
-unset gas_payment
-unset gas_price
+unset gas
 unset interval
 unset net
 unset node
+unset payment
 unset transfers
-unset transfer_interval
 unset user
 
 for ARGUMENT in "$@"
