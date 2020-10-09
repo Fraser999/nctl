@@ -10,27 +10,32 @@ NOTE 2: all command parameterrs have default values to simplify the general case
 
 NOTE 3: when executing either the `nctl-interactive` or `nctl-start` commands, the node logging level output can be assigned by passing in the `loglevel` parameter.  If you do not pass in this variable then current it defaults either to the current value of RUST_LOG or `debug`.
 
+
 ## Compiling network binaries
 
 The nctl library can be used to compile the node's binary set, i.e. node, client & smart contract binaries.  The nctl library does not immediately copy the compiled binary set into a test directory, that is down when setting up test assets (see `nctl-assets-setup` below). 
 
 ### nctl-compile
 
-Compiles casper node + client software using `make` + `cargo`.  
+Compiles casper node, client + client contracts using `make` + `cargo`.  
+
 
 ### nctl-compile-node
 
-Compiles casper node software using `make` + `cargo`.
+Compiles casper node using `make` + `cargo`.  
+
 
 ### nctl-compile-client
 
-Compiles casper client software using `cargo`.
+Compiles casper client + client contracts using `make` + `cargo`.  
+
 
 ## Managing network assets
 
 ### nctl-assets-ls
 
 List previously created network assets.
+
 
 ### nctl-assets-setup net={W:-1} nodes={X:-5} users={Y:-5} bootstraps={Z:-1}
 
@@ -44,6 +49,7 @@ e.g. `nctl-assets-setup net=2 nodes=10 users=10 bootstraps=4`
 
 NOTE: default
 
+
 ### nctl-assets-teardown net={X:-1}
 
 Stops network & destroys all related assets.
@@ -54,6 +60,7 @@ e.g. `nctl-assets-teardown net=1`  (same as above)
 
 e.g. `nctl-assets-teardown net=2`
 
+
 ### nctl-assets-dump net={X:-1}
 
 Dumps transient network assets such as logs + configuration.
@@ -61,6 +68,7 @@ Dumps transient network assets such as logs + configuration.
 e.g. `nctl-assets-dump`
 
 e.g. `nctl-assets-dump net=1`  (same as above)
+
 
 ## Controlling network nodes
 
@@ -74,6 +82,7 @@ e.g. `nctl-interactive net=1 node=1`  (same as above)
 
 e.g. `nctl-interactive net=1 node=3`
 
+
 ### nctl-log-reset net={X:-1} node={Y:-all}
 
 Resets logs of node Y in network X.  If Y=all then the logs of all nodes are reset.
@@ -83,17 +92,6 @@ e.g. `nctl-log-reset`
 e.g. `nctl-log-reset net=1 node=all`  (same as above)
 
 e.g. `nctl-log-reset net=1 node=3`
-
-
-### nctl-log-view net={X:-1} node={Y:-1} typeof={Z:-stdout}
-
-Displays log of node Y in network X.  Z=stdout|stderr.
-
-e.g. `nctl-log-view`
-
-e.g. `nctl-log-view net=1 node=1 typeof=stdout`  (same as above)
-
-e.g. `nctl-log-view net=1 node=3 typeof=stderr`
 
 
 ### nctl-restart net={X:-1} node={Y:-all}
@@ -117,6 +115,7 @@ e.g. `nctl-start net=1 node=all`  (same as above)
 
 e.g. `nctl-start net=1 node=3`
 
+
 ### nctl-status net={X:-1}
 
 Displays status of all nodes in network X.
@@ -136,25 +135,63 @@ e.g. `nctl-stop net=1 node=all`  (same as above)
 
 e.g. `nctl-stop net=1 node=3`
 
-### nctl-view-metrics net={X:-1} node={Y:-1}
+
+## Viewing node information
+
+### nctl-view-node-log net={X:-1} node={Y:-1} typeof={Z:-stdout}
+
+Displays log of node Y in network X.  Z=stdout|stderr.
+
+e.g. `nctl-view-node-log`
+
+e.g. `nctl-view-node-log net=1 node=1 typeof=stdout`  (same as above)
+
+e.g. `nctl-view-node-log net=1 node=3 typeof=stderr`
+
+
+### nctl-view-node-metrics net={X:-1} node={Y:-all}
 
 Renders metrics of node Y in network X to stdout.
 
-e.g. `nctl-view-metrics`
+e.g. `nctl-view-node-metrics`
 
-e.g. `nctl-view-metrics net=1 node=1`  (same as above)
+e.g. `nctl-view-node-metrics net=1 node=all`  (same as above)
 
-e.g. `nctl-view-metrics net=1 node=3`
+e.g. `nctl-view-node-metrics net=1 node=3`
 
-### nctl-view-status net={X:-1} node={Y:-1}
+
+### nctl-view-node-peers net={X:-1} node={Y:-all}
+
+Renders peers of node Y in network X to stdout.
+
+e.g. `nctl-view-node-peers`
+
+e.g. `nctl-view-node-peers net=1 node=all`  (same as above)
+
+e.g. `nctl-view-node-peers net=1 node=3`
+
+
+### nctl-view-node-status net={X:-1} node={Y:-all}
 
 Renders status of node Y in network X to stdout.
 
-e.g. `nctl-view-status`
+e.g. `nctl-view-node-status`
 
-e.g. `nctl-view-status net=1 node=1`  (same as above)
+e.g. `nctl-view-node-status net=1 node=all`  (same as above)
 
-e.g. `nctl-view-status net=1 node=3`
+e.g. `nctl-view-node-status net=1 node=3`
+
+
+### nctl-view-node-storage net={X:-1} node={Y:-all}
+
+Renders storage stats of node Y in network X to stdout.
+
+e.g. `nctl-view-node-storage`
+
+e.g. `nctl-view-node-storage net=1 node=all`  (same as above)
+
+e.g. `nctl-view-node-storage net=1 node=3`
+
 
 ### nctl-wg-100 net={X:-1} node={Y:-1} payment={P:-200000} gas={G:-10} transfers={T:-100} interval={I:-0.01} user={U:-1}
 
@@ -164,7 +201,9 @@ e.g. `nctl-wg-100`
 
 e.g. `nctl-wg-100 net=1 node=1 payment=200000 gas=10 transfers 100 interval=0.01 user=1`  (same as above)
 
-e.g. `nctl-wg-100 transfers 10000 interval=0.001`
+e.g. `nctl-wg-100 transfers=10000 interval=0.001`
+
+NOTE - this command has a synonym: `nctl-do-transfer`
 
 ### nctl-wg-110 net={X:-1} node={Y:-1} payment={P:-200000} gas={G:-10} transfers={T:-100} interval={I:-0.01} user={U:-1}
 
@@ -174,4 +213,54 @@ e.g. `nctl-wg-110`
 
 e.g. `nctl-wg-110 net=1 node=1 payment=200000 gas=10 transfers 100 interval=0.01 user=1`  (same as above)
 
-e.g. `nctl-wg-110 transfers 10000 interval=0.001`
+e.g. `nctl-wg-110 transfers=10000 interval=0.001`
+
+NOTE - this command has a synonym: `nctl-do-transfer-wasm`
+
+### nctl-wg-200 net={X:-1} node={Y:-1} amount={A:-1000000} rate={R:-125} payment={P:-200000} gas={G:-10} user={U:-1}
+
+Dispatches to node Y in network X from user #U, a Proof-Of-Stake auction bid **submission** for amount amount A (motes) with a delegation rate of R.  Displays relevant deploy hash for subsequent querying.
+
+e.g. `nctl-wg-200`
+
+e.g. `nctl-wg-200 net=1 node=1 amount=1000000 rate=125 payment=200000 gas=10 user=1`  (same as above)
+
+e.g. `nctl-wg-200 amount=2000000 rate=250`
+
+NOTE - this command has a synonym: `nctl-do-pos-submit-bid`
+
+### nctl-wg-201 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
+
+Dispatches to node Y in network X from user #U, a Proof-Of-Stake auction bid **withdrawal** for amount amount A (motes).  Displays relevant deploy hash for subsequent querying.
+
+e.g. `nctl-wg-201`
+
+e.g. `nctl-wg-201 net=1 node=1 amount=1000000 payment=200000 gas=10 user=1`  (same as above)
+
+e.g. `nctl-wg-201 amount=2000000`
+
+NOTE - this command has a synonym: `nctl-do-pos-withdraw-bid`
+
+### nctl-wg-210 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
+
+Dispatches to node Y in network X from user #U, a Proof-Of-Stake **delegate** bid for amount amount A (motes).  Displays relevant deploy hash for subsequent querying.
+
+e.g. `nctl-wg-210`
+
+e.g. `nctl-wg-210 net=1 node=1 amount=1000000 payment=200000 gas=10 user=1`  (same as above)
+
+e.g. `nctl-wg-210 amount=2000000`
+
+NOTE - this command has a synonym: `nctl-do-pos-delegate`
+
+### nctl-wg-211 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
+
+Dispatches to node Y in network X from user #U, a Proof-Of-Stake **undelegate** bid for amount amount A (motes).  Displays relevant deploy hash for subsequent querying.
+
+e.g. `nctl-wg-211`
+
+e.g. `nctl-wg-211 net=1 node=1 amount=1000000 payment=200000 gas=10 user=1`  (same as above)
+
+e.g. `nctl-wg-211 amount=2000000`
+
+NOTE - this command has a synonym: `nctl-do-pos-undelegate`

@@ -68,7 +68,7 @@ cp $path_assets/faucet/secret_key.pem $path_dump/faucet-secret_key.pem
 for node_id in $(seq 1 $NCTL_NET_NODE_COUNT)
 do
     path_node=$path_assets/nodes/node-$node_id
-    cp $path_node/config/node-config.toml $path_node_dump/node-$node_id-config.toml
+    cp $path_node/config/node-config.toml $path_dump/node-$node_id-config.toml
     cp $path_node/keys/public_key_hex $path_dump/node-$node_id-public_key_hex
     cp $path_node/keys/public_key.pem $path_dump/node-$node_id-public_key.pem
     cp $path_node/keys/secret_key.pem $path_dump/node-$node_id-secret_key.pem

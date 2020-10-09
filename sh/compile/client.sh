@@ -15,7 +15,7 @@ pushd $NCTL_CASPER_HOME
 # Build client utility.
 cargo build --release --package casper-client
 
-# Build client side contrracts.
+# Build client side contracts.
 make build-contract-rs/add-bid
 make build-contract-rs/delegate
 make build-contract-rs/transfer-to-account-u512

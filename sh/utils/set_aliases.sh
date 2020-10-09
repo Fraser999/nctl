@@ -11,22 +11,25 @@ alias nctl-compile-node='source $NCTL/sh/compile/node.sh'
 
 # Workload Generators.
 alias nctl-wg-100='source $NCTL/sh/generators/wg_100.sh'
-alias nctl-wg-110='source $NCTL/sh/generators/wg_110.sh'
-alias nctl-wg-200='source $NCTL/sh/generators/wg_200.sh'
-alias nctl-wg-201='source $NCTL/sh/generators/wg_201.sh'
-alias nctl-wg-211='source $NCTL/sh/generators/wg_211.sh'
-alias nctl-wg-212='source $NCTL/sh/generators/wg_212.sh'
+alias nctl-do-transfer='source $NCTL/sh/generators/wg_100.sh'
 
-alias nctl-do-transfer-wasmless='source $NCTL/sh/generators/wg_100.sh'
-alias nctl-do-transfer-per-deploy-wasm='source $NCTL/sh/generators/wg_110.sh'
-alias nctl-do-bid-add='source $NCTL/sh/generators/wg_200.sh'
-alias nctl-do-bid-withdraw='source $NCTL/sh/generators/wg_201.sh'
-alias nctl-do-delegate='source $NCTL/sh/generators/wg_211.sh'
-alias nctl-do-undelegate='source $NCTL/sh/generators/wg_212.sh'
+alias nctl-wg-110='source $NCTL/sh/generators/wg_110.sh'
+alias nctl-do-transfer-wasm='source $NCTL/sh/generators/wg_110.sh'
+
+alias nctl-wg-200='source $NCTL/sh/generators/wg_200.sh'
+alias nctl-do-pos-submit-bid='source $NCTL/sh/generators/wg_200.sh'
+
+alias nctl-wg-201='source $NCTL/sh/generators/wg_201.sh'
+alias nctl-do-pos-withdraw-bid='source $NCTL/sh/generators/wg_201.sh'
+
+alias nctl-wg-211='source $NCTL/sh/generators/wg_211.sh'
+alias nctl-do-pos-delegate='source $NCTL/sh/generators/wg_211.sh'
+
+alias nctl-wg-212='source $NCTL/sh/generators/wg_212.sh'
+alias nctl-do-pos-undelegate='source $NCTL/sh/generators/wg_212.sh'
 
 # Logs.
 alias nctl-log-reset='source $NCTL/sh/node/log_reset.sh'
-alias nctl-log-view='source $NCTL/sh/node/log_view.sh'
 
 # Node.
 alias nctl-down='source $NCTL/sh/node/stop.sh'
@@ -42,6 +45,7 @@ alias nctl-up='source $NCTL/sh/node/start.sh'
 # alias nctl-view-account='source $NCTL/sh/views/view_account.sh'
 # alias nctl-view-deploy='source $NCTL/sh/views/view_deploy.sh'
 
+alias nctl-view-node-log='source $NCTL/sh/views/view_node_log.sh'
 alias nctl-view-node-metrics='source $NCTL/sh/views/view_node_metrics.sh'
 alias nctl-view-node-peers='source $NCTL/sh/views/view_node_peers.sh'
 alias nctl-view-node-status='source $NCTL/sh/views/view_node_status.sh'
