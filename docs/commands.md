@@ -211,7 +211,7 @@ Dispatches to node Y in network X, T wasm based transfers from network faucet to
 
 e.g. `nctl-wg-110`
 
-e.g. `nctl-wg-110 net=1 node=1 payment=200000 gas=10 transfers=100 interval=0.01 user=1`  (same as above)
+e.g. `nctl-wg-110 net=1 node=1 payment=200000 gas=10 transfers100 interval=0.01 user=1`  (same as above)
 
 e.g. `nctl-wg-110 transfers=10000 interval=0.001`
 
@@ -227,7 +227,7 @@ e.g. `nctl-wg-200 net=1 node=1 amount=1000000 rate=125 payment=200000 gas=10 use
 
 e.g. `nctl-wg-200 amount=2000000 rate=250`
 
-NOTE - this command has a synonym: `nctl-do-pos-submit-bid`
+NOTE - this command has a synonym: `nctl-do-auction-submit`
 
 ### nctl-wg-201 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
 
@@ -239,7 +239,7 @@ e.g. `nctl-wg-201 net=1 node=1 amount=1000000 payment=200000 gas=10 user=1`  (sa
 
 e.g. `nctl-wg-201 amount=2000000`
 
-NOTE - this command has a synonym: `nctl-do-pos-withdraw-bid`
+NOTE - this command has a synonym: `nctl-do-auction-withdraw`
 
 ### nctl-wg-210 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
 
@@ -251,7 +251,7 @@ e.g. `nctl-wg-210 net=1 node=1 amount=1000000 payment=200000 gas=10 user=1`  (sa
 
 e.g. `nctl-wg-210 amount=2000000`
 
-NOTE - this command has a synonym: `nctl-do-pos-delegate`
+NOTE - this command has a synonym: `nctl-do-auction-delegate`
 
 ### nctl-wg-211 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
 
@@ -263,4 +263,4 @@ e.g. `nctl-wg-211 net=1 node=1 amount=1000000 payment=200000 gas=10 user=1`  (sa
 
 e.g. `nctl-wg-211 amount=2000000`
 
-NOTE - this command has a synonym: `nctl-do-pos-undelegate`
+NOTE - this command has a synonym: `nctl-do-auction-undelegate`

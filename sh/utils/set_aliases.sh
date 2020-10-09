@@ -17,16 +17,16 @@ alias nctl-wg-110='source $NCTL/sh/generators/wg_110.sh'
 alias nctl-do-transfer-wasm='source $NCTL/sh/generators/wg_110.sh'
 
 alias nctl-wg-200='source $NCTL/sh/generators/wg_200.sh'
-alias nctl-do-pos-submit-bid='source $NCTL/sh/generators/wg_200.sh'
+alias nctl-do-auction-submit='source $NCTL/sh/generators/wg_200.sh'
 
 alias nctl-wg-201='source $NCTL/sh/generators/wg_201.sh'
-alias nctl-do-pos-withdraw-bid='source $NCTL/sh/generators/wg_201.sh'
+alias nctl-do-auction-withdraw='source $NCTL/sh/generators/wg_201.sh'
 
 alias nctl-wg-211='source $NCTL/sh/generators/wg_211.sh'
-alias nctl-do-pos-delegate='source $NCTL/sh/generators/wg_211.sh'
+alias nctl-do-auction-delegate='source $NCTL/sh/generators/wg_211.sh'
 
 alias nctl-wg-212='source $NCTL/sh/generators/wg_212.sh'
-alias nctl-do-pos-undelegate='source $NCTL/sh/generators/wg_212.sh'
+alias nctl-do-auction-undelegate='source $NCTL/sh/generators/wg_212.sh'
 
 # Logs.
 alias nctl-log-reset='source $NCTL/sh/node/log_reset.sh'
