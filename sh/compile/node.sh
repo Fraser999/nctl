@@ -11,7 +11,6 @@
 source $NCTL/sh/utils/misc.sh
 
 pushd $NCTL_CASPER_HOME
-# make setup-rs
 make build-system-contracts
 cargo build --release --package casper-node
 popd -1
