@@ -17,6 +17,13 @@ alias nctl-wg-201='source $NCTL/sh/generators/wg_201.sh'
 alias nctl-wg-211='source $NCTL/sh/generators/wg_211.sh'
 alias nctl-wg-212='source $NCTL/sh/generators/wg_212.sh'
 
+alias nctl-do-transfer-wasmless='source $NCTL/sh/generators/wg_100.sh'
+alias nctl-do-transfer-per-deploy-wasm='source $NCTL/sh/generators/wg_110.sh'
+alias nctl-do-bid-add='source $NCTL/sh/generators/wg_200.sh'
+alias nctl-do-bid-withdraw='source $NCTL/sh/generators/wg_201.sh'
+alias nctl-do-delegate='source $NCTL/sh/generators/wg_211.sh'
+alias nctl-do-undelegate='source $NCTL/sh/generators/wg_212.sh'
+
 # Logs.
 alias nctl-log-reset='source $NCTL/sh/node/log_reset.sh'
 alias nctl-log-view='source $NCTL/sh/node/log_view.sh'

@@ -124,7 +124,6 @@ else
             --session-path $path_contract \
             --ttl "1day" \
             > /dev/null 2>&1
-
         sleep $transfer_interval
     done
 fi
