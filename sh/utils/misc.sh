@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 
 # ###############################################################
+# UTILS: conostants
+# ###############################################################
+
+# OS types.
+declare _OS_LINUX="linux"
+declare _OS_LINUX_REDHAT="$_OS_LINUX-redhat"
+declare _OS_LINUX_SUSE="$_OS_LINUX-suse"
+declare _OS_LINUX_ARCH="$_OS_LINUX-arch"
+declare _OS_LINUX_DEBIAN="$_OS_LINUX-debian"
+declare _OS_MACOSX="macosx"
+declare _OS_UNKNOWN="unknown"
+
+# ###############################################################
 # UTILS: helper functions
 # ###############################################################
 
@@ -76,7 +89,7 @@ function resetd () {
 }
 
 # ###############################################################
-# UTILS: geter functions
+# UTILS: getter functions
 # ###############################################################
 
 #######################################
@@ -144,6 +157,26 @@ function get_json_f() {
 #######################################
 function get_json_w() {
     curl "$1" | python3 -m json.tool
+}
+
+# Returns OS type.
+function get_os()
+{
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		if [ -f /etc/redhat-release ]; then
+			echo $_OS_LINUX_REDHAT
+		elif [ -f /etc/SuSE-release ]; then
+			echo $_OS_LINUX_SUSE
+		elif [ -f /etc/arch-release ]; then
+			echo $_OS_LINUX_ARCH
+		elif [ -f /etc/debian_version ]; then
+			echo $_OS_LINUX_DEBIAN
+		fi
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
+		echo $_OS_MACOSX
+	else
+		echo $_OS_UNKNOWN
+	fi
 }
 
 #######################################
