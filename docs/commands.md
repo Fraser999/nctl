@@ -199,7 +199,7 @@ Dispatches to node Y in network X, T wasmless transfers from network faucet to u
 
 e.g. `nctl-wg-100`
 
-e.g. `nctl-wg-100 net=1 node=1 payment=200000 gas=10 transfers 100 interval=0.01 user=1`  (same as above)
+e.g. `nctl-wg-100 net=1 node=1 payment=200000 gas=10 transfers=100 interval=0.01 user=1`  (same as above)
 
 e.g. `nctl-wg-100 transfers=10000 interval=0.001`
 
@@ -211,7 +211,7 @@ Dispatches to node Y in network X, T wasm based transfers from network faucet to
 
 e.g. `nctl-wg-110`
 
-e.g. `nctl-wg-110 net=1 node=1 payment=200000 gas=10 transfers 100 interval=0.01 user=1`  (same as above)
+e.g. `nctl-wg-110 net=1 node=1 payment=200000 gas=10 transfers=100 interval=0.01 user=1`  (same as above)
 
 e.g. `nctl-wg-110 transfers=10000 interval=0.001`
 
