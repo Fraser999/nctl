@@ -159,7 +159,11 @@ function get_json_w() {
     curl "$1" | python3 -m json.tool
 }
 
+#######################################
 # Returns OS type.
+# Globals:
+#   OSTYPE: type of OS being run.
+#######################################
 function get_os()
 {
 	if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -180,18 +184,34 @@ function get_os()
 }
 
 #######################################
+# Executes a node RESTful GET call.
+# Arguments:
+#   Network ordinal identifier.
+#   Node ordinal identifier.
+#   REST endpoint.
+#######################################
+function exec_node_rest_get() {
+    node_api_ep=$(get_node_address $1 $2)/$3
+    log $node_api
+    curl \
+        --location \
+        --request GET $node_api_ep
+}
+
+#######################################
 # Executes a node RPC call.
 # Arguments:
-#   Node address.
+#   Network ordinal identifier.
+#   Node ordinal identifier.
 #   RPC method.
 #   RPC method parameters.
 #######################################
 function exec_node_rpc() {
-    node_api=$(get_node_address $1 $2)/rpc
+    node_api_ep=$(get_node_address $1 $2)/rpc
     curl \
         -s \
         --location \
-        --request POST $node_api \
+        --request POST $node_api_ep \
         --header 'Content-Type: application/json' \
         --data-raw '{
             "id": 1,

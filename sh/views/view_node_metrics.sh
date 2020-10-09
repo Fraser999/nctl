@@ -37,4 +37,4 @@ node=${node:-1}
 # Main
 #######################################
 
-exec_node_rpc $net $node "info_get_metrics"
+exec_node_rest_get $net $node "metrics"
