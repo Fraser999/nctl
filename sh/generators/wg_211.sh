@@ -63,7 +63,7 @@ node_address=$(get_node_address $net $node)
 path_net=$NCTL/assets/net-$net
 path_client=$path_net/bin/casper-client
 path_contract=$path_net/bin/$contract_name
-validator_public_key=`cat $path_net/nodes/node-$validator/public_key_hex`
+validator_public_key=`cat $path_net/nodes/node-$validator/keys/public_key_hex`
 
 # Inform.
 log "dispatching deploy -> "$contract_name

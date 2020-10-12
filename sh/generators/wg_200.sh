@@ -76,6 +76,17 @@ log "... bidder secret key = $bidder_secret_key"
 log "... bid amount = $amount"
 log "... bid delegation rate = $delegation_rate"
 
+# $path_client put-deploy \
+#     --chain-name casper-net-$net \
+#     --gas-price $gas_price \
+#     --node-address $node_address \
+#     --payment-amount $gas_payment \
+#     --secret-key $bidder_secret_key \
+#     --session-arg "amount:u512='$amount'" \
+#     --session-arg "delegation_rate:u64='$delegation_rate'" \
+#     --session-path $path_contract \
+#     --ttl "1day"
+
 # Dispatch deploy.
 deploy_hash=$(
     $path_client put-deploy \
