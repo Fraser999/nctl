@@ -157,14 +157,14 @@ nctl-view-node-log net=1 node=1 typeof=stdout  (same as above)
 nctl-view-node-log net=1 node=3 typeof=stderr
 ```
 
-### nctl-view-node-metrics net={X:-1} node={Y:-1}
+### nctl-view-node-metrics net={X:-1} node={Y:-all}
 
 Renders metrics of node Y in network X to stdout.
 
 ```
 nctl-view-node-metrics
 
-nctl-view-node-metrics net=1 node=1  (same as above)
+nctl-view-node-metrics net=1 node=all  (same as above)
 
 nctl-view-node-metrics net=1 node=3
 ```
