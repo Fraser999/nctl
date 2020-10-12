@@ -194,6 +194,7 @@ function exec_node_rest_get() {
     node_api_ep=$(get_node_address $1 $2)/$3
     log $node_api
     curl \
+        -s \
         --location \
         --request GET $node_api_ep
 }

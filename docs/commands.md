@@ -157,16 +157,18 @@ nctl-view-node-log net=1 node=1 typeof=stdout  (same as above)
 nctl-view-node-log net=1 node=3 typeof=stderr
 ```
 
-### nctl-view-node-metrics net={X:-1} node={Y:-all}
+### nctl-view-node-metrics net={X:-1} node={Y:-all} metric={Z:-all}
 
 Renders metrics of node Y in network X to stdout.
 
 ```
 nctl-view-node-metrics
 
-nctl-view-node-metrics net=1 node=all  (same as above)
+nctl-view-node-metrics net=1 node=all metric=all (same as above)
 
-nctl-view-node-metrics net=1 node=3
+nctl-view-node-metrics net=1 node=all metric=scheduler_queue_regular_count
+
+nctl-view-node-metrics net=1 node=2 metric=runner_events
 ```
 
 ### nctl-view-node-peers net={X:-1} node={Y:-all}

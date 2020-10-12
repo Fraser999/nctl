@@ -31,7 +31,7 @@ done
 
 # Set defaults.
 net=${net:-1}
-node=${node:-all}
+node=${node:-"all"}
 
 #######################################
 # Main

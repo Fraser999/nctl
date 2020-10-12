@@ -35,7 +35,7 @@ done
 loglevel=${loglevel:-$RUST_LOG}
 loglevel=${loglevel:-debug}
 net=${net:-1}
-node=${node:-all}
+node=${node:-"all"}
 
 #######################################
 # Main
