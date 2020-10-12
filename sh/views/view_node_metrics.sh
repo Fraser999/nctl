@@ -11,6 +11,20 @@
 source $NCTL/sh/utils/misc.sh
 
 #######################################
+# Displays to stdout current node metrics.
+# Globals:
+#   NCTL - path to nctl home directory.
+# Arguments:
+#   Network ordinal identifer.
+#   Node ordinal identifer.
+#######################################
+function _view_metrics() {
+    node_address=$(get_node_address $1 $2)
+    log "network #$1 :: node #$2 :: $node_address :: metrics:"
+    exec_node_rest_get $net $node "metrics"
+}
+
+#######################################
 # Destructure input args.
 #######################################
 
@@ -37,4 +51,14 @@ node=${node:-1}
 # Main
 #######################################
 
-exec_node_rpc $net $node "info_get_metrics"
+
+if [ $node = "all" ]; then
+    source $NCTL/assets/net-$net/vars
+    for node_idx in $(seq 1 $NCTL_NET_NODE_COUNT)
+    do
+        _view_metrics $net $node_idx
+        echo "------------------------------------------------------------------------------------------------------------------------------------"
+    done
+else
+    _view_metrics $net $node
+fi

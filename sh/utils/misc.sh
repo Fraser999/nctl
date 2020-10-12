@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 
 # ###############################################################
+# UTILS: conostants
+# ###############################################################
+
+# OS types.
+declare _OS_LINUX="linux"
+declare _OS_LINUX_REDHAT="$_OS_LINUX-redhat"
+declare _OS_LINUX_SUSE="$_OS_LINUX-suse"
+declare _OS_LINUX_ARCH="$_OS_LINUX-arch"
+declare _OS_LINUX_DEBIAN="$_OS_LINUX-debian"
+declare _OS_MACOSX="macosx"
+declare _OS_UNKNOWN="unknown"
+
+# ###############################################################
 # UTILS: helper functions
 # ###############################################################
 
@@ -76,7 +89,7 @@ function resetd () {
 }
 
 # ###############################################################
-# UTILS: geter functions
+# UTILS: getter functions
 # ###############################################################
 
 #######################################
@@ -147,18 +160,58 @@ function get_json_w() {
 }
 
 #######################################
+# Returns OS type.
+# Globals:
+#   OSTYPE: type of OS being run.
+#######################################
+function get_os()
+{
+	if [[ "$OSTYPE" == "linux-gnu" ]]; then
+		if [ -f /etc/redhat-release ]; then
+			echo $_OS_LINUX_REDHAT
+		elif [ -f /etc/SuSE-release ]; then
+			echo $_OS_LINUX_SUSE
+		elif [ -f /etc/arch-release ]; then
+			echo $_OS_LINUX_ARCH
+		elif [ -f /etc/debian_version ]; then
+			echo $_OS_LINUX_DEBIAN
+		fi
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
+		echo $_OS_MACOSX
+	else
+		echo $_OS_UNKNOWN
+	fi
+}
+
+#######################################
+# Executes a node RESTful GET call.
+# Arguments:
+#   Network ordinal identifier.
+#   Node ordinal identifier.
+#   REST endpoint.
+#######################################
+function exec_node_rest_get() {
+    node_api_ep=$(get_node_address $1 $2)/$3
+    log $node_api
+    curl \
+        --location \
+        --request GET $node_api_ep
+}
+
+#######################################
 # Executes a node RPC call.
 # Arguments:
-#   Node address.
+#   Network ordinal identifier.
+#   Node ordinal identifier.
 #   RPC method.
 #   RPC method parameters.
 #######################################
 function exec_node_rpc() {
-    node_api=$(get_node_address $1 $2)/rpc
+    node_api_ep=$(get_node_address $1 $2)/rpc
     curl \
         -s \
         --location \
-        --request POST $node_api \
+        --request POST $node_api_ep \
         --header 'Content-Type: application/json' \
         --data-raw '{
             "id": 1,

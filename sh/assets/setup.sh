@@ -29,9 +29,13 @@ function _set_bin() {
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/mint_install.wasm $1/bin
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/pos_install.wasm $1/bin
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/standard_payment_install.wasm $1/bin
-    # ... user contracts.
+    # ... client contracts.
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/add_bid.wasm $1/bin
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/delegate.wasm $1/bin
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/transfer_to_account_u512.wasm $1/bin
     cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/transfer_to_account_u512_stored.wasm $1/bin
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/undelegate.wasm $1/bin
+    cp $NCTL_CASPER_HOME/target/wasm32-unknown-unknown/release/withdraw_bid.wasm $1/bin
 }
 
 #######################################

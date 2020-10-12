@@ -14,12 +14,14 @@ chainspec_config_path = '../../../chainspec/chainspec.toml'
 # =================================
 [logging]
 
-# Abbreviate module names in text ouptut.
+# Abbreviate module names in text output.  Has no effect if format = 'json'.
 abbreviate_modules = false
+
+# Colored output.  Has no effect if format = 'json'.
+color = false
 
 # Output format.  Possible values are 'text' or 'json'.
 format = 'json'
-
 
 # ====================================
 # Configuration options for consensus
@@ -58,7 +60,7 @@ known_addresses = [{NETWORK_KNOWN_ADDRESSES}]
 
 # The interval (in milliseconds) between each fresh round of gossiping the node's public address.
 # Defaults to 30_000.
-gossip_interval = 1000
+gossip_interval = 30000
 
 # Enable systemd support. If enabled, the node will notify systemd once it has synced and its
 # listening socket for incoming connections is open.
@@ -71,12 +73,6 @@ systemd_support = false
 # Configuration options for the HTTP API server
 # =============================================
 [http_server]
-
-# # Interface to bind to.  Defaults to loopback address.
-# bind_interface = '127.0.0.1'
-
-# # Port to bind to.  Use 0 for a random port.
-# bind_port = {HTTP_SERVER_BIND_PORT}
 
 # Listening address for HTTP server.  If the port is set to 0, a random port will be used.
 #
@@ -115,6 +111,13 @@ path = '../storage'
 #
 # The size should be a multiple of the OS page size.
 #max_deploy_store_size = 322122547200
+
+# Optional maximum size of the database to use for the block height store.
+#
+# If unset, defaults to 10,485,100 == 10 MiB.
+#
+# The size should be a multiple of the OS page size.
+#max_block_height_store_size = 10485100
 
 # Optional maximum size of the database to use for the chainspec store.
 #

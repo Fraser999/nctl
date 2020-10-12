@@ -11,6 +11,20 @@
 source $NCTL/sh/utils/misc.sh
 
 #######################################
+# Displays to stdout current node status.
+# Globals:
+#   NCTL - path to nctl home directory.
+# Arguments:
+#   Network ordinal identifer.
+#   Node ordinal identifer.
+#######################################
+function _view_status() {
+    node_address=$(get_node_address $1 $2)
+    log "network #$1 :: node #$2 :: $node_address :: status:"
+    exec_node_rpc $1 $2 "info_get_status"
+}
+
+#######################################
 # Destructure input args.
 #######################################
 
@@ -31,10 +45,19 @@ done
 
 # Set defaults.
 net=${net:-1}
-node=${node:-1}
+node=${node:-"all"}
 
 #######################################
 # Main
 #######################################
 
-exec_node_rpc $net $node "info_get_status"
+if [ $node = "all" ]; then
+    source $NCTL/assets/net-$net/vars
+    for node_idx in $(seq 1 $NCTL_NET_NODE_COUNT)
+    do
+        _view_status $net $node_idx
+        echo "------------------------------------------------------------------------------------------------------------------------------------"
+    done
+else
+    _view_status $net $node
+fi
