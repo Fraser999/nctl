@@ -21,7 +21,7 @@ source $NCTL/sh/utils/misc.sh
 function _view_metrics() {
     node_address=$(get_node_address $1 $2)
     log "network #$1 :: node #$2 :: $node_address :: metrics:"
-    exec_node_rest_get $net $node "metrics"
+    exec_node_rest_get $1 $2 "metrics"
 }
 
 #######################################
@@ -45,7 +45,7 @@ done
 
 # Set defaults.
 net=${net:-1}
-node=${node:-1}
+node=${node:-all}
 
 #######################################
 # Main
@@ -56,7 +56,9 @@ if [ $node = "all" ]; then
     source $NCTL/assets/net-$net/vars
     for node_idx in $(seq 1 $NCTL_NET_NODE_COUNT)
     do
+        echo $node_idx
         _view_metrics $net $node_idx
+        echo "------------------------------------------------------------------------------------------------------------------------------------"
         echo "------------------------------------------------------------------------------------------------------------------------------------"
     done
 else
