@@ -226,7 +226,7 @@ Dispatches to node Y in network X, T wasm based transfers from network faucet to
 ```
 nctl-wg-110
 
-nctl-wg-110 net=1 node=1 payment=200000 gas=10 transfers100 interval=0.01 user=1  (same as above)
+nctl-wg-110 net=1 node=1 payment=200000 gas=10 transfers=100 interval=0.01 user=1  (same as above)
 
 nctl-wg-110 transfers=10000 interval=0.001
 ```
