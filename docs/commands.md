@@ -205,6 +205,8 @@ nctl-view-node-storage net=1 node=all  (same as above)
 nctl-view-node-storage net=1 node=3
 ```
 
+## Dispatching deploys
+
 ### nctl-wg-100 net={X:-1} node={Y:-1} payment={P:-200000} gas={G:-10} transfers={T:-100} interval={I:-0.01} user={U:-1}
 
 Dispatches to node Y in network X, T wasmless transfers from network faucet to user #U.  If node=all then transfers are dispatched to nodes in a round-robin fashion.
