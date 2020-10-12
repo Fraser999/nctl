@@ -13,7 +13,7 @@ python3 -m pip install supervisor
 
 # Rust toolchain - required by casper-node software.
 cd YOUR_WORKING_DIRECTORY/casper-node
-make make setup-rs
+make setup-rs
 ```
 
 ### Step 2 - install source.
