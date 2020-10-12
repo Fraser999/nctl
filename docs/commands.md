@@ -235,7 +235,7 @@ NOTE - this command has a synonym: `nctl-do-transfer-wasm`
 
 ### nctl-wg-200 net={X:-1} node={Y:-1} amount={A:-1000000} rate={R:-125} payment={P:-200000} gas={G:-10} user={U:-1}
 
-Dispatches to node Y in network X from user #U, a Proof-Of-Stake auction bid **submission** for amount amount A (motes) with a delegation rate of R.  Displays relevant deploy hash for subsequent querying.
+Dispatches to node Y in network X from user #U, a Proof-Of-Stake auction bid **submission** for amount A (motes) with a delegation rate of R.  Displays relevant deploy hash for subsequent querying.
 
 ```
 nctl-wg-200
@@ -249,7 +249,7 @@ NOTE - this command has a synonym: `nctl-do-auction-submit`
 
 ### nctl-wg-201 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
 
-Dispatches to node Y in network X from user #U, a Proof-Of-Stake auction bid **withdrawal** for amount amount A (motes).  Displays relevant deploy hash for subsequent querying.
+Dispatches to node Y in network X from user #U, a Proof-Of-Stake auction bid **withdrawal** for amount A (motes).  Displays relevant deploy hash for subsequent querying.
 
 ```
 nctl-wg-201
@@ -263,7 +263,7 @@ NOTE - this command has a synonym: `nctl-do-auction-withdraw`
 
 ### nctl-wg-210 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
 
-Dispatches to node Y in network X from user #U, a Proof-Of-Stake **delegate** bid for amount amount A (motes).  Displays relevant deploy hash for subsequent querying.
+Dispatches to node Y in network X from user #U, a Proof-Of-Stake **delegate** bid for amount A (motes).  Displays relevant deploy hash for subsequent querying.
 
 ```
 nctl-wg-210
@@ -277,7 +277,7 @@ NOTE - this command has a synonym: `nctl-do-auction-delegate`
 
 ### nctl-wg-211 net={X:-1} node={Y:-1} amount={A:-1000000} payment={P:-200000} gas={G:-10} user={U:-1}
 
-Dispatches to node Y in network X from user #U, a Proof-Of-Stake **undelegate** bid for amount amount A (motes).  Displays relevant deploy hash for subsequent querying.
+Dispatches to node Y in network X from user #U, a Proof-Of-Stake **undelegate** bid for amount A (motes).  Displays relevant deploy hash for subsequent querying.
 
 ```
 nctl-wg-211
