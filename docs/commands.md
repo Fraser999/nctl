@@ -159,7 +159,7 @@ nctl-view-node-log net=1 node=3 typeof=stderr
 
 ### nctl-view-node-metrics net={X:-1} node={Y:-all} metric={Z:-all}
 
-Renders metrics of node Y in network X to stdout.
+Renders metrics of node Y in network X to stdout.  Assign the metric parameter to filter accordingly.
 
 ```
 nctl-view-node-metrics
