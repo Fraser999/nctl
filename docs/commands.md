@@ -41,34 +41,35 @@ List previously created network assets.
 
 Sets up assets required to run a local N-node network - this includes binaries, chainspec, config, faucet, keys ... etc.
 
-e.g. `nctl-assets-setup`
+```
+nctl-assets-setup
 
-e.g. `nctl-assets-setup net=1 nodes=5 users=5 bootstraps=1`  (same as above)
+nctl-assets-setup net=1 nodes=5 users=5 bootstraps=1  (same as above)
 
-e.g. `nctl-assets-setup net=2 nodes=10 users=10 bootstraps=4`
-
-NOTE: default
-
+nctl-assets-setup net=2 nodes=10 users=10 bootstraps=4
+```
 
 ### nctl-assets-teardown net={X:-1}
 
 Stops network & destroys all related assets.
 
-e.g. `nctl-assets-teardown`
+```
+nctl-assets-teardown
 
-e.g. `nctl-assets-teardown net=1`  (same as above)
+nctl-assets-teardown net=1  (same as above)
 
-e.g. `nctl-assets-teardown net=2`
-
+nctl-assets-teardown net=2
+```
 
 ### nctl-assets-dump net={X:-1}
 
 Dumps transient network assets such as logs + configuration.
 
-e.g. `nctl-assets-dump`
+```
+nctl-assets-dump
 
-e.g. `nctl-assets-dump net=1`  (same as above)
-
+nctl-assets-dump net=1  (same as above)
+```
 
 ## Controlling network nodes
 
